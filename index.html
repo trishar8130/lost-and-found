@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&display=swap" rel="stylesheet" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   :root {
     --navy: #0f2044;
     --navy-light: #1a3364;
@@ -37,14 +37,14 @@
     --radius: 8px;
     --radius-lg: 14px;
   }
-
+ 
   body {
     font-family: 'Inter', sans-serif;
     background: var(--cream);
     color: var(--text);
     min-height: 100vh;
   }
-
+ 
   /* ── HEADER ── */
   header {
     background: var(--navy);
@@ -54,7 +54,7 @@
     z-index: 50;
     box-shadow: 0 2px 16px rgba(15,32,68,0.18);
   }
-
+ 
   .header-inner {
     max-width: 1100px;
     margin: 0 auto;
@@ -64,13 +64,13 @@
     justify-content: space-between;
     height: 68px;
   }
-
+ 
   .logo-group {
     display: flex;
     align-items: center;
     gap: 14px;
   }
-
+ 
   .logo-shield {
     width: 44px;
     height: 44px;
@@ -81,9 +81,9 @@
     justify-content: center;
     flex-shrink: 0;
   }
-
+ 
   .logo-shield svg { width: 26px; height: 26px; }
-
+ 
   .logo-text .school-name {
     font-family: 'Fraunces', serif;
     font-size: 17px;
@@ -92,7 +92,7 @@
     line-height: 1.2;
     letter-spacing: 0.01em;
   }
-
+ 
   .logo-text .portal-label {
     font-size: 11px;
     color: var(--gold-light);
@@ -100,7 +100,7 @@
     text-transform: uppercase;
     font-weight: 500;
   }
-
+ 
   .header-url {
     font-size: 12px;
     color: rgba(255,255,255,0.4);
@@ -108,9 +108,9 @@
     letter-spacing: 0.01em;
     display: none;
   }
-
+ 
   @media (min-width: 600px) { .header-url { display: block; } }
-
+ 
   /* ── HERO ── */
   .hero {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
@@ -119,7 +119,7 @@
     position: relative;
     overflow: hidden;
   }
-
+ 
   .hero::before {
     content: '';
     position: absolute;
@@ -129,7 +129,7 @@
     background: rgba(200,146,42,0.08);
     pointer-events: none;
   }
-
+ 
   .hero::after {
     content: '';
     position: absolute;
@@ -139,7 +139,7 @@
     background: rgba(200,146,42,0.05);
     pointer-events: none;
   }
-
+ 
   .hero h1 {
     font-family: 'Fraunces', serif;
     font-size: clamp(28px, 5vw, 44px);
@@ -148,9 +148,9 @@
     line-height: 1.15;
     margin-bottom: 10px;
   }
-
+ 
   .hero h1 span { color: var(--gold-light); font-style: italic; }
-
+ 
   .hero-sub {
     font-size: 15px;
     color: rgba(255,255,255,0.65);
@@ -158,7 +158,7 @@
     margin: 0 auto 28px;
     line-height: 1.6;
   }
-
+ 
   /* ── STATS ── */
   .stats-bar {
     display: flex;
@@ -166,7 +166,7 @@
     gap: 0;
     flex-wrap: wrap;
   }
-
+ 
   .stat-pill {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.12);
@@ -174,10 +174,10 @@
     text-align: center;
     min-width: 110px;
   }
-
+ 
   .stat-pill:first-child { border-radius: 10px 0 0 10px; }
   .stat-pill:last-child { border-radius: 0 10px 10px 0; }
-
+ 
   .stat-num {
     font-size: 26px;
     font-weight: 600;
@@ -185,7 +185,7 @@
     font-family: 'Fraunces', serif;
     line-height: 1;
   }
-
+ 
   .stat-label {
     font-size: 11px;
     color: rgba(255,255,255,0.55);
@@ -193,14 +193,14 @@
     letter-spacing: 0.06em;
     margin-top: 4px;
   }
-
+ 
   /* ── MAIN LAYOUT ── */
   .main-wrap {
     max-width: 1000px;
     margin: 0 auto;
     padding: 36px 20px 60px;
   }
-
+ 
   /* ── TABS ── */
   .tabs {
     display: flex;
@@ -212,7 +212,7 @@
     padding: 5px;
     width: fit-content;
   }
-
+ 
   .tab {
     padding: 9px 22px;
     border-radius: 10px;
@@ -229,15 +229,15 @@
     gap: 7px;
     white-space: nowrap;
   }
-
+ 
   .tab svg { width: 16px; height: 16px; opacity: 0.7; }
   .tab.active { background: var(--navy); color: #fff; }
   .tab.active svg { opacity: 1; }
-
+ 
   /* ── SECTIONS ── */
   .section { display: none; }
   .section.active { display: block; }
-
+ 
   /* ── BROWSE ── */
   .filters {
     display: flex;
@@ -246,14 +246,14 @@
     margin-bottom: 20px;
     align-items: center;
   }
-
+ 
   .search-wrap {
     position: relative;
     flex: 1;
     min-width: 200px;
     max-width: 340px;
   }
-
+ 
   .search-wrap svg {
     position: absolute;
     left: 11px;
@@ -263,9 +263,9 @@
     color: var(--text-3);
     pointer-events: none;
   }
-
+ 
   .search-wrap input { padding-left: 36px !important; }
-
+ 
   input, select, textarea {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -278,20 +278,20 @@
     transition: border-color 0.15s;
     width: 100%;
   }
-
+ 
   input:focus, select:focus, textarea:focus {
     border-color: var(--navy);
     box-shadow: 0 0 0 3px rgba(15,32,68,0.08);
   }
-
+ 
   select { cursor: pointer; }
   textarea { resize: vertical; min-height: 80px; }
-
+ 
   .filters select { width: auto; min-width: 140px; }
-
+ 
   /* ── ITEM CARDS ── */
   .items-grid { display: grid; gap: 12px; }
-
+ 
   .item-card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -302,12 +302,12 @@
     align-items: flex-start;
     transition: box-shadow 0.15s, border-color 0.15s;
   }
-
+ 
   .item-card:hover {
     border-color: var(--border-strong);
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
-
+ 
   .item-emoji {
     font-size: 28px;
     width: 48px;
@@ -320,24 +320,24 @@
     flex-shrink: 0;
     border: 1px solid var(--border);
   }
-
+ 
   .item-body { flex: 1; min-width: 0; }
-
+ 
   .item-name {
     font-size: 15px;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 3px;
   }
-
+ 
   .item-meta {
     font-size: 13px;
     color: var(--text-3);
     line-height: 1.5;
   }
-
+ 
   .item-meta strong { color: var(--text-2); font-weight: 500; }
-
+ 
   .badge {
     display: inline-block;
     font-size: 11px;
@@ -348,12 +348,12 @@
     text-transform: uppercase;
     margin-top: 7px;
   }
-
+ 
   .badge-lost { background: var(--lost-bg); color: var(--lost-text); }
   .badge-found { background: var(--found-bg); color: var(--found-text); }
   .badge-claimed { background: var(--claimed-bg); color: var(--claimed-text); }
   .badge-returned { background: var(--returned-bg); color: var(--returned-text); }
-
+ 
   .return-btn {
     flex-shrink: 0;
     font-size: 13px;
@@ -369,11 +369,11 @@
     white-space: nowrap;
     align-self: center;
   }
-
+ 
   .return-btn:hover { background: #4a2a8a; color: #fff; border-color: #4a2a8a; }
-
+ 
   .item-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
-
+ 
   .claim-btn {
     flex-shrink: 0;
     font-size: 13px;
@@ -389,18 +389,18 @@
     white-space: nowrap;
     align-self: center;
   }
-
+ 
   .claim-btn:hover { background: var(--navy); color: #fff; }
-
+ 
   .empty-state {
     text-align: center;
     padding: 56px 24px;
     color: var(--text-3);
   }
-
+ 
   .empty-state .empty-icon { font-size: 44px; margin-bottom: 12px; }
   .empty-state p { font-size: 15px; }
-
+ 
   /* ── FORM CARD ── */
   .form-card {
     background: var(--white);
@@ -409,7 +409,7 @@
     padding: 28px;
     max-width: 620px;
   }
-
+ 
   .form-section-title {
     font-size: 11px;
     font-weight: 600;
@@ -420,13 +420,13 @@
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border);
   }
-
+ 
   .form-row { margin-bottom: 16px; }
   .form-row label { display: block; font-size: 13px; font-weight: 500; color: var(--text-2); margin-bottom: 6px; }
-
+ 
   .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 500px) { .form-2col { grid-template-columns: 1fr; } }
-
+ 
   .btn-submit {
     background: var(--navy);
     color: #fff;
@@ -440,9 +440,9 @@
     transition: background 0.15s;
     margin-top: 4px;
   }
-
+ 
   .btn-submit:hover { background: var(--navy-light); }
-
+ 
   .alert {
     display: none;
     border-radius: var(--radius);
@@ -453,7 +453,7 @@
     align-items: center;
     gap: 8px;
   }
-
+ 
   .alert.show { display: flex; }
   .alert-success { background: var(--success-bg); color: var(--success-text); border: 1px solid #b2dfc6; }
   .alert-note {
@@ -466,7 +466,7 @@
     margin-bottom: 18px;
     line-height: 1.5;
   }
-
+ 
   /* ── MODAL ── */
   .modal-overlay {
     display: none;
@@ -478,9 +478,9 @@
     justify-content: center;
     padding: 20px;
   }
-
+ 
   .modal-overlay.open { display: flex; }
-
+ 
   .modal {
     background: var(--white);
     border-radius: var(--radius-lg);
@@ -489,14 +489,14 @@
     width: 100%;
     box-shadow: 0 16px 48px rgba(0,0,0,0.18);
   }
-
+ 
   .modal-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 6px;
   }
-
+ 
   .modal-icon {
     width: 36px; height: 36px;
     background: var(--found-bg);
@@ -505,12 +505,12 @@
     font-size: 18px;
     flex-shrink: 0;
   }
-
+ 
   .modal h3 { font-size: 17px; font-weight: 600; }
   .modal-sub { font-size: 13px; color: var(--text-3); margin-bottom: 18px; }
-
+ 
   .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
-
+ 
   .btn-ghost {
     background: transparent;
     border: 1px solid var(--border-strong);
@@ -523,9 +523,9 @@
     font-family: 'Inter', sans-serif;
     transition: background 0.15s;
   }
-
+ 
   .btn-ghost:hover { background: var(--cream); }
-
+ 
   /* ── FOOTER ── */
   footer {
     background: var(--navy);
@@ -535,12 +535,12 @@
     font-size: 12px;
     line-height: 1.7;
   }
-
+ 
   footer strong { color: rgba(255,255,255,0.8); font-weight: 500; }
 </style>
 </head>
 <body>
-
+ 
 <!-- HEADER -->
 <header>
   <div class="header-inner">
@@ -559,7 +559,7 @@
     <div style="font-size:13px; color:rgba(255,255,255,0.55); font-weight:500;">Made by Trishar Saxena &amp; Krishna Sharma</div>
   </div>
 </header>
-
+ 
 <!-- HERO -->
 <div class="hero">
   <h1>Lost something at school?<br><span>We'll help you find it.</span></h1>
@@ -583,10 +583,10 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- MAIN -->
 <div class="main-wrap">
-
+ 
   <!-- TABS -->
   <div class="tabs">
     <button class="tab active" onclick="switchTab('browse')">
@@ -602,7 +602,7 @@
       Report found
     </button>
   </div>
-
+ 
   <!-- BROWSE -->
   <div class="section active" id="section-browse">
     <div class="filters">
@@ -629,7 +629,7 @@
     </div>
     <div class="items-grid" id="itemsGrid"></div>
   </div>
-
+ 
   <!-- REPORT LOST -->
   <div class="section" id="section-lost">
     <div class="alert alert-success" id="lostAlert">
@@ -676,7 +676,7 @@
       <button class="btn-submit" onclick="submitLost()">Post lost item →</button>
     </div>
   </div>
-
+ 
   <!-- REPORT FOUND -->
   <div class="section" id="section-found">
     <div class="alert alert-success" id="foundAlert">
@@ -727,7 +727,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- RETURN MODAL -->
 <div class="modal-overlay" id="returnModal">
   <div class="modal">
@@ -754,7 +754,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- CLAIM MODAL -->
 <div class="modal-overlay" id="claimModal">
   <div class="modal">
@@ -777,31 +777,31 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <strong>Khaitan Public School — Lost &amp; Found Portal</strong><br>
   Made by Trishar Saxena &amp; Krishna Sharma &nbsp;·&nbsp; For queries, contact the school office<br>
   Items unclaimed after 30 days may be donated to charity.
 </footer>
-
+ 
 <script>
 const CAT_EMOJI = {
   'Clothing': '👕', 'Electronics': '💻', 'Stationery': '✏️',
   'Bag / backpack': '🎒', 'Sports gear': '⚽', 'Other': '📦'
 };
-
+ 
 function loadItems() {
   try {
     const saved = localStorage.getItem('kps_lf_items');
     return saved ? JSON.parse(saved) : [];
   } catch(e) { return []; }
 }
-
+ 
 function saveItems() {
   try { localStorage.setItem('kps_lf_items', JSON.stringify(items)); } catch(e) {}
 }
-
+ 
 function getNextId() {
   try {
     const id = parseInt(localStorage.getItem('kps_lf_nextid') || '1');
@@ -809,35 +809,35 @@ function getNextId() {
     return id;
   } catch(e) { return Date.now(); }
 }
-
+ 
 let items = loadItems();
 let claimingId = null;
-
+ 
 function updateStats() {
   document.getElementById('statLost').textContent = items.filter(i => i.status === 'lost').length;
   document.getElementById('statFound').textContent = items.filter(i => i.status === 'found').length;
   document.getElementById('statClaimed').textContent = items.filter(i => i.status === 'claimed').length;
   document.getElementById('statReturned').textContent = items.filter(i => i.status === 'returned').length;
 }
-
+ 
 function renderItems() {
   const search = document.getElementById('searchInput').value.toLowerCase();
   const cat = document.getElementById('filterCat').value;
   const status = document.getElementById('filterStatus').value;
-
+ 
   let filtered = items.filter(item =>
     (!search || item.name.toLowerCase().includes(search) || item.desc.toLowerCase().includes(search) || item.location.toLowerCase().includes(search))
     && (!cat || item.cat === cat)
     && (!status || item.status === status)
   );
-
+ 
   const grid = document.getElementById('itemsGrid');
-
+ 
   if (!filtered.length) {
     grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><p>No items match your filters. Try adjusting your search.</p></div>`;
     return;
   }
-
+ 
   grid.innerHTML = filtered.map(item => `
     <div class="item-card">
       <div class="item-emoji">${CAT_EMOJI[item.cat] || '📦'}</div>
@@ -856,7 +856,7 @@ function renderItems() {
     </div>
   `).join('');
 }
-
+ 
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -864,13 +864,13 @@ function switchTab(tab) {
   document.querySelectorAll('.tab')[tabMap.indexOf(tab)].classList.add('active');
   document.getElementById('section-' + tab).classList.add('active');
 }
-
+ 
 function showAlert(id) {
   const el = document.getElementById(id);
   el.classList.add('show');
   setTimeout(() => el.classList.remove('show'), 5000);
 }
-
+ 
 function submitLost() {
   const name = document.getElementById('lostName').value.trim();
   const item = document.getElementById('lostItem').value.trim();
@@ -890,7 +890,7 @@ function submitLost() {
   showAlert('lostAlert');
   updateStats();
 }
-
+ 
 function submitFound() {
   const name = document.getElementById('foundName').value.trim();
   const item = document.getElementById('foundItem').value.trim();
@@ -911,7 +911,7 @@ function submitFound() {
   updateStats();
   renderItems();
 }
-
+ 
 function openClaim(id) {
   claimingId = id;
   const item = items.find(i => i.id === id);
@@ -920,12 +920,12 @@ function openClaim(id) {
   document.getElementById('claimClass').value = '';
   document.getElementById('claimModal').classList.add('open');
 }
-
+ 
 function closeModal() {
   document.getElementById('claimModal').classList.remove('open');
   claimingId = null;
 }
-
+ 
 function confirmClaim() {
   const n = document.getElementById('claimName').value.trim();
   if (!n) { alert('Please enter your name.'); return; }
@@ -936,9 +936,9 @@ function confirmClaim() {
   updateStats();
   renderItems();
 }
-
+ 
 let returningId = null;
-
+ 
 function openReturn(id) {
   returningId = id;
   const item = items.find(i => i.id === id);
@@ -948,12 +948,12 @@ function openReturn(id) {
   document.getElementById('returnHow').value = '';
   document.getElementById('returnModal').classList.add('open');
 }
-
+ 
 function closeReturnModal() {
   document.getElementById('returnModal').classList.remove('open');
   returningId = null;
 }
-
+ 
 function confirmReturn() {
   const n = document.getElementById('returnName').value.trim();
   if (!n) { alert('Please enter your name.'); return; }
@@ -968,15 +968,15 @@ function confirmReturn() {
   updateStats();
   renderItems();
 }
-
+ 
 document.getElementById('returnModal').addEventListener('click', function(e) {
   if (e.target === this) closeReturnModal();
 });
-
+ 
 document.getElementById('claimModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-
+ 
 updateStats();
 renderItems();
 </script>
