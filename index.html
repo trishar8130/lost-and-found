@@ -1,2146 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Khaitan Public School | Lost & Found</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
-      rel="stylesheet">
-
-
 <style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-*,
-*::before,
-*::after {
-
-    box-sizing: border-box;
-
-    margin: 0;
-
-    padding: 0;
-
+:root{
+    --primary:#117c83;
+    --primary-dark:#075d63;
+    --accent:#18b89a;
+    --gold:#f5b942;
+    --bg:#f4f8f9;
+    --card:#ffffff;
+    --text:#18323a;
+    --muted:#6c858d;
+    --border:#d7e3e6;
+    --danger:#e45858;
+    --success:#20a56b;
+    --shadow:0 12px 35px rgba(18,55,65,.10);
 }
 
-
-:root {
-
-    --teal: #0e8388;
-
-    --teal-dark: #0f7187;
-
-    --green: #21b897;
-
-    --green-dark: #1ca385;
-
-    --green-light: #e6f8f2;
-
-    --cream: #f4f8f8;
-
-    --white: #ffffff;
-
-    --dark: #142326;
-
-    --text: #26383b;
-
-    --text-2: #52666a;
-
-    --text-3: #7b8e91;
-
-    --border: #d7e3e4;
-
-    --red: #d94a4a;
-
-    --red-light: #fff0f0;
-
-    --orange: #d98619;
-
-    --orange-light: #fff5e7;
-
-    --blue-light: #e9f7fa;
-
-    --purple-light: #f0eafa;
-
-    --shadow:
-        0 10px 35px rgba(14,70,76,.08);
-
-    --shadow-lg:
-        0 25px 70px rgba(14,70,76,.15);
-
-    --radius: 12px;
-
-    --radius-lg: 18px;
-
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-
-html {
-
-    scroll-behavior: smooth;
-
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
 }
-
-
-body {
-
-    font-family: "Inter", sans-serif;
-
-    background: var(--cream);
-
-    color: var(--text);
-
-    min-height: 100vh;
-
-}
-
 
 button,
 input,
 select,
-textarea {
-
-    font-family: inherit;
-
+textarea{
+    font:inherit;
 }
 
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-#loginScreen {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 99999;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        radial-gradient(
-            circle at top left,
-            rgba(54,179,176,.35),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #0b7479,
-            #0f7187
-        );
-
+button{
+    cursor:pointer;
 }
 
+/* ================= HEADER ================= */
 
-.login-card {
-
-    width: 100%;
-
-    max-width: 460px;
-
-    background: white;
-
-    border-radius: 26px;
-
-    padding: 42px 36px;
-
-    text-align: center;
-
-    box-shadow: var(--shadow-lg);
-
-    animation: loginIn .5s ease;
-
+header{
+    background:linear-gradient(135deg,#086d74,#13868d);
+    color:white;
+    padding:20px 6%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
 
-
-@keyframes loginIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(25px)
-            scale(.97);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
+.header-inner{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
-
-.login-logo {
-
-    width: 95px;
-
-    height: 70px;
-
-    margin: 0 auto 14px;
-
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-
-.login-logo svg {
-
-    width: 100%;
-
-    height: 100%;
-
+.logo{
+    width:52px;
+    height:52px;
+    border-radius:15px;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:27px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
-
-.login-card h1 {
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 27px;
-
-    color: #101b1d;
-
-    margin-bottom: 10px;
-
+.logo-area h1{
+    font-size:22px;
 }
 
-
-.login-card > p {
-
-    color: var(--text-3);
-
-    font-size: 14px;
-
-    line-height: 1.6;
-
+.logo-area p{
+    font-size:12px;
+    opacity:.85;
+    margin-top:4px;
 }
 
-
-.school-domain {
-
-    display: inline-block;
-
-    margin: 20px 0;
-
-    padding: 9px 15px;
-
-    border-radius: 999px;
-
-    background: var(--green-light);
-
-    color: #00875a;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-
-.microsoft-login {
-
-    width: 100%;
-
-    border: none;
-
-    border-radius: 11px;
-
-    background: #292929;
-
-    color: white;
-
-    padding: 14px 18px;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    transition: .2s;
-
+.user-info{
+    text-align:right;
 }
 
-
-.microsoft-login:hover {
-
-    background: #1d1d1d;
-
-    transform: translateY(-1px);
-
+.user-name{
+    font-weight:bold;
 }
 
-
-.microsoft-login:disabled {
-
-    opacity: .65;
-
-    cursor: wait;
-
+.user-email{
+    font-size:12px;
+    opacity:.8;
 }
 
-
-.microsoft-logo {
-
-    width: 22px;
-
-    height: 22px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    grid-template-rows: 1fr 1fr;
-
-    gap: 2px;
-
+.logout-btn{
+    background:white;
+    color:var(--primary);
+    border:none;
+    padding:10px 16px;
+    border-radius:10px;
+    font-weight:bold;
 }
 
-
-.microsoft-logo span:nth-child(1) {
-
-    background: #f35325;
-
+.logout-btn:hover{
+    transform:translateY(-1px);
 }
 
+/* ================= LOGIN ================= */
 
-.microsoft-logo span:nth-child(2) {
-
-    background: #81bc06;
-
+#loginScreen{
+    min-height:100vh;
+    background:linear-gradient(135deg,#08727a,#15949a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
 }
 
-
-.microsoft-logo span:nth-child(3) {
-
-    background: #05a6f0;
-
+.login-card{
+    width:100%;
+    max-width:470px;
+    background:white;
+    border-radius:28px;
+    padding:45px 35px;
+    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.2);
 }
 
-
-.microsoft-logo span:nth-child(4) {
-
-    background: #ffba08;
-
+.login-logo{
+    width:80px;
+    height:80px;
+    margin:0 auto 22px;
+    border-radius:22px;
+    background:#eefafa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
 }
 
-
-.login-error {
-
-    display: none;
-
-    margin-top: 15px;
-
-    padding: 11px 13px;
-
-    border-radius: 9px;
-
-    background: var(--red-light);
-
-    color: var(--red);
-
-    font-size: 13px;
-
-    line-height: 1.5;
-
+.login-card h1{
+    font-size:28px;
+    margin-bottom:10px;
 }
 
-
-.login-error.show {
-
-    display: block;
-
+.login-card p{
+    color:var(--muted);
+    line-height:1.6;
 }
 
-
-.login-note {
-
-    margin-top: 18px !important;
-
-    font-size: 12px !important;
-
+.school-badge{
+    display:inline-block;
+    margin:20px 0;
+    background:#e4f8f3;
+    color:#08766d;
+    padding:9px 15px;
+    border-radius:30px;
+    font-weight:bold;
+    font-size:13px;
 }
 
-
-/* =========================================================
-   APP
-========================================================= */
-
-#app {
-
-    display: none;
-
+.microsoft-btn{
+    width:100%;
+    border:none;
+    background:#292929;
+    color:white;
+    padding:16px;
+    border-radius:12px;
+    font-weight:bold;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
 }
 
-
-#app.visible {
-
-    display: block;
-
+.microsoft-btn:hover{
+    background:#111;
 }
 
-
-.top-accent {
-
-    height: 6px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--teal),
-            var(--green)
-        );
-
+.microsoft-logo{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    width:22px;
+    height:22px;
+    gap:2px;
 }
 
+.microsoft-logo span:nth-child(1){background:#f35325;}
+.microsoft-logo span:nth-child(2){background:#81bc06;}
+.microsoft-logo span:nth-child(3){background:#05a6f0;}
+.microsoft-logo span:nth-child(4){background:#ffba08;}
 
-/* =========================================================
-   HEADER
-========================================================= */
-
-header {
-
-    background: white;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 100;
-
-    border-bottom: 1px solid var(--border);
-
-    box-shadow:
-        0 3px 18px rgba(0,0,0,.06);
-
+.login-error{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    background:#fff0f0;
+    color:#c33;
+    font-size:13px;
 }
 
-
-.header-inner {
-
-    max-width: 1160px;
-
-    margin: auto;
-
-    min-height: 76px;
-
-    padding: 10px 22px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
+.login-loading{
+    display:none;
+    margin-top:15px;
+    color:var(--muted);
 }
 
+/* ================= APP ================= */
 
-.logo-group {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
+#app{
+    display:none;
 }
 
-
-.logo-mountains {
-
-    width: 52px;
-
-    height: 42px;
-
+.hero{
+    background:linear-gradient(135deg,#08747b,#12888e);
+    color:white;
+    padding:45px 20px 40px;
 }
 
-
-.logo-mountains svg {
-
-    width: 100%;
-
-    height: 100%;
-
+.hero-inner{
+    max-width:1000px;
+    margin:auto;
+    text-align:center;
 }
 
-
-.logo-text {
-
-    display: flex;
-
-    flex-direction: column;
-
+.hero h2{
+    font-size:36px;
+    margin-bottom:10px;
 }
 
-
-.school-name {
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 18px;
-
-    font-weight: 800;
-
-    letter-spacing: .08em;
-
-    color: #102629;
-
+.hero p{
+    opacity:.9;
 }
 
-
-.school-tagline {
-
-    font-size: 8px;
-
-    font-weight: 700;
-
-    letter-spacing: .2em;
-
-    color: var(--teal);
-
+.stats{
+    margin:30px auto 0;
+    max-width:650px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:15px;
+    overflow:hidden;
+    background:rgba(255,255,255,.10);
 }
 
-
-.portal-label {
-
-    margin-left: 12px;
-
-    padding-left: 12px;
-
-    border-left: 1px solid var(--border);
-
-    font-size: 13px;
-
-    color: var(--text-2);
-
-    font-weight: 600;
-
+.stat{
+    padding:15px 8px;
+    border-right:1px solid rgba(255,255,255,.25);
 }
 
-
-.header-user {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
+.stat:last-child{
+    border-right:none;
 }
 
-
-.user-avatar {
-
-    width: 39px;
-
-    height: 39px;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--green),
-            var(--teal-dark)
-        );
-
-    color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-weight: 800;
-
+.stat-number{
+    font-size:27px;
+    font-weight:bold;
 }
 
-
-.user-details {
-
-    display: flex;
-
-    flex-direction: column;
-
+.stat-label{
+    font-size:11px;
+    opacity:.8;
+    margin-top:4px;
 }
 
+/* ================= MAIN ================= */
 
-.user-name {
-
-    font-size: 13px;
-
-    font-weight: 700;
-
+main{
+    max-width:1200px;
+    margin:0 auto;
+    padding:30px 20px 60px;
 }
 
+/* ================= TABS ================= */
 
-.user-email {
-
-    font-size: 11px;
-
-    color: var(--text-3);
-
+.tabs{
+    display:flex;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:5px;
+    gap:4px;
+    margin-bottom:25px;
+    box-shadow:var(--shadow);
+    overflow-x:auto;
 }
 
-
-.logout-btn {
-
-    border: 1px solid var(--border);
-
-    background: white;
-
-    color: var(--text-2);
-
-    padding: 8px 12px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    font-weight: 600;
-
-    font-size: 12px;
-
-    transition: .2s;
-
+.tab{
+    border:none;
+    background:transparent;
+    padding:13px 19px;
+    border-radius:10px;
+    color:#36545d;
+    font-weight:bold;
+    white-space:nowrap;
 }
 
-
-.logout-btn:hover {
-
-    border-color: var(--red);
-
-    color: var(--red);
-
+.tab:hover{
+    background:#eef8f8;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-
-    background:
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(54,179,176,.25),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #0e8388,
-            #0f7187
-        );
-
-    color: white;
-
-    padding: 54px 20px 42px;
-
+.tab.active{
+    background:var(--accent);
+    color:white;
 }
 
+/* ================= SEARCH ================= */
 
-.hero-inner {
-
-    max-width: 1160px;
-
-    margin: auto;
-
+.filters{
+    display:grid;
+    grid-template-columns:1fr 180px 160px;
+    gap:10px;
+    margin-bottom:25px;
 }
 
-
-.hero h1 {
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: clamp(31px, 5vw, 52px);
-
-    line-height: 1.08;
-
-    margin-bottom: 14px;
-
-    letter-spacing: -.02em;
-
-}
-
-
-.hero h1 span {
-
-    color: #aaf1dd;
-
-}
-
-
-.hero-sub {
-
-    max-width: 650px;
-
-    font-size: 15px;
-
-    line-height: 1.7;
-
-    color: rgba(255,255,255,.82);
-
-    margin-bottom: 30px;
-
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(100px, 1fr));
-
-    max-width: 650px;
-
-    border:
-        1px solid rgba(255,255,255,.25);
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    background:
-        rgba(255,255,255,.08);
-
-    backdrop-filter: blur(10px);
-
-}
-
-
-.stat {
-
-    padding: 15px;
-
-    text-align: center;
-
-    border-right:
-        1px solid rgba(255,255,255,.2);
-
-}
-
-
-.stat:last-child {
-
-    border-right: none;
-
-}
-
-
-.stat-number {
-
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 27px;
-
-    font-weight: 800;
-
-}
-
-
-.stat-label {
-
-    margin-top: 4px;
-
-    font-size: 10px;
-
-    text-transform: uppercase;
-
-    letter-spacing: .07em;
-
-    color: rgba(255,255,255,.75);
-
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main-wrap {
-
-    max-width: 1160px;
-
-    margin: auto;
-
-    padding: 30px 20px 60px;
-
-}
-
-
-/* =========================================================
-   TABS
-========================================================= */
-
-.tabs {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 5px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 15px;
-
-    padding: 5px;
-
-    width: fit-content;
-
-    max-width: 100%;
-
-    margin-bottom: 25px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.03);
-
-}
-
-
-.tab {
-
-    border: none;
-
-    background: transparent;
-
-    color: var(--text-2);
-
-    padding: 11px 17px;
-
-    border-radius: 10px;
-
-    font-weight: 700;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .2s;
-
-    white-space: nowrap;
-
-}
-
-
-.tab:hover {
-
-    background: #f1f7f7;
-
-}
-
-
-.tab.active {
-
-    background: var(--green);
-
-    color: white;
-
-    box-shadow:
-        0 4px 12px rgba(33,184,151,.25);
-
-}
-
-
-/* =========================================================
-   SECTIONS
-========================================================= */
-
-.section {
-
-    display: none;
-
-}
-
-
-.section.active {
-
-    display: block;
-
-    animation: sectionIn .25s ease;
-
-}
-
-
-@keyframes sectionIn {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(5px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
-}
-
-
-/* =========================================================
-   FILTERS
-========================================================= */
-
-.filters {
-
-    display: flex;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 22px;
-
-}
-
-
-.search-box {
-
-    position: relative;
-
-    flex: 1;
-
-    min-width: 220px;
-
-    max-width: 420px;
-
-}
-
-
-.search-box span {
-
-    position: absolute;
-
-    left: 13px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: var(--text-3);
-
-}
-
-
-.search-box input {
-
-    padding-left: 38px;
-
-}
-
-
-input,
+.input,
 select,
-textarea {
-
-    width: 100%;
-
-    border: 1px solid var(--border);
-
-    background: white;
-
-    color: var(--text);
-
-    border-radius: 10px;
-
-    padding: 11px 13px;
-
-    outline: none;
-
-    font-size: 13px;
-
-    transition: .2s;
-
+textarea{
+    width:100%;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:10px;
+    padding:13px 14px;
+    outline:none;
 }
 
-
-input:focus,
+.input:focus,
 select:focus,
-textarea:focus {
-
-    border-color: var(--green);
-
-    box-shadow:
-        0 0 0 3px rgba(33,184,151,.1);
-
-}
-
-
-.filters select {
-
-    width: auto;
-
-    min-width: 150px;
-
-}
-
-
-/* =========================================================
-   ITEM GRID
-========================================================= */
-
-.items-grid {
-
-    display: grid;
-
-    gap: 14px;
-
-}
-
-
-.item-card {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 16px;
-
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 16px;
-
-    padding: 17px;
-
-    transition: .2s;
-
-}
-
-
-.item-card:hover {
-
-    transform: translateY(-2px);
-
-    border-color: #b8d9d6;
-
-    box-shadow: var(--shadow);
-
-}
-
-
-.item-visual {
-
-    width: 78px;
-
-    height: 78px;
-
-    border-radius: 13px;
-
-    background: var(--cream);
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
-
-    border: 1px solid var(--border);
-
-}
-
-
-.item-visual img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-}
-
-
-.item-emoji {
-
-    font-size: 34px;
-
-}
-
-
-.item-body {
-
-    flex: 1;
-
-    min-width: 0;
-
-}
-
-
-.item-title-row {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    flex-wrap: wrap;
-
-}
-
-
-.item-name {
-
-    font-size: 16px;
-
-    font-weight: 800;
-
-    color: var(--dark);
-
-}
-
-
-.item-meta {
-
-    color: var(--text-3);
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-    margin-top: 3px;
-
-}
-
-
-.item-meta strong {
-
-    color: var(--text-2);
-
-}
-
-
-.item-description {
-
-    color: var(--text-2);
-
-    font-size: 13px;
-
-    line-height: 1.55;
-
-    margin-top: 7px;
-
-}
-
-
-.badge {
-
-    display: inline-block;
-
-    padding: 4px 9px;
-
-    border-radius: 999px;
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: .05em;
-
-}
-
-
-.badge-lost {
-
-    background: var(--orange-light);
-
-    color: #8a570d;
-
-}
-
-
-.badge-found {
-
-    background: var(--blue-light);
-
-    color: #126a77;
-
+textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(24,184,154,.12);
 }
 
+/* ================= CARDS ================= */
 
-.badge-claimed {
-
-    background: #eaf0e8;
-
-    color: #2d6728;
-
-}
-
-
-.badge-returned {
-
-    background: var(--purple-light);
-
-    color: #55349a;
-
+.items-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
-
-
-.timer {
-
-    display: inline-block;
 
-    margin-top: 8px;
-
-    font-size: 11px;
-
-    color: var(--text-3);
-
-    background: #f5f8f8;
-
-    border-radius: 7px;
-
-    padding: 4px 7px;
-
+.item-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 7px 25px rgba(20,60,70,.08);
+    transition:.2s;
 }
 
-
-.item-actions {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-
-    flex-shrink: 0;
-
+.item-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(20,60,70,.13);
 }
-
 
-.action-btn {
-
-    border: none;
-
-    border-radius: 9px;
-
-    padding: 9px 13px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-
-    transition: .2s;
-
+.item-image{
+    height:190px;
+    background:#edf5f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
 }
-
-
-.claim-btn {
-
-    background: var(--green);
 
-    color: white;
-
+.item-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
-
-
-.claim-btn:hover {
 
-    background: var(--green-dark);
-
+.no-image{
+    font-size:55px;
+    opacity:.55;
 }
-
-
-.return-btn {
 
-    background: var(--teal);
-
-    color: white;
-
+.item-content{
+    padding:18px;
 }
-
 
-.return-btn:hover {
-
-    background: var(--teal-dark);
-
+.item-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:10px;
 }
-
-
-/* =========================================================
-   EMPTY STATE
-========================================================= */
 
-.empty-state {
-
-    background: white;
-
-    border: 1px dashed var(--border);
-
-    border-radius: 17px;
-
-    min-height: 240px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 30px;
-
-    color: var(--text-3);
-
+.item-title{
+    font-size:19px;
+    font-weight:bold;
 }
-
 
-.empty-icon {
-
-    font-size: 43px;
-
-    margin-bottom: 12px;
-
+.badge{
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:bold;
+    white-space:nowrap;
 }
-
-
-.empty-state h3 {
-
-    color: var(--text-2);
 
-    margin-bottom: 5px;
-
+.badge-lost{
+    background:#fff1e8;
+    color:#d35b18;
 }
-
-
-.empty-state p {
 
-    font-size: 13px;
-
+.badge-found{
+    background:#e8f8ee;
+    color:#158553;
 }
-
-
-/* =========================================================
-   FORM CARDS
-========================================================= */
-
-.form-card {
 
-    background: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 17px;
-
-    padding: 28px;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.03);
-
-    max-width: 820px;
-
+.badge-claimed{
+    background:#eeeaff;
+    color:#6750c5;
 }
 
-
-.form-header {
-
-    margin-bottom: 25px;
-
+.badge-returned{
+    background:#e5f5fa;
+    color:#16728b;
 }
-
-
-.form-header h2 {
-
-    font-family: "Montserrat", sans-serif;
 
-    font-size: 24px;
-
-    margin-bottom: 6px;
-
+.item-description{
+    color:#61777d;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:13px;
 }
-
-
-.form-header p {
-
-    color: var(--text-3);
-
-    font-size: 13px;
 
-    line-height: 1.6;
-
+.item-details{
+    display:grid;
+    gap:7px;
+    color:#506970;
+    font-size:13px;
 }
-
-
-.form-section-title {
-
-    font-size: 12px;
-
-    text-transform: uppercase;
-
-    letter-spacing: .08em;
-
-    color: var(--teal);
 
-    font-weight: 800;
-
-    margin: 22px 0 12px;
-
+.item-footer{
+    margin-top:15px;
+    padding-top:12px;
+    border-top:1px solid #edf1f2;
+    display:flex;
+    justify-content:space-between;
+    color:#80939a;
+    font-size:11px;
 }
-
 
-.form-section-title:first-child {
+/* ================= EMPTY ================= */
 
-    margin-top: 0;
-
+.empty-state{
+    grid-column:1/-1;
+    text-align:center;
+    padding:70px 20px;
+    color:var(--muted);
 }
-
-
-.form-grid {
 
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 14px;
-
+.empty-icon{
+    font-size:55px;
+    margin-bottom:15px;
 }
-
-
-.form-row {
-
-    margin-bottom: 14px;
 
+.empty-state h3{
+    margin-bottom:7px;
+    color:#536b72;
 }
 
+/* ================= FORM ================= */
 
-.form-row label {
-
-    display: block;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    color: var(--text-2);
-
-    margin-bottom: 6px;
-
+.form-container{
+    max-width:750px;
+    margin:auto;
 }
 
-
-textarea {
-
-    min-height: 95px;
-
-    resize: vertical;
-
+.form-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px;
+    box-shadow:var(--shadow);
 }
-
-
-.readonly {
-
-    background: #f4f7f7;
 
-    color: var(--text-2);
-
-    cursor: not-allowed;
-
+.form-card h2{
+    margin-bottom:7px;
 }
-
-
-.photo-upload {
-
-    border: 1px dashed #b9d4d2;
-
-    background: #f8fbfb;
 
-    border-radius: 11px;
-
-    padding: 12px;
-
+.form-card>p{
+    color:var(--muted);
+    margin-bottom:25px;
 }
-
-
-.photo-preview {
-
-    display: none;
-
-    margin-top: 10px;
 
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
 }
 
-
-.photo-preview.show {
-
-    display: block;
-
+.form-group{
+    margin-bottom:17px;
 }
-
-
-.photo-preview img {
-
-    width: 130px;
 
-    height: 100px;
-
-    object-fit: cover;
-
-    border-radius: 10px;
-
-    border: 1px solid var(--border);
-
+.form-group.full{
+    grid-column:1/-1;
 }
-
-
-.btn-submit {
-
-    border: none;
 
-    background: var(--green);
-
-    color: white;
-
-    border-radius: 10px;
-
-    padding: 12px 18px;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: .2s;
-
+.form-group label{
+    display:block;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:7px;
 }
-
-
-.btn-submit:hover {
 
-    background: var(--green-dark);
-
-    transform: translateY(-1px);
-
+.required{
+    color:var(--danger);
 }
-
-
-.btn-submit:disabled {
 
-    opacity: .55;
-
-    cursor: wait;
-
-    transform: none;
-
+textarea{
+    resize:vertical;
+    min-height:110px;
 }
-
-
-/* =========================================================
-   ALERTS
-========================================================= */
-
-.alert {
-
-    display: none;
-
-    padding: 12px 15px;
-
-    border-radius: 10px;
-
-    margin-bottom: 16px;
-
-    font-size: 13px;
-
-    background: var(--green-light);
-
-    color: #007b54;
 
+.readonly-user{
+    background:#f1f7f7;
+    color:#527078;
 }
 
-
-.alert.show {
-
-    display: block;
-
+.submit-btn{
+    width:100%;
+    border:none;
+    padding:14px;
+    border-radius:11px;
+    background:var(--accent);
+    color:white;
+    font-weight:bold;
+    margin-top:5px;
 }
-
-
-.alert-note {
-
-    background: var(--blue-light);
 
-    color: #125d68;
-
-    padding: 12px 15px;
-
-    border-radius: 10px;
-
-    margin-bottom: 17px;
-
-    font-size: 13px;
-
+.submit-btn:hover{
+    background:#129f86;
 }
-
 
-/* =========================================================
-   MY REPORTS
-========================================================= */
-
-.reports-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 18px;
-
+.submit-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
-
 
-.reports-header h2 {
+/* ================= MY REPORTS ================= */
 
-    font-family: "Montserrat", sans-serif;
-
-    font-size: 24px;
-
+.my-reports-header{
+    background:white;
+    border:1px solid var(--border);
+    padding:22px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:var(--shadow);
 }
-
-
-.reports-header p {
 
-    color: var(--text-3);
-
-    font-size: 13px;
-
-    margin-top: 4px;
-
+.my-reports-header h2{
+    margin-bottom:5px;
 }
-
-
-.report-count {
-
-    padding: 9px 13px;
 
-    background: var(--green-light);
-
-    color: #00875a;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
+.my-reports-header p{
+    color:var(--muted);
 }
-
 
-.report-filters {
-
-    display: flex;
-
-    gap: 7px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 18px;
-
+.report-owner{
+    margin-top:12px;
+    background:#edf9f7;
+    color:#147e6b;
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:13px;
 }
-
-
-.report-filter {
-
-    border: 1px solid var(--border);
-
-    background: white;
-
-    color: var(--text-2);
-
-    padding: 7px 12px;
-
-    border-radius: 999px;
-
-    cursor: pointer;
 
-    font-size: 11px;
+/* ================= MODAL ================= */
 
-    font-weight: 700;
-
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
-
-
-.report-filter.active {
-
-    background: var(--teal);
-
-    border-color: var(--teal);
-
-    color: white;
 
+.modal.show{
+    display:flex;
 }
 
-
-.my-report-card {
-
-    position: relative;
-
+.modal-card{
+    background:white;
+    max-width:450px;
+    width:100%;
+    border-radius:20px;
+    padding:28px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
-
-
-.my-report-card::before {
-
-    content: "";
 
-    width: 4px;
-
-    position: absolute;
-
-    left: 0;
-
-    top: 15px;
-
-    bottom: 15px;
-
-    border-radius: 5px;
-
-    background: var(--green);
-
+.modal-icon{
+    font-size:45px;
+    margin-bottom:12px;
 }
-
-
-.report-owner {
 
-    font-size: 11px;
-
-    color: var(--text-3);
-
-    margin-top: 7px;
-
+.modal-card h3{
+    margin-bottom:8px;
 }
-
 
-/* =========================================================
-   MODALS
-========================================================= */
-
-.modal-overlay {
-
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1000;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(11,46,51,.65);
-
-    backdrop-filter: blur(4px);
-
+.modal-card p{
+    color:var(--muted);
+    line-height:1.5;
 }
-
-
-.modal-overlay.open {
 
-    display: flex;
-
+.modal-btn{
+    margin-top:20px;
+    border:none;
+    background:var(--accent);
+    color:white;
+    padding:11px 22px;
+    border-radius:10px;
+    font-weight:bold;
 }
-
-
-.modal {
-
-    width: 100%;
-
-    max-width: 430px;
-
-    background: white;
 
-    border-radius: 18px;
+/* ================= FOOTER ================= */
 
-    padding: 27px;
-
-    box-shadow: var(--shadow-lg);
-
-    animation: modalIn .25s ease;
-
+footer{
+    text-align:center;
+    padding:25px;
+    color:#71868c;
+    font-size:12px;
 }
-
-
-@keyframes modalIn {
-
-    from {
-
-        opacity: 0;
 
-        transform: scale(.96);
+/* ================= RESPONSIVE ================= */
 
+@media(max-width:900px){
+    .items-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    to {
-
-        opacity: 1;
-
-        transform: scale(1);
-
+    .filters{
+        grid-template-columns:1fr 1fr;
     }
 
+    .filters .input{
+        grid-column:1/-1;
+    }
 }
 
+@media(max-width:650px){
+    header{
+        position:relative;
+    }
 
-.modal h3 {
+    .header-inner{
+        align-items:flex-start;
+    }
 
-    font-family: "Montserrat", sans-serif;
+    .user-area{
+        flex-direction:column;
+        align-items:flex-end;
+    }
 
-    margin-bottom: 7px;
+    .user-info{
+        display:none;
+    }
 
+    .hero h2{
+        font-size:28px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stat:nth-child(2){
+        border-right:none;
+    }
+
+    .stat{
+        border-bottom:1px solid rgba(255,255,255,.2);
+    }
+
+    .items-grid{
+        grid-template-columns:1fr;
+    }
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+
+    .filters .input{
+        grid-column:auto;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .tabs{
+        border-radius:12px;
+    }
 }
-
-
-.modal-sub {
-
-    font-size: 13px;
-
-    color: var(--text-3);
-
-    line-height: 1.6;
-
-    margin-bottom: 18px;
-
-}
-
-
-.modal-actions {
-
-    display: flex;
-
-    justify-content: flex-end;
-
-    gap: 8px;
-
-    margin-top: 18px;
-
-}
-
-
-.btn-ghost {
-
-    border: 1px solid var(--border);
-
-    background: white;
-
-    color: var(--text-2);
-
-    padding: 10px 15px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    font-weight: 700;
-
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-
-    background: #0d2a2e;
-
-    color: rgba(255,255,255,.6);
-
-    text-align: center;
-
-    padding: 28px 20px;
-
-    font-size: 12px;
-
-    line-height: 1.8;
-
-}
-
-
-footer strong {
-
-    color: white;
-
-}
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-.loading {
-
-    text-align: center;
-
-    padding: 45px;
-
-    color: var(--text-3);
-
-}
-
-
-.spinner {
-
-    width: 30px;
-
-    height: 30px;
-
-    border: 3px solid #dce9e8;
-
-    border-top-color: var(--green);
-
-    border-radius: 50%;
-
-    margin: 0 auto 12px;
-
-    animation: spin .8s linear infinite;
-
-}
-
-
-@keyframes spin {
-
-    to {
-
-        transform: rotate(360deg);
-
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:700px) {
-
-    .header-inner {
-
-        padding: 10px 14px;
-
-    }
-
-
-    .portal-label {
-
-        display: none;
-
-    }
-
-
-    .user-details {
-
-        display: none;
-
-    }
-
-
-    .hero {
-
-        padding: 38px 18px 32px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size: 34px;
-
-    }
-
-
-    .stats {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        max-width: 100%;
-
-    }
-
-
-    .stat:nth-child(2) {
-
-        border-right: none;
-
-    }
-
-
-    .stat:nth-child(1),
-    .stat:nth-child(2) {
-
-        border-bottom:
-            1px solid rgba(255,255,255,.2);
-
-    }
-
-
-    .main-wrap {
-
-        padding: 22px 13px 45px;
-
-    }
-
-
-    .tabs {
-
-        width: 100%;
-
-        overflow-x: auto;
-
-        flex-wrap: nowrap;
-
-    }
-
-
-    .tab {
-
-        flex-shrink: 0;
-
-    }
-
-
-    .form-grid {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .form-card {
-
-        padding: 20px;
-
-    }
-
-
-    .item-card {
-
-        flex-wrap: wrap;
-
-    }
-
-
-    .item-actions {
-
-        width: 100%;
-
-        flex-direction: row;
-
-        justify-content: flex-end;
-
-    }
-
-
-    .item-visual {
-
-        width: 65px;
-
-        height: 65px;
-
-    }
-
-
-    .item-name {
-
-        font-size: 15px;
-
-    }
-
-
-    .filters select {
-
-        flex: 1;
-
-    }
-
-}
-
-
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- =========================================================
      LOGIN SCREEN
@@ -2151,73 +738,40 @@ footer strong {
     <div class="login-card">
 
         <div class="login-logo">
-
-            <svg viewBox="0 0 100 60"
-                 fill="none">
-
-                <path
-                    d="M50 8L76 52H24L50 8Z"
-                    fill="#21b897"/>
-
-                <path
-                    d="M28 22L48 52H8L28 22Z"
-                    fill="#36b3b0"/>
-
-                <path
-                    d="M68 14L92 52H44L68 14Z"
-                    fill="#0f7187"/>
-
-            </svg>
-
+            🏔️
         </div>
 
-
-        <h1>
-            Khaitan Lost & Found
-        </h1>
-
+        <h1>Khaitan Lost & Found</h1>
 
         <p>
-            Sign in with your school Microsoft
-            account to access the portal.
+            Sign in with your school Microsoft account
+            to access the Lost & Found Portal.
         </p>
 
-
-        <div class="school-domain">
+        <div class="school-badge">
             🏫 @khaitanpublicschool.com only
         </div>
 
-
         <button
-            class="microsoft-login"
-            id="loginBtn">
-
+            class="microsoft-btn"
+            id="loginBtn"
+            onclick="loginWithMicrosoft()"
+        >
             <span class="microsoft-logo">
-
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-
             </span>
 
             Continue with Microsoft
-
         </button>
 
-
-        <div
-            class="login-error"
-            id="loginError">
+        <div id="loginLoading" class="login-loading">
+            Signing you in...
         </div>
 
-
-        <p class="login-note">
-
-            Only authorised Khaitan Public School
-            Microsoft accounts can use this portal.
-
-        </p>
+        <div id="loginError" class="login-error"></div>
 
     </div>
 
@@ -2225,95 +779,45 @@ footer strong {
 
 
 <!-- =========================================================
-     APPLICATION
+     MAIN APPLICATION
 ========================================================= -->
 
 <div id="app">
-
-
-<div class="top-accent"></div>
-
-
-<!-- HEADER -->
 
 <header>
 
     <div class="header-inner">
 
+        <div class="logo-area">
 
-        <div class="logo-group">
-
-            <div class="logo-mountains">
-
-                <svg viewBox="0 0 100 60"
-                     fill="none">
-
-                    <path
-                        d="M50 8L76 52H24L50 8Z"
-                        fill="#21b897"/>
-
-                    <path
-                        d="M28 22L48 52H8L28 22Z"
-                        fill="#36b3b0"/>
-
-                    <path
-                        d="M68 14L92 52H44L68 14Z"
-                        fill="#0f7187"/>
-
-                </svg>
-
+            <div class="logo">
+                🏫
             </div>
 
-
-            <div class="logo-text">
-
-                <div class="school-name">
-                    KHAITAN
-                </div>
-
-                <div class="school-tagline">
-                    LEADERS FOR LIFE
-                </div>
-
-            </div>
-
-
-            <div class="portal-label">
-                Lost & Found Portal
+            <div>
+                <h1>Khaitan Lost & Found</h1>
+                <p>Khaitan Public School</p>
             </div>
 
         </div>
 
+        <div class="user-area">
 
-        <div class="header-user">
-
-            <div class="user-avatar"
-                 id="userAvatar">
-                U
-            </div>
-
-
-            <div class="user-details">
-
-                <div
-                    class="user-name"
-                    id="headerUserName">
+            <div class="user-info">
+                <div class="user-name" id="headerUserName">
                     Student
                 </div>
 
-                <div
-                    class="user-email"
-                    id="headerUserEmail">
+                <div class="user-email" id="headerUserEmail">
                     student@khaitanpublicschool.com
                 </div>
-
             </div>
-
 
             <button
                 class="logout-btn"
-                id="logoutBtn">
-                Sign out
+                onclick="logout()"
+            >
+                Logout
             </button>
 
         </div>
@@ -2323,93 +827,36 @@ footer strong {
 </header>
 
 
-<!-- HERO -->
-
 <section class="hero">
 
     <div class="hero-inner">
 
-        <h1>
+        <h2>Lost something? Found something?</h2>
 
-            Lost something at school?
-
-            <br>
-
-            <span>
-                We'll help you find it.
-            </span>
-
-        </h1>
-
-
-        <p class="hero-sub">
-
-            Browse reported items, report something
-            you've lost or found, and keep track of
-            everything you've reported.
-
+        <p>
+            Help your fellow students reunite with their belongings.
         </p>
-
 
         <div class="stats">
 
             <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="statLost">
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Items Lost
-                </div>
-
+                <div class="stat-number" id="lostCount">0</div>
+                <div class="stat-label">ITEMS LOST</div>
             </div>
 
-
             <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="statFound">
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Items Found
-                </div>
-
+                <div class="stat-number" id="foundCount">0</div>
+                <div class="stat-label">ITEMS FOUND</div>
             </div>
 
-
             <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="statClaimed">
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Claimed
-                </div>
-
+                <div class="stat-number" id="claimedCount">0</div>
+                <div class="stat-label">CLAIMED</div>
             </div>
 
-
             <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="statReturned">
-                    0
-                </div>
-
-                <div class="stat-label">
-                    Returned
-                </div>
-
+                <div class="stat-number" id="returnedCount">0</div>
+                <div class="stat-label">RETURNED</div>
             </div>
 
         </div>
@@ -2419,162 +866,96 @@ footer strong {
 </section>
 
 
-<!-- MAIN -->
+<main>
 
-<main class="main-wrap">
-
-
-<!-- TABS -->
+<!-- =========================================================
+     TABS
+========================================================= -->
 
 <div class="tabs">
 
-
     <button
         class="tab active"
-        data-tab="browse"
-        onclick="switchTab('browse')">
-
-        🔍 Browse Items
-
+        onclick="showTab('browse', this)"
+    >
+        🔎 Browse items
     </button>
-
 
     <button
         class="tab"
-        data-tab="lost"
-        onclick="switchTab('lost')">
-
-        ❗ Report Lost
-
+        onclick="showTab('lost', this)"
+    >
+        🚩 Report lost
     </button>
-
 
     <button
         class="tab"
-        data-tab="found"
-        onclick="switchTab('found')">
-
-        📍 Report Found
-
+        onclick="showTab('found', this)"
+    >
+        📍 Report found
     </button>
 
+    <!-- THIS IS THE NEW MY REPORTS TAB -->
 
     <button
         class="tab"
-        data-tab="reports"
-        onclick="switchTab('reports')">
-
+        onclick="showTab('myReports', this)"
+    >
         📋 My Reports
-
     </button>
 
 </div>
 
 
 <!-- =========================================================
-     BROWSE
+     BROWSE TAB
 ========================================================= -->
 
-<section
-    class="section active"
-    id="section-browse">
-
+<section id="browseTab">
 
     <div class="filters">
 
-
-        <div class="search-box">
-
-            <span>🔎</span>
-
-            <input
-                id="searchInput"
-                type="text"
-                placeholder="Search item, description or location..."
-                oninput="renderItems()">
-
-        </div>
-
+        <input
+            id="searchInput"
+            class="input"
+            type="text"
+            placeholder="Search by item name, description or location..."
+            oninput="renderItems()"
+        >
 
         <select
-            id="filterCat"
-            onchange="renderItems()">
-
-            <option value="">
-                All categories
-            </option>
-
-            <option>
-                Clothing
-            </option>
-
-            <option>
-                Electronics
-            </option>
-
-            <option>
-                Stationery
-            </option>
-
-            <option>
-                Bag / backpack
-            </option>
-
-            <option>
-                Sports gear
-            </option>
-
-            <option>
-                Other
-            </option>
-
+            id="categoryFilter"
+            onchange="renderItems()"
+        >
+            <option value="">All categories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Books">Books</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Stationery">Stationery</option>
+            <option value="ID Card">ID Card</option>
+            <option value="Bag">Bag</option>
+            <option value="Bottle">Bottle</option>
+            <option value="Sports">Sports</option>
+            <option value="Other">Other</option>
         </select>
-
 
         <select
-            id="filterStatus"
-            onchange="renderItems()">
-
-            <option value="">
-                All status
-            </option>
-
-            <option value="lost">
-                Lost
-            </option>
-
-            <option value="found">
-                Found
-            </option>
-
-            <option value="claimed">
-                Claimed
-            </option>
-
-            <option value="returned">
-                Returned
-            </option>
-
+            id="statusFilter"
+            onchange="renderItems()"
+        >
+            <option value="">All status</option>
+            <option value="Lost">Lost</option>
+            <option value="Found">Found</option>
+            <option value="Claimed">Claimed</option>
+            <option value="Returned">Returned</option>
         </select>
-
 
     </div>
-
 
     <div
+        id="itemsContainer"
         class="items-grid"
-        id="itemsGrid">
-
-        <div class="loading">
-
-            <div class="spinner"></div>
-
-            Loading items...
-
-        </div>
-
-    </div>
-
+    ></div>
 
 </section>
 
@@ -2584,205 +965,165 @@ footer strong {
 ========================================================= -->
 
 <section
-    class="section"
-    id="section-lost">
+    id="lostTab"
+    style="display:none;"
+>
 
+<div class="form-container">
 
-    <div
-        class="alert"
-        id="lostAlert">
+<div class="form-card">
 
-        ✓ Your lost item has been reported successfully.
+    <h2>🚩 Report a Lost Item</h2>
 
-    </div>
+    <p>
+        Provide accurate information so someone can help return it.
+    </p>
 
-
-    <div class="form-card">
-
-
-        <div class="form-header">
-
-            <h2>
-                Report a lost item
-            </h2>
-
-            <p>
-                Tell other students what you lost.
-                Your Microsoft account details are
-                automatically attached to the report.
-            </p>
-
-        </div>
-
-
-        <div class="form-section-title">
-            Your details
-        </div>
-
+    <form
+        id="lostForm"
+        onsubmit="submitReport(event,'Lost')"
+    >
 
         <div class="form-grid">
 
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Full name
+                    Your name
                 </label>
 
                 <input
-                    id="lostName"
-                    class="readonly"
-                    readonly>
+                    id="lostReporterName"
+                    class="input readonly-user"
+                    readonly
+                >
 
             </div>
 
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Class / Grade
+                    School email
                 </label>
 
                 <input
-                    id="lostClass"
-                    placeholder="e.g. 10-A">
+                    id="lostReporterEmail"
+                    class="input readonly-user"
+                    readonly
+                >
 
             </div>
 
-
-        </div>
-
-
-        <div class="form-section-title">
-            Item details
-        </div>
-
-
-        <div class="form-grid">
-
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Item name *
+                    Item name <span class="required">*</span>
                 </label>
 
                 <input
-                    id="lostItem"
-                    placeholder="e.g. Blue water bottle">
+                    id="lostItemName"
+                    class="input"
+                    required
+                    placeholder="e.g. Black water bottle"
+                >
 
             </div>
 
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Category
+                    Category <span class="required">*</span>
                 </label>
 
-                <select id="lostCat">
+                <select id="lostCategory" required>
 
-                    <option>
-                        Clothing
-                    </option>
-
-                    <option>
-                        Electronics
-                    </option>
-
-                    <option>
-                        Stationery
-                    </option>
-
-                    <option>
-                        Bag / backpack
-                    </option>
-
-                    <option>
-                        Sports gear
-                    </option>
-
-                    <option>
-                        Other
-                    </option>
+                    <option value="">Select category</option>
+                    <option>Electronics</option>
+                    <option>Books</option>
+                    <option>Clothing</option>
+                    <option>Stationery</option>
+                    <option>ID Card</option>
+                    <option>Bag</option>
+                    <option>Bottle</option>
+                    <option>Sports</option>
+                    <option>Other</option>
 
                 </select>
 
             </div>
 
+            <div class="form-group">
 
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Last seen location
-            </label>
-
-            <input
-                id="lostLocation"
-                placeholder="e.g. Canteen">
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Description
-            </label>
-
-            <textarea
-                id="lostDesc"
-                placeholder="Colour, brand, markings, etc.">
-            </textarea>
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Photo
-            </label>
-
-
-            <div class="photo-upload">
+                <label>
+                    Location <span class="required">*</span>
+                </label>
 
                 <input
-                    type="file"
-                    id="lostPhoto"
-                    accept="image/*"
-                    onchange="previewPhoto(this,'lostPhotoPreview')">
+                    id="lostLocation"
+                    class="input"
+                    required
+                    placeholder="Where did you lose it?"
+                >
 
+            </div>
 
-                <div
-                    class="photo-preview"
-                    id="lostPhotoPreview">
+            <div class="form-group">
 
-                    <img
-                        id="lostPhotoPreviewImg"
-                        alt="Preview">
+                <label>
+                    Date lost <span class="required">*</span>
+                </label>
 
-                </div>
+                <input
+                    id="lostDate"
+                    class="input"
+                    type="date"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="lostDescription"
+                    placeholder="Describe the item, colour, brand, identifying marks, etc."
+                ></textarea>
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+                    Image URL
+                </label>
+
+                <input
+                    id="lostImage"
+                    class="input"
+                    placeholder="Optional image URL"
+                >
 
             </div>
 
         </div>
 
-
         <button
-            class="btn-submit"
-            id="lostSubmitBtn"
-            onclick="submitLost()">
-
-            Post Lost Item →
-
+            id="lostSubmit"
+            class="submit-btn"
+            type="submit"
+        >
+            🚩 Submit Lost Report
         </button>
 
+    </form>
 
-    </div>
+</div>
+
+</div>
 
 </section>
 
@@ -2792,212 +1133,165 @@ footer strong {
 ========================================================= -->
 
 <section
-    class="section"
-    id="section-found">
+    id="foundTab"
+    style="display:none;"
+>
 
+<div class="form-container">
 
-    <div
-        class="alert"
-        id="foundAlert">
+<div class="form-card">
 
-        ✓ Your found item has been reported successfully.
+    <h2>📍 Report a Found Item</h2>
 
-    </div>
+    <p>
+        Tell other students where you found the item.
+    </p>
 
-
-    <div class="alert-note">
-
-        📌 Please hand all found items to the
-        <strong>school office</strong>.
-
-    </div>
-
-
-    <div class="form-card">
-
-
-        <div class="form-header">
-
-            <h2>
-                Report a found item
-            </h2>
-
-            <p>
-                Found something at school?
-                Report it here so the owner can find it.
-            </p>
-
-        </div>
-
-
-        <div class="form-section-title">
-            Your details
-        </div>
-
+    <form
+        id="foundForm"
+        onsubmit="submitReport(event,'Found')"
+    >
 
         <div class="form-grid">
 
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Full name
+                    Your name
                 </label>
 
                 <input
-                    id="foundName"
-                    class="readonly"
-                    readonly>
+                    id="foundReporterName"
+                    class="input readonly-user"
+                    readonly
+                >
 
             </div>
 
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Class / Grade
+                    School email
                 </label>
 
                 <input
-                    id="foundClass"
-                    placeholder="e.g. 9-B">
+                    id="foundReporterEmail"
+                    class="input readonly-user"
+                    readonly
+                >
 
             </div>
 
-
-        </div>
-
-
-        <div class="form-section-title">
-            Item details
-        </div>
-
-
-        <div class="form-grid">
-
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Item name *
+                    Item name <span class="required">*</span>
                 </label>
 
                 <input
-                    id="foundItem"
-                    placeholder="e.g. Red umbrella">
+                    id="foundItemName"
+                    class="input"
+                    required
+                    placeholder="e.g. Blue school bag"
+                >
 
             </div>
 
-
-            <div class="form-row">
+            <div class="form-group">
 
                 <label>
-                    Category
+                    Category <span class="required">*</span>
                 </label>
 
-                <select id="foundCat">
+                <select id="foundCategory" required>
 
-                    <option>
-                        Clothing
-                    </option>
-
-                    <option>
-                        Electronics
-                    </option>
-
-                    <option>
-                        Stationery
-                    </option>
-
-                    <option>
-                        Bag / backpack
-                    </option>
-
-                    <option>
-                        Sports gear
-                    </option>
-
-                    <option>
-                        Other
-                    </option>
+                    <option value="">Select category</option>
+                    <option>Electronics</option>
+                    <option>Books</option>
+                    <option>Clothing</option>
+                    <option>Stationery</option>
+                    <option>ID Card</option>
+                    <option>Bag</option>
+                    <option>Bottle</option>
+                    <option>Sports</option>
+                    <option>Other</option>
 
                 </select>
 
             </div>
 
+            <div class="form-group">
 
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Where did you find it?
-            </label>
-
-            <input
-                id="foundLocation"
-                placeholder="e.g. Library">
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Description
-            </label>
-
-            <textarea
-                id="foundDesc"
-                placeholder="Colour, brand, markings, etc.">
-            </textarea>
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Photo
-            </label>
-
-
-            <div class="photo-upload">
+                <label>
+                    Found location <span class="required">*</span>
+                </label>
 
                 <input
-                    type="file"
-                    id="foundPhoto"
-                    accept="image/*"
-                    onchange="previewPhoto(this,'foundPhotoPreview')">
+                    id="foundLocation"
+                    class="input"
+                    required
+                    placeholder="Where did you find it?"
+                >
 
+            </div>
 
-                <div
-                    class="photo-preview"
-                    id="foundPhotoPreview">
+            <div class="form-group">
 
-                    <img
-                        id="foundPhotoPreviewImg"
-                        alt="Preview">
+                <label>
+                    Date found <span class="required">*</span>
+                </label>
 
-                </div>
+                <input
+                    id="foundDate"
+                    class="input"
+                    type="date"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="foundDescription"
+                    placeholder="Describe the item and where it can be collected."
+                ></textarea>
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+                    Image URL
+                </label>
+
+                <input
+                    id="foundImage"
+                    class="input"
+                    placeholder="Optional image URL"
+                >
 
             </div>
 
         </div>
 
-
         <button
-            class="btn-submit"
-            id="foundSubmitBtn"
-            onclick="submitFound()">
-
-            Post Found Item →
-
+            id="foundSubmit"
+            class="submit-btn"
+            type="submit"
+        >
+            📍 Submit Found Report
         </button>
 
+    </form>
 
-    </div>
+</div>
+
+</div>
 
 </section>
 
@@ -3007,294 +1301,81 @@ footer strong {
 ========================================================= -->
 
 <section
-    class="section"
-    id="section-reports">
+    id="myReportsTab"
+    style="display:none;"
+>
 
+    <div class="my-reports-header">
 
-    <div class="reports-header">
+        <h2>📋 My Reports</h2>
 
-        <div>
-
-            <h2>
-                📋 My Reports
-            </h2>
-
-            <p>
-                Items that you have reported using
-                your school account.
-            </p>
-
-        </div>
-
+        <p>
+            Here you can see every Lost & Found report
+            submitted using your school account.
+        </p>
 
         <div
-            class="report-count"
-            id="myReportCount">
-
-            0 reports
-
+            class="report-owner"
+            id="reportOwner"
+        >
+            Logged in as:
         </div>
 
     </div>
 
-
-    <div class="report-filters">
-
-        <button
-            class="report-filter active"
-            data-report-filter="all"
-            onclick="setReportFilter('all')">
-
-            All
-
-        </button>
-
-
-        <button
-            class="report-filter"
-            data-report-filter="lost"
-            onclick="setReportFilter('lost')">
-
-            Lost
-
-        </button>
-
-
-        <button
-            class="report-filter"
-            data-report-filter="found"
-            onclick="setReportFilter('found')">
-
-            Found
-
-        </button>
-
-
-        <button
-            class="report-filter"
-            data-report-filter="claimed"
-            onclick="setReportFilter('claimed')">
-
-            Claimed
-
-        </button>
-
-
-        <button
-            class="report-filter"
-            data-report-filter="returned"
-            onclick="setReportFilter('returned')">
-
-            Returned
-
-        </button>
-
-    </div>
-
-
     <div
+        id="myReportsContainer"
         class="items-grid"
-        id="reportsGrid">
-
-    </div>
-
+    ></div>
 
 </section>
-
 
 </main>
 
 
-<!-- =========================================================
-     CLAIM MODAL
-========================================================= -->
-
-<div
-    class="modal-overlay"
-    id="claimModal">
-
-
-    <div class="modal">
-
-
-        <h3>
-            🙋 Claim this item
-        </h3>
-
-
-        <p
-            class="modal-sub"
-            id="claimDesc">
-        </p>
-
-
-        <div class="form-row">
-
-            <label>
-                Your name
-            </label>
-
-            <input
-                id="claimName"
-                class="readonly"
-                readonly>
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Class / Grade
-            </label>
-
-            <input
-                id="claimClass"
-                placeholder="e.g. 8-C">
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="btn-ghost"
-                onclick="closeClaim()">
-
-                Cancel
-
-            </button>
-
-
-            <button
-                class="btn-submit"
-                onclick="confirmClaim()">
-
-                Submit Claim
-
-            </button>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-<!-- =========================================================
-     RETURN MODAL
-========================================================= -->
-
-<div
-    class="modal-overlay"
-    id="returnModal">
-
-
-    <div class="modal">
-
-
-        <h3>
-            🔄 Mark as returned
-        </h3>
-
-
-        <p
-            class="modal-sub"
-            id="returnDesc">
-        </p>
-
-
-        <div class="form-row">
-
-            <label>
-                Your name
-            </label>
-
-            <input
-                id="returnName"
-                class="readonly"
-                readonly>
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                Class / Grade
-            </label>
-
-            <input
-                id="returnClass"
-                placeholder="e.g. 7-A">
-
-        </div>
-
-
-        <div class="form-row">
-
-            <label>
-                How did you return it?
-            </label>
-
-            <input
-                id="returnHow"
-                placeholder="Handed to owner directly">
-
-        </div>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="btn-ghost"
-                onclick="closeReturn()">
-
-                Cancel
-
-            </button>
-
-
-            <button
-                class="btn-submit"
-                onclick="confirmReturn()">
-
-                Confirm Return
-
-            </button>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-<!-- FOOTER -->
-
 <footer>
-
-    <strong>
-        Khaitan Public School — Lost & Found Portal
-    </strong>
-
+    Khaitan Public School Lost & Found Portal
     <br>
-
-    Made by Trishar Saxena & Krishna Sharma
-
-    <br>
-
-    For queries, contact the school office
-
-    <br>
-
-    Lost/Found items expire after 30 days.
-    Claimed/Returned items expire after 10 days.
-
+    Only authorised school accounts can access this portal.
 </footer>
 
+</div>
+
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div
+    id="modal"
+    class="modal"
+>
+
+    <div class="modal-card">
+
+        <div
+            id="modalIcon"
+            class="modal-icon"
+        >
+            ✅
+        </div>
+
+        <h3 id="modalTitle">
+            Success
+        </h3>
+
+        <p id="modalMessage">
+            Your report has been submitted.
+        </p>
+
+        <button
+            class="modal-btn"
+            onclick="closeModal()"
+        >
+            OK
+        </button>
+
+    </div>
 
 </div>
 
@@ -3305,16 +1386,9 @@ footer strong {
 
 <script type="module">
 
-
-/* =========================================================
-   IMPORT FIREBASE
-========================================================= */
-
 import {
     initializeApp
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
 import {
     getAuth,
@@ -3322,31 +1396,35 @@ import {
     signInWithPopup,
     signOut,
     onAuthStateChanged
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 import {
     getFirestore,
     collection,
     addDoc,
-    onSnapshot,
-    updateDoc,
-    doc,
+    getDocs,
     query,
-    orderBy
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+    orderBy,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE CONFIGURATION
+
+   IMPORTANT:
+   Replace these values with the Firebase Web App
+   configuration from:
+
+   Firebase Console
+   → Project Settings
+   → Your apps
+   → Web app
 ========================================================= */
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyAuQLE2jvTJuF-qPBa_i7KmjM9sHWgOCZg",
+    apiKey: "YOUR_FIREBASE_API_KEY",
 
     authDomain:
         "lost-and-found-portal-2ea30.firebaseapp.com",
@@ -3358,295 +1436,130 @@ const firebaseConfig = {
         "lost-and-found-portal-2ea30.firebasestorage.app",
 
     messagingSenderId:
-        "853583190246",
+        "YOUR_MESSAGING_SENDER_ID",
 
     appId:
-        "1:853583190246:web:be311a6ca6eaadd9674327",
-
-    measurementId:
-        "G-XC3RFHEJ13"
-
+        "YOUR_FIREBASE_APP_ID"
 };
 
 
 /* =========================================================
-   INITIALIZE
+   INITIALIZE FIREBASE
 ========================================================= */
 
-const app =
-    initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
+const auth = getAuth(app);
 
-const auth =
-    getAuth(app);
-
-
-const db =
-    getFirestore(app);
-
-
-const itemsCollection =
-    collection(db, "items");
-
-
-/* =========================================================
-   MICROSOFT
-========================================================= */
-
-const microsoftProvider =
-    new OAuthProvider("microsoft.com");
-
-
-microsoftProvider.setCustomParameters({
-
-    tenant:
-        "a10a41eb-d010-485b-946c-ed3a3a42f964"
-
-});
-
-
-/* =========================================================
-   CONSTANTS
-========================================================= */
-
-const SCHOOL_DOMAIN =
-    "@khaitanpublicschool.com";
-
-
-const CAT_EMOJI = {
-
-    "Clothing": "👕",
-
-    "Electronics": "💻",
-
-    "Stationery": "✏️",
-
-    "Bag / backpack": "🎒",
-
-    "Sports gear": "⚽",
-
-    "Other": "📦"
-
-};
-
-
-const DAY =
-    24 * 60 * 60 * 1000;
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-let currentUser = null;
-
-let items = [];
-
-let claimingId = null;
-
-let returningId = null;
-
-let reportFilter = "all";
-
-let firestoreLoaded = false;
-
-
-/* =========================================================
-   HTML ESCAPE
-========================================================= */
-
-function escapeHTML(value) {
-
-    return String(value ?? "")
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* =========================================================
-   USER NAME
-========================================================= */
-
-function getUserName() {
-
-    if (!currentUser) {
-
-        return "";
-
-    }
-
-
-    return (
-
-        currentUser.displayName ||
-
-        currentUser.email
-            ?.split("@")[0] ||
-
-        "Student"
-
-    );
-
-}
-
-
-/* =========================================================
-   LOGIN ERROR
-========================================================= */
-
-function showLoginError(message) {
-
-    const box =
-        document.getElementById("loginError");
-
-
-    box.textContent =
-        message;
-
-
-    box.classList.add("show");
-
-}
-
-
-function hideLoginError() {
-
-    const box =
-        document.getElementById("loginError");
-
-
-    box.textContent = "";
-
-
-    box.classList.remove("show");
-
-}
+const db = getFirestore(app);
 
 
 /* =========================================================
    MICROSOFT LOGIN
 ========================================================= */
 
-document
-    .getElementById("loginBtn")
-    .addEventListener(
-        "click",
-        async () => {
+const microsoftProvider = new OAuthProvider(
+    "microsoft.com"
+);
 
 
-            hideLoginError();
+/*
+   Your Microsoft app is configured as a
+   SINGLE TENANT application.
+
+   This helps ensure the school Microsoft
+   organisation is used.
+*/
+
+microsoftProvider.setCustomParameters({
+
+    tenant:
+        "a10a41eb-d010-485b-946c-ed3a3a42f964",
+
+    prompt:
+        "select_account"
+});
 
 
-            const button =
-                document.getElementById("loginBtn");
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
+let currentUser = null;
+
+let allItems = [];
 
 
-            button.disabled = true;
+/* =========================================================
+   LOGIN
+========================================================= */
 
+window.loginWithMicrosoft = async function(){
 
-            button.innerHTML =
-                "Opening Microsoft login...";
+    const loginBtn =
+        document.getElementById("loginBtn");
 
+    const loading =
+        document.getElementById("loginLoading");
 
-            try {
+    const error =
+        document.getElementById("loginError");
 
+    error.style.display = "none";
 
-                const result =
-                    await signInWithPopup(
-                        auth,
-                        microsoftProvider
-                    );
+    loading.style.display = "block";
 
+    loginBtn.disabled = true;
 
-                const user =
-                    result.user;
+    try{
 
+        const result =
+            await signInWithPopup(
+                auth,
+                microsoftProvider
+            );
 
-                const email =
-                    (user.email || "")
-                        .toLowerCase()
-                        .trim();
+        const user = result.user;
 
+        const email =
+            (user.email || "").toLowerCase();
 
-                if (
-                    !email.endsWith(
-                        SCHOOL_DOMAIN
-                    )
-                ) {
+        /*
+           EXTRA CLIENT-SIDE CHECK.
 
+           Firestore rules should ALSO enforce
+           this restriction.
+        */
 
-                    await signOut(auth);
+        if(
+            !email.endsWith(
+                "@khaitanpublicschool.com"
+            )
+        ){
 
+            await signOut(auth);
 
-                    throw new Error(
-                        "Only @khaitanpublicschool.com accounts are allowed."
-                    );
-
-                }
-
-
-            } catch (error) {
-
-
-                console.error(
-                    "Login error:",
-                    error
-                );
-
-
-                if (
-                    error.code ===
-                    "auth/popup-closed-by-user"
-                ) {
-
-                    showLoginError(
-                        "Microsoft login was cancelled."
-                    );
-
-                } else {
-
-                    showLoginError(
-                        error.message ||
-                        "Login failed. Please try again."
-                    );
-
-                }
-
-
-            } finally {
-
-
-                button.disabled = false;
-
-
-                button.innerHTML = `
-
-                    <span class="microsoft-logo">
-
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-
-                    </span>
-
-                    Continue with Microsoft
-
-                `;
-
-            }
-
+            throw new Error(
+                "Only @khaitanpublicschool.com accounts are allowed."
+            );
         }
-    );
+
+    }catch(error){
+
+        console.error(error);
+
+        errorMessage(
+            error.message ||
+            "Unable to sign in."
+        );
+
+    }finally{
+
+        loading.style.display = "none";
+
+        loginBtn.disabled = false;
+    }
+};
 
 
 /* =========================================================
@@ -3654,772 +1567,364 @@ document
 ========================================================= */
 
 onAuthStateChanged(
-
     auth,
+    async(user)=>{
 
-    async (user) => {
-
-
-        if (!user) {
-
+        if(!user){
 
             currentUser = null;
 
+            document.getElementById(
+                "loginScreen"
+            ).style.display = "flex";
 
-            document
-                .getElementById("loginScreen")
-                .style.display = "flex";
-
-
-            document
-                .getElementById("app")
-                .classList.remove("visible");
-
+            document.getElementById(
+                "app"
+            ).style.display = "none";
 
             return;
-
         }
 
 
         const email =
-            (user.email || "")
-                .toLowerCase()
-                .trim();
+            (user.email || "").toLowerCase();
 
 
-        if (
+        /*
+           Never trust only the HTML check.
+           Firestore Security Rules must enforce
+           the same restriction.
+        */
+
+        if(
             !email.endsWith(
-                SCHOOL_DOMAIN
+                "@khaitanpublicschool.com"
             )
-        ) {
-
+        ){
 
             await signOut(auth);
 
-
-            showLoginError(
-                "Only Khaitan Public School accounts are allowed."
+            errorMessage(
+                "Only Khaitan Public School accounts can use this portal."
             );
 
-
             return;
-
         }
 
 
         currentUser = user;
 
 
-        const name =
-            getUserName();
+        document.getElementById(
+            "loginScreen"
+        ).style.display = "none";
 
 
-        document
-            .getElementById("headerUserName")
-            .textContent =
-            name;
+        document.getElementById(
+            "app"
+        ).style.display = "block";
 
 
-        document
-            .getElementById("headerUserEmail")
-            .textContent =
-            email;
+        setupUserInformation();
 
-
-        document
-            .getElementById("userAvatar")
-            .textContent =
-            name
-                .charAt(0)
-                .toUpperCase();
-
-
-        /* Automatically fill names */
-
-        document
-            .getElementById("lostName")
-            .value =
-            name;
-
-
-        document
-            .getElementById("foundName")
-            .value =
-            name;
-
-
-        document
-            .getElementById("claimName")
-            .value =
-            name;
-
-
-        document
-            .getElementById("returnName")
-            .value =
-            name;
-
-
-        document
-            .getElementById("loginScreen")
-            .style.display =
-            "none";
-
-
-        document
-            .getElementById("app")
-            .classList.add("visible");
-
-
-        if (!firestoreLoaded) {
-
-            loadFirestoreItems();
-
-            firestoreLoaded = true;
-
-        }
+        await loadItems();
 
     }
-
 );
 
 
 /* =========================================================
-   SIGN OUT
+   USER INFORMATION
 ========================================================= */
 
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        async () => {
+function setupUserInformation(){
 
-            try {
+    if(!currentUser) return;
 
-                await signOut(auth);
+    /*
+       Microsoft normally supplies displayName.
+       If unavailable, use the part before @.
+    */
 
-            } catch (error) {
+    const name =
+        currentUser.displayName ||
+        currentUser.email.split("@")[0];
 
-                console.error(
-                    "Logout error:",
-                    error
-                );
 
-            }
+    const email =
+        currentUser.email;
 
-        }
-    );
+
+    document.getElementById(
+        "headerUserName"
+    ).textContent = name;
+
+
+    document.getElementById(
+        "headerUserEmail"
+    ).textContent = email;
+
+
+    document.getElementById(
+        "lostReporterName"
+    ).value = name;
+
+
+    document.getElementById(
+        "foundReporterName"
+    ).value = name;
+
+
+    document.getElementById(
+        "lostReporterEmail"
+    ).value = email;
+
+
+    document.getElementById(
+        "foundReporterEmail"
+    ).value = email;
+
+
+    document.getElementById(
+        "reportOwner"
+    ).textContent =
+        "Logged in as: " +
+        name +
+        " • " +
+        email;
+}
 
 
 /* =========================================================
-   FIRESTORE LISTENER
+   LOGOUT
 ========================================================= */
 
-function loadFirestoreItems() {
+window.logout = async function(){
+
+    try{
+
+        await signOut(auth);
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+};
 
 
-    const q =
-        query(
-            itemsCollection,
-            orderBy(
-                "createdAt",
-                "desc"
-            )
-        );
+/* =========================================================
+   LOAD FIRESTORE ITEMS
+========================================================= */
+
+async function loadItems(){
+
+    try{
+
+        const itemsRef =
+            collection(db,"items");
+
+        const q =
+            query(
+                itemsRef,
+                orderBy(
+                    "createdAt",
+                    "desc"
+                )
+            );
+
+        const snapshot =
+            await getDocs(q);
+
+        allItems = [];
 
 
-    onSnapshot(
+        snapshot.forEach(doc=>{
 
-        q,
+            allItems.push({
 
-        (snapshot) => {
+                id:doc.id,
 
+                ...doc.data()
 
-            items = [];
+            });
 
-
-            const now =
-                Date.now();
-
-
-            snapshot.forEach(
-
-                (firebaseDoc) => {
+        });
 
 
-                    const data =
-                        firebaseDoc.data();
+        /*
+           Hide expired items from students.
+
+           Actual permanent deletion must be done
+           by a trusted server/Cloud Function,
+           NOT by client-side JavaScript.
+        */
+
+        const now =
+            new Date();
 
 
-                    const item = {
+        allItems =
+            allItems.filter(item=>{
 
-                        id:
-                            firebaseDoc.id,
+                if(!item.expiresAt){
 
-                        ...data
+                    return true;
+                }
 
-                    };
+                try{
 
+                    const expiry =
+                        item.expiresAt.toDate
+                            ? item.expiresAt.toDate()
+                            : new Date(item.expiresAt);
 
-                    /*
-                     IMPORTANT:
+                    return expiry > now;
 
-                     Expired documents are NOT
-                     deleted by students.
+                }catch{
 
-                     They are only hidden here.
-
-                     Your server-side Cloud Function
-                     should permanently delete them.
-                    */
-
-                    if (
-                        item.expiresAt &&
-                        now >=
-                        Number(item.expiresAt)
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    items.push(item);
+                    return true;
 
                 }
 
-            );
+            });
 
 
-            updateStats();
+        renderItems();
+
+        updateStats();
+
+        renderMyReports();
 
 
-            renderItems();
+    }catch(error){
 
-
-            renderMyReports();
-
-        },
-
-
-        (error) => {
-
-
-            console.error(
-                "Firestore error:",
-                error
-            );
-
-
-            document
-                .getElementById("itemsGrid")
-                .innerHTML = `
-
-                    <div class="empty-state">
-
-                        <div class="empty-icon">
-                            ⚠️
-                        </div>
-
-                        <h3>
-                            Could not load items
-                        </h3>
-
-                        <p>
-                            Please check your Firestore
-                            rules and internet connection.
-                        </p>
-
-                    </div>
-
-                `;
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-function updateStats() {
-
-
-    document
-        .getElementById("statLost")
-        .textContent =
-        items.filter(
-            i => i.status === "lost"
-        ).length;
-
-
-    document
-        .getElementById("statFound")
-        .textContent =
-        items.filter(
-            i => i.status === "found"
-        ).length;
-
-
-    document
-        .getElementById("statClaimed")
-        .textContent =
-        items.filter(
-            i => i.status === "claimed"
-        ).length;
-
-
-    document
-        .getElementById("statReturned")
-        .textContent =
-        items.filter(
-            i => i.status === "returned"
-        ).length;
-
-}
-
-
-/* =========================================================
-   TIME REMAINING
-========================================================= */
-
-function getRemainingTime(expiresAt) {
-
-
-    if (!expiresAt) {
-
-        return "No expiry";
-
-    }
-
-
-    const remaining =
-        Number(expiresAt) -
-        Date.now();
-
-
-    if (remaining <= 0) {
-
-        return "Expiring...";
-
-    }
-
-
-    const days =
-        Math.floor(
-            remaining / DAY
+        console.error(
+            "Firestore loading error:",
+            error
         );
 
 
-    const hours =
-        Math.floor(
-            (
-                remaining %
-                DAY
-            ) /
-            (60 * 60 * 1000)
-        );
+        document.getElementById(
+            "itemsContainer"
+        ).innerHTML = `
 
+            <div class="empty-state">
 
-    const minutes =
-        Math.floor(
-            (
-                remaining %
-                (60 * 60 * 1000)
-            ) /
-            (60 * 1000)
-        );
+                <div class="empty-icon">
+                    ⚠️
+                </div>
 
+                <h3>
+                    Could not load items
+                </h3>
 
-    const seconds =
-        Math.floor(
-            (
-                remaining %
-                (60 * 1000)
-            ) /
-            1000
-        );
-
-
-    if (days > 0) {
-
-        return `${days}d ${hours}h ${minutes}m`;
-
-    }
-
-
-    if (hours > 0) {
-
-        return `${hours}h ${minutes}m ${seconds}s`;
-
-    }
-
-
-    return `${minutes}m ${seconds}s`;
-
-}
-
-
-/* =========================================================
-   ITEM VISUAL
-========================================================= */
-
-function getItemVisual(item) {
-
-
-    if (item.photo) {
-
-        return `
-
-            <div class="item-visual">
-
-                <img
-                    src="${escapeHTML(item.photo)}"
-                    alt="Item photo">
+                <p>
+                    Check your Firebase configuration
+                    and Firestore rules.
+                </p>
 
             </div>
 
         `;
-
     }
-
-
-    return `
-
-        <div class="item-visual">
-
-            <div class="item-emoji">
-
-                ${CAT_EMOJI[item.cat] || "📦"}
-
-            </div>
-
-        </div>
-
-    `;
-
 }
 
 
 /* =========================================================
-   ITEM CARD
+   RENDER ITEMS
 ========================================================= */
 
-function createItemCard(
-    item,
-    showActions = true,
-    extraClass = ""
-) {
+window.renderItems = function(){
 
-
-    const status =
-        item.status || "lost";
-
-
-    const actionButtons =
-
-        showActions
-
-        ?
-
-        `
-
-        <div class="item-actions">
-
-
-            ${
-                status === "found"
-
-                ?
-
-                `
-
-                <button
-                    class="action-btn claim-btn"
-                    onclick="openClaim('${escapeHTML(item.id)}')">
-
-                    Claim →
-
-                </button>
-
-                `
-
-                :
-
-                ""
-
-            }
-
-
-            ${
-                status === "lost"
-
-                ?
-
-                `
-
-                <button
-                    class="action-btn return-btn"
-                    onclick="openReturn('${escapeHTML(item.id)}')">
-
-                    Return ↩
-
-                </button>
-
-                `
-
-                :
-
-                ""
-
-            }
-
-
-        </div>
-
-        `
-
-        :
-
-        "";
-
-
-    return `
-
-        <div
-            class="item-card ${extraClass}">
-
-
-            ${getItemVisual(item)}
-
-
-            <div class="item-body">
-
-
-                <div class="item-title-row">
-
-                    <div class="item-name">
-
-                        ${escapeHTML(item.name)}
-
-                    </div>
-
-
-                    <span
-                        class="badge badge-${escapeHTML(status)}">
-
-                        ${escapeHTML(status)}
-
-                    </span>
-
-                </div>
-
-
-                <div class="item-meta">
-
-                    📍
-
-                    <strong>
-                        ${escapeHTML(
-                            item.location || "Campus"
-                        )}
-                    </strong>
-
-                    &nbsp; · &nbsp;
-
-                    ${escapeHTML(
-                        item.date || ""
-                    )}
-
-                </div>
-
-
-                ${
-                    item.desc
-
-                    ?
-
-                    `
-
-                    <div class="item-description">
-
-                        ${escapeHTML(item.desc)}
-
-                    </div>
-
-                    `
-
-                    :
-
-                    ""
-
-                }
-
-
-                <div class="item-meta">
-
-                    Reported by
-
-                    <strong>
-                        ${escapeHTML(
-                            item.reporter || "Student"
-                        )}
-                    </strong>
-
-                    ·
-
-                    ${escapeHTML(
-                        item.cls || "N/A"
-                    )}
-
-                </div>
-
-
-                <div class="timer"
-                     id="timer-${escapeHTML(item.id)}">
-
-                    ⏳ Deletes in:
-                    ${getRemainingTime(item.expiresAt)}
-
-                </div>
-
-
-            </div>
-
-
-            ${actionButtons}
-
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   RENDER BROWSE
-========================================================= */
-
-function renderItems() {
-
-
-    const grid =
+    const container =
         document.getElementById(
-            "itemsGrid"
+            "itemsContainer"
         );
-
-
-    if (!grid) {
-
-        return;
-
-    }
 
 
     const search =
-        document
-            .getElementById("searchInput")
-            .value
-            .toLowerCase()
-            .trim();
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
 
 
     const category =
-        document
-            .getElementById("filterCat")
-            .value;
+        document.getElementById(
+            "categoryFilter"
+        ).value;
 
 
     const status =
-        document
-            .getElementById("filterStatus")
-            .value;
+        document.getElementById(
+            "statusFilter"
+        ).value;
 
 
     const filtered =
-        items.filter(
-            (item) => {
+        allItems.filter(item=>{
+
+            const text = (
+
+                item.itemName || ""
+
+            ) + " " + (
+
+                item.description || ""
+
+            ) + " " + (
+
+                item.location || ""
+
+            );
 
 
-                const searchable =
-
-                    (
-
-                        item.name ||
-                        ""
-
-                    )
-
-                    + " " +
-
-                    (
-
-                        item.desc ||
-                        ""
-
-                    )
-
-                    + " " +
-
-                    (
-
-                        item.location ||
-                        ""
-
-                    )
-
-                    + " " +
-
-                    (
-
-                        item.reporter ||
-                        ""
-
-                    );
+            const matchesSearch =
+                !search ||
+                text.toLowerCase()
+                    .includes(search);
 
 
-                return (
-
-                    !search ||
-
-                    searchable
-                        .toLowerCase()
-                        .includes(search)
-
-                )
-
-                &&
-
-                (
-
-                    !category ||
-
-                    item.cat === category
-
-                )
-
-                &&
-
-                (
-
-                    !status ||
-
-                    item.status === status
-
-                );
-
-            }
-        );
+            const matchesCategory =
+                !category ||
+                item.category === category;
 
 
-    if (!filtered.length) {
+            const matchesStatus =
+                !status ||
+                item.status === status;
 
 
-        grid.innerHTML = `
+            return (
+                matchesSearch &&
+                matchesCategory &&
+                matchesStatus
+            );
+
+        });
+
+
+    renderItemCards(
+        container,
+        filtered
+    );
+};
+
+
+/* =========================================================
+   RENDER ITEM CARDS
+========================================================= */
+
+function renderItemCards(
+    container,
+    items
+){
+
+    if(!items.length){
+
+        container.innerHTML = `
 
             <div class="empty-state">
 
@@ -4428,1340 +1933,791 @@ function renderItems() {
                 </div>
 
                 <h3>
-                    No items found
+                    No items match your filters.
                 </h3>
 
                 <p>
-                    Try changing your search
-                    or filters.
+                    Try changing your search or filters.
                 </p>
 
             </div>
 
         `;
 
-
         return;
-
     }
 
 
-    grid.innerHTML =
-        filtered
-            .map(
-                item =>
-                    createItemCard(item)
-            )
-            .join("");
+    container.innerHTML =
+        items.map(item=>{
 
+            return createItemCard(item);
 
-    updateTimers();
-
+        }).join("");
 }
 
 
-window.renderItems =
-    renderItems;
+/* =========================================================
+   ITEM CARD HTML
+========================================================= */
+
+function createItemCard(item){
+
+    const status =
+        item.status || "Lost";
+
+
+    let badgeClass =
+        "badge-lost";
+
+
+    if(status === "Found")
+        badgeClass = "badge-found";
+
+
+    if(status === "Claimed")
+        badgeClass = "badge-claimed";
+
+
+    if(status === "Returned")
+        badgeClass = "badge-returned";
+
+
+    const image =
+        item.imageUrl
+        ? `
+
+            <img
+                src="${escapeHTML(item.imageUrl)}"
+                alt="${escapeHTML(item.itemName || "Item")}"
+                onerror="this.style.display='none'"
+            >
+
+        `
+        : `
+
+            <div class="no-image">
+                📦
+            </div>
+
+        `;
+
+
+    const date =
+        formatDate(item.date);
+
+
+    const reporter =
+        item.reporterName ||
+        "School student";
+
+
+    return `
+
+        <article class="item-card">
+
+            <div class="item-image">
+
+                ${image}
+
+            </div>
+
+
+            <div class="item-content">
+
+                <div class="item-top">
+
+                    <div class="item-title">
+                        ${escapeHTML(
+                            item.itemName ||
+                            "Unnamed item"
+                        )}
+                    </div>
+
+                    <span
+                        class="badge ${badgeClass}"
+                    >
+                        ${escapeHTML(status)}
+                    </span>
+
+                </div>
+
+
+                <div class="item-description">
+
+                    ${escapeHTML(
+                        item.description ||
+                        "No description provided."
+                    )}
+
+                </div>
+
+
+                <div class="item-details">
+
+                    <div>
+                        📂
+                        ${escapeHTML(
+                            item.category ||
+                            "Other"
+                        )}
+                    </div>
+
+                    <div>
+                        📍
+                        ${escapeHTML(
+                            item.location ||
+                            "Location not specified"
+                        )}
+                    </div>
+
+                    <div>
+                        📅
+                        ${date}
+                    </div>
+
+                </div>
+
+
+                <div class="item-footer">
+
+                    <span>
+                        Reported by
+                        ${escapeHTML(reporter)}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+}
 
 
 /* =========================================================
    MY REPORTS
 ========================================================= */
 
-function getMyReports() {
+function renderMyReports(){
 
-
-    if (!currentUser) {
-
-        return [];
-
-    }
-
-
-    return items.filter(
-
-        item =>
-
-            item.reporterUid ===
-            currentUser.uid
-
-    );
-
-}
-
-
-/* =========================================================
-   SET MY REPORT FILTER
-========================================================= */
-
-window.setReportFilter =
-    function(filter) {
-
-
-        reportFilter =
-            filter;
-
-
-        document
-            .querySelectorAll(
-                ".report-filter"
-            )
-            .forEach(
-                button => {
-
-                    button.classList.toggle(
-
-                        "active",
-
-                        button.dataset
-                            .reportFilter ===
-                        filter
-
-                    );
-
-                }
-            );
-
-
-        renderMyReports();
-
-    };
-
-
-/* =========================================================
-   RENDER MY REPORTS
-========================================================= */
-
-function renderMyReports() {
-
-
-    const grid =
+    const container =
         document.getElementById(
-            "reportsGrid"
+            "myReportsContainer"
         );
 
 
-    const count =
-        document.getElementById(
-            "myReportCount"
-        );
+    if(!currentUser){
 
-
-    if (!grid || !currentUser) {
+        container.innerHTML = "";
 
         return;
-
     }
 
 
+    /*
+       Match using UID first.
+
+       This is much safer than only matching
+       someone's name.
+    */
+
     const myReports =
-        getMyReports();
+        allItems.filter(item=>{
+
+            if(
+                item.reporterUid &&
+                currentUser.uid
+            ){
+
+                return (
+                    item.reporterUid ===
+                    currentUser.uid
+                );
+
+            }
 
 
-    const filtered =
+            return (
+                item.reporterEmail &&
+                currentUser.email &&
+                item.reporterEmail
+                    .toLowerCase() ===
+                currentUser.email
+                    .toLowerCase()
+            );
 
-        reportFilter === "all"
-
-        ?
-
-        myReports
-
-        :
-
-        myReports.filter(
-            item =>
-                item.status ===
-                reportFilter
-        );
+        });
 
 
-    count.textContent =
+    if(!myReports.length){
 
-        `${myReports.length} ${
-            myReports.length === 1
-                ? "report"
-                : "reports"
-        }`;
-
-
-    if (!filtered.length) {
-
-
-        grid.innerHTML = `
+        container.innerHTML = `
 
             <div class="empty-state">
 
                 <div class="empty-icon">
-
-                    ${
-                        myReports.length
-                            ? "🔎"
-                            : "📋"
-                    }
-
+                    📋
                 </div>
 
-
                 <h3>
-
-                    ${
-                        myReports.length
-                            ? "No reports in this category"
-                            : "You haven't reported anything yet"
-                    }
-
+                    You haven't reported anything yet.
                 </h3>
 
-
                 <p>
-
-                    ${
-                        myReports.length
-                            ? "Try another status filter."
-                            : "Your lost and found reports will appear here."
-                    }
-
+                    Your Lost & Found reports will
+                    appear here automatically.
                 </p>
 
             </div>
 
         `;
 
+        return;
+    }
+
+
+    renderItemCards(
+        container,
+        myReports
+    );
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+function updateStats(){
+
+    let lost = 0;
+    let found = 0;
+    let claimed = 0;
+    let returned = 0;
+
+
+    allItems.forEach(item=>{
+
+        const status =
+            item.status;
+
+
+        if(status === "Lost")
+            lost++;
+
+
+        if(status === "Found")
+            found++;
+
+
+        if(status === "Claimed")
+            claimed++;
+
+
+        if(status === "Returned")
+            returned++;
+
+    });
+
+
+    document.getElementById(
+        "lostCount"
+    ).textContent = lost;
+
+
+    document.getElementById(
+        "foundCount"
+    ).textContent = found;
+
+
+    document.getElementById(
+        "claimedCount"
+    ).textContent = claimed;
+
+
+    document.getElementById(
+        "returnedCount"
+    ).textContent = returned;
+}
+
+
+/* =========================================================
+   SUBMIT REPORT
+========================================================= */
+
+window.submitReport =
+async function(event,type){
+
+    event.preventDefault();
+
+
+    if(!currentUser){
+
+        showModal(
+            "⚠️",
+            "Login required",
+            "Please sign in before submitting a report."
+        );
 
         return;
+    }
+
+
+    const email =
+        currentUser.email.toLowerCase();
+
+
+    if(
+        !email.endsWith(
+            "@khaitanpublicschool.com"
+        )
+    ){
+
+        showModal(
+            "🚫",
+            "Not authorised",
+            "Only Khaitan Public School accounts can submit reports."
+        );
+
+        return;
+    }
+
+
+    const isLost =
+        type === "Lost";
+
+
+    const prefix =
+        isLost
+        ? "lost"
+        : "found";
+
+
+    const submitButton =
+        document.getElementById(
+            prefix + "Submit"
+        );
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "Submitting...";
+
+
+    try{
+
+        const name =
+            currentUser.displayName ||
+            currentUser.email.split("@")[0];
+
+
+        const itemName =
+            document.getElementById(
+                prefix + "ItemName"
+            ).value.trim();
+
+
+        const category =
+            document.getElementById(
+                prefix + "Category"
+            ).value;
+
+
+        const location =
+            document.getElementById(
+                prefix + "Location"
+            ).value.trim();
+
+
+        const date =
+            document.getElementById(
+                prefix + "Date"
+            ).value;
+
+
+        const description =
+            document.getElementById(
+                prefix + "Description"
+            ).value.trim();
+
+
+        const imageUrl =
+            document.getElementById(
+                prefix + "Image"
+            ).value.trim();
+
+
+        /*
+           EXPIRY
+
+           This example sets an expiry 30 days
+           after the report date.
+
+           Change 30 to the number of days
+           your school wants.
+        */
+
+        const expiryDate =
+            new Date();
+
+        expiryDate.setDate(
+            expiryDate.getDate() + 30
+        );
+
+
+        await addDoc(
+            collection(db,"items"),
+            {
+
+                itemName:
+                    itemName,
+
+                category:
+                    category,
+
+                location:
+                    location,
+
+                date:
+                    date,
+
+                description:
+                    description,
+
+                imageUrl:
+                    imageUrl,
+
+                status:
+                    type,
+
+                reporterName:
+                    name,
+
+                reporterEmail:
+                    email,
+
+                reporterUid:
+                    currentUser.uid,
+
+                createdAt:
+                    serverTimestamp(),
+
+                expiresAt:
+                    expiryDate
+
+            }
+        );
+
+
+        document.getElementById(
+            prefix + "Form"
+        ).reset();
+
+
+        setupUserInformation();
+
+
+        await loadItems();
+
+
+        showModal(
+            "✅",
+            "Report submitted!",
+            "Your " +
+            type.toLowerCase() +
+            " report has been added successfully."
+        );
+
+
+        /*
+           Automatically return to Browse.
+        */
+
+        setTimeout(()=>{
+
+            const browseButton =
+                document.querySelector(
+                    ".tab"
+                );
+
+            showTab(
+                "browse",
+                browseButton
+            );
+
+        },800);
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        showModal(
+            "❌",
+            "Submission failed",
+            error.message ||
+            "Something went wrong while submitting your report."
+        );
+
+
+    }finally{
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            isLost
+            ? "🚩 Submit Lost Report"
+            : "📍 Submit Found Report";
+
+    }
+};
+
+
+/* =========================================================
+   TAB SWITCHING
+========================================================= */
+
+window.showTab =
+function(tab,button){
+
+    const tabs = [
+
+        "browseTab",
+        "lostTab",
+        "foundTab",
+        "myReportsTab"
+
+    ];
+
+
+    tabs.forEach(id=>{
+
+        document.getElementById(
+            id
+        ).style.display = "none";
+
+    });
+
+
+    document.querySelectorAll(
+        ".tab"
+    ).forEach(btn=>{
+
+        btn.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    if(tab === "browse"){
+
+        document.getElementById(
+            "browseTab"
+        ).style.display = "block";
 
     }
 
 
-    grid.innerHTML =
+    if(tab === "lost"){
 
-        filtered
-            .map(
-                item =>
-                    createItemCard(
-                        item,
-                        false,
-                        "my-report-card"
-                    )
-            )
-            .join("");
+        document.getElementById(
+            "lostTab"
+        ).style.display = "block";
+
+    }
 
 
-    updateTimers();
+    if(tab === "found"){
+
+        document.getElementById(
+            "foundTab"
+        ).style.display = "block";
+
+    }
+
+
+    if(tab === "myReports"){
+
+        document.getElementById(
+            "myReportsTab"
+        ).style.display = "block";
+
+        renderMyReports();
+
+    }
+
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+};
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function showModal(
+    icon,
+    title,
+    message
+){
+
+    document.getElementById(
+        "modalIcon"
+    ).textContent = icon;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent = title;
+
+
+    document.getElementById(
+        "modalMessage"
+    ).textContent = message;
+
+
+    document.getElementById(
+        "modal"
+    ).classList.add("show");
+}
+
+
+function closeModal(){
+
+    document.getElementById(
+        "modal"
+    ).classList.remove("show");
 
 }
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-window.switchTab =
-    function(tabName) {
-
-
-        document
-            .querySelectorAll(".tab")
-            .forEach(
-                button => {
-
-                    button.classList.toggle(
-
-                        "active",
-
-                        button.dataset.tab ===
-                        tabName
-
-                    );
-
-                }
-            );
-
-
-        document
-            .querySelectorAll(".section")
-            .forEach(
-                section => {
-
-                    section.classList.toggle(
-
-                        "active",
-
-                        section.id ===
-                        "section-" +
-                        tabName
-
-                    );
-
-                }
-            );
-
-
-        if (tabName === "reports") {
-
-            renderMyReports();
-
-        }
-
-    };
+window.closeModal =
+    closeModal;
 
 
 /* =========================================================
-   PHOTO PREVIEW
+   LOGIN ERROR
 ========================================================= */
 
-window.previewPhoto =
-    function(input, previewId) {
+function errorMessage(message){
 
+    const error =
+        document.getElementById(
+            "loginError"
+        );
 
-        const preview =
-            document.getElementById(
-                previewId
-            );
+    error.textContent =
+        "Firebase: " + message;
 
-
-        const img =
-            preview.querySelector("img");
-
-
-        if (
-            !input.files ||
-            !input.files[0]
-        ) {
-
-            preview.classList.remove("show");
-
-            return;
-
-        }
-
-
-        const file =
-            input.files[0];
-
-
-        if (
-            !file.type.startsWith("image/")
-        ) {
-
-            alert(
-                "Please select an image file."
-            );
-
-
-            input.value = "";
-
-
-            return;
-
-        }
-
-
-        if (
-            file.size >
-            5 * 1024 * 1024
-        ) {
-
-            alert(
-                "Please choose a photo smaller than 5 MB."
-            );
-
-
-            input.value = "";
-
-
-            return;
-
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(event) {
-
-                img.src =
-                    event.target.result;
-
-
-                preview.classList.add(
-                    "show"
-                );
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    };
+    error.style.display =
+        "block";
+}
 
 
 /* =========================================================
-   PHOTO DATA
+   DATE
 ========================================================= */
 
-function getPhotoData(file) {
+function formatDate(value){
+
+    if(!value)
+        return "Date not specified";
 
 
-    return new Promise(
-        (resolve, reject) => {
+    try{
+
+        const date =
+            new Date(value);
 
 
-            if (!file) {
-
-                resolve("");
-
-                return;
-
+        return date.toLocaleDateString(
+            "en-IN",
+            {
+                day:"numeric",
+                month:"short",
+                year:"numeric"
             }
+        );
 
+    }catch{
 
-            const reader =
-                new FileReader();
+        return value;
 
-
-            reader.onload =
-                event =>
-                    resolve(
-                        event.target.result
-                    );
-
-
-            reader.onerror =
-                error =>
-                    reject(error);
-
-
-            reader.readAsDataURL(file);
-
-        }
-    );
-
+    }
 }
 
 
 /* =========================================================
-   RESET FORM
+   SECURITY / HTML ESCAPING
 ========================================================= */
 
-function resetForm(prefix) {
+function escapeHTML(value){
+
+    if(value === undefined ||
+       value === null){
+
+        return "";
+
+    }
 
 
-    document
-        .getElementById(
-            prefix + "Class"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            prefix + "Item"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            prefix + "Location"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            prefix + "Desc"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            prefix + "Photo"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            prefix + "PhotoPreview"
-        )
-        .classList.remove("show");
-
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 }
 
 
 /* =========================================================
-   SHOW ALERT
+   DEFAULT DATES
 ========================================================= */
 
-function showAlert(id) {
+document.addEventListener(
+    "DOMContentLoaded",
+    ()=>{
+
+        const today =
+            new Date()
+            .toISOString()
+            .split("T")[0];
 
 
-    const alert =
-        document.getElementById(id);
-
-
-    alert.classList.add("show");
-
-
-    setTimeout(
-        () => {
-
-            alert.classList.remove("show");
-
-        },
-        4000
-    );
-
-}
-
-
-/* =========================================================
-   SUBMIT LOST
-========================================================= */
-
-window.submitLost =
-    async function() {
-
-
-        if (!currentUser) {
-
-            alert(
-                "Please sign in first."
-            );
-
-            return;
-
-        }
-
-
-        const item =
-            document
-                .getElementById("lostItem")
-                .value
-                .trim();
-
-
-        if (!item) {
-
-            alert(
-                "Please enter the item name."
-            );
-
-            return;
-
-        }
-
-
-        const cls =
-            document
-                .getElementById("lostClass")
-                .value
-                .trim();
-
-
-        const cat =
-            document
-                .getElementById("lostCat")
-                .value;
-
-
-        const location =
-            document
-                .getElementById("lostLocation")
-                .value
-                .trim();
-
-
-        const desc =
-            document
-                .getElementById("lostDesc")
-                .value
-                .trim();
-
-
-        const photoInput =
+        const lostDate =
             document.getElementById(
-                "lostPhoto"
+                "lostDate"
             );
 
 
-        const button =
+        const foundDate =
             document.getElementById(
-                "lostSubmitBtn"
+                "foundDate"
             );
 
 
-        button.disabled = true;
+        if(lostDate)
+            lostDate.max = today;
 
-        button.textContent =
-            "Posting...";
 
+        if(foundDate)
+            foundDate.max = today;
 
-        try {
-
-
-            const photo =
-                await getPhotoData(
-                    photoInput.files[0]
-                );
-
-
-            const now =
-                Date.now();
-
-
-            await addDoc(
-
-                itemsCollection,
-
-                {
-
-                    name:
-                        item,
-
-                    cat:
-                        cat,
-
-                    location:
-                        location ||
-                        "Campus",
-
-                    desc:
-                        desc,
-
-                    reporter:
-                        getUserName(),
-
-                    reporterUid:
-                        currentUser.uid,
-
-                    reporterEmail:
-                        currentUser.email
-                            .toLowerCase(),
-
-                    cls:
-                        cls ||
-                        "N/A",
-
-                    photo:
-                        photo,
-
-                    status:
-                        "lost",
-
-                    date:
-                        new Date()
-                            .toLocaleDateString(
-                                "en-US",
-                                {
-                                    month:
-                                        "short",
-                                    day:
-                                        "numeric"
-                                }
-                            ),
-
-                    createdAt:
-                        now,
-
-                    expiresAt:
-                        now + 30 * DAY
-
-                }
-
-            );
-
-
-            resetForm("lost");
-
-
-            showAlert(
-                "lostAlert"
-            );
-
-
-            switchTab(
-                "browse"
-            );
-
-
-        } catch (error) {
-
-
-            console.error(
-                "Lost report error:",
-                error
-            );
-
-
-            alert(
-                "Failed to post lost item. Please try again."
-            );
-
-
-        } finally {
-
-
-            button.disabled = false;
-
-            button.textContent =
-                "Post Lost Item →";
-
-        }
-
-    };
-
-
-/* =========================================================
-   SUBMIT FOUND
-========================================================= */
-
-window.submitFound =
-    async function() {
-
-
-        if (!currentUser) {
-
-            alert(
-                "Please sign in first."
-            );
-
-            return;
-
-        }
-
-
-        const item =
-            document
-                .getElementById("foundItem")
-                .value
-                .trim();
-
-
-        if (!item) {
-
-            alert(
-                "Please enter the item name."
-            );
-
-            return;
-
-        }
-
-
-        const cls =
-            document
-                .getElementById("foundClass")
-                .value
-                .trim();
-
-
-        const cat =
-            document
-                .getElementById("foundCat")
-                .value;
-
-
-        const location =
-            document
-                .getElementById("foundLocation")
-                .value
-                .trim();
-
-
-        const desc =
-            document
-                .getElementById("foundDesc")
-                .value
-                .trim();
-
-
-        const photoInput =
-            document.getElementById(
-                "foundPhoto"
-            );
-
-
-        const button =
-            document.getElementById(
-                "foundSubmitBtn"
-            );
-
-
-        button.disabled = true;
-
-        button.textContent =
-            "Posting...";
-
-
-        try {
-
-
-            const photo =
-                await getPhotoData(
-                    photoInput.files[0]
-                );
-
-
-            const now =
-                Date.now();
-
-
-            await addDoc(
-
-                itemsCollection,
-
-                {
-
-                    name:
-                        item,
-
-                    cat:
-                        cat,
-
-                    location:
-                        location ||
-                        "Campus",
-
-                    desc:
-                        desc,
-
-                    reporter:
-                        getUserName(),
-
-                    reporterUid:
-                        currentUser.uid,
-
-                    reporterEmail:
-                        currentUser.email
-                            .toLowerCase(),
-
-                    cls:
-                        cls ||
-                        "N/A",
-
-                    photo:
-                        photo,
-
-                    status:
-                        "found",
-
-                    date:
-                        new Date()
-                            .toLocaleDateString(
-                                "en-US",
-                                {
-                                    month:
-                                        "short",
-                                    day:
-                                        "numeric"
-                                }
-                            ),
-
-                    createdAt:
-                        now,
-
-                    expiresAt:
-                        now + 30 * DAY
-
-                }
-
-            );
-
-
-            resetForm("found");
-
-
-            showAlert(
-                "foundAlert"
-            );
-
-
-            switchTab(
-                "browse"
-            );
-
-
-        } catch (error) {
-
-
-            console.error(
-                "Found report error:",
-                error
-            );
-
-
-            alert(
-                "Failed to post found item. Please try again."
-            );
-
-
-        } finally {
-
-
-            button.disabled = false;
-
-            button.textContent =
-                "Post Found Item →";
-
-        }
-
-    };
-
-
-/* =========================================================
-   CLAIM
-========================================================= */
-
-window.openClaim =
-    function(id) {
-
-
-        if (!currentUser) {
-
-            return;
-
-        }
-
-
-        const item =
-            items.find(
-                i => i.id === id
-            );
-
-
-        if (!item) {
-
-            return;
-
-        }
-
-
-        claimingId =
-            id;
-
-
-        document
-            .getElementById("claimDesc")
-            .textContent =
-            `You are claiming "${item.name}".`;
-
-
-        document
-            .getElementById("claimName")
-            .value =
-            getUserName();
-
-
-        document
-            .getElementById("claimClass")
-            .value = "";
-
-
-        document
-            .getElementById("claimModal")
-            .classList.add("open");
-
-    };
-
-
-window.closeClaim =
-    function() {
-
-
-        claimingId = null;
-
-
-        document
-            .getElementById("claimModal")
-            .classList.remove("open");
-
-    };
-
-
-window.confirmClaim =
-    async function() {
-
-
-        if (
-            !currentUser ||
-            !claimingId
-        ) {
-
-            return;
-
-        }
-
-
-        const cls =
-            document
-                .getElementById("claimClass")
-                .value
-                .trim();
-
-
-        const button =
-            document.querySelector(
-                "#claimModal .btn-submit"
-            );
-
-
-        button.disabled = true;
-
-
-        try {
-
-
-            const itemRef =
-                doc(
-                    db,
-                    "items",
-                    claimingId
-                );
-
-
-            const now =
-                Date.now();
-
-
-            await updateDoc(
-
-                itemRef,
-
-                {
-
-                    status:
-                        "claimed",
-
-                    claimedBy:
-                        getUserName(),
-
-                    claimedByUid:
-                        currentUser.uid,
-
-                    claimedByEmail:
-                        currentUser.email
-                            .toLowerCase(),
-
-                    claimedClass:
-                        cls ||
-                        "N/A",
-
-                    expiresAt:
-                        now + 10 * DAY
-
-                }
-
-            );
-
-
-            closeClaim();
-
-
-        } catch (error) {
-
-
-            console.error(
-                "Claim error:",
-                error
-            );
-
-
-            alert(
-                "Failed to claim item. Please try again."
-            );
-
-
-        } finally {
-
-
-            button.disabled = false;
-
-        }
-
-    };
-
-
-/* =========================================================
-   RETURN
-========================================================= */
-
-window.openReturn =
-    function(id) {
-
-
-        if (!currentUser) {
-
-            return;
-
-        }
-
-
-        const item =
-            items.find(
-                i => i.id === id
-            );
-
-
-        if (!item) {
-
-            return;
-
-        }
-
-
-        returningId =
-            id;
-
-
-        document
-            .getElementById("returnDesc")
-            .textContent =
-            `Marking "${item.name}" as returned.`;
-
-
-        document
-            .getElementById("returnName")
-            .value =
-            getUserName();
-
-
-        document
-            .getElementById("returnClass")
-            .value = "";
-
-
-        document
-            .getElementById("returnHow")
-            .value = "";
-
-
-        document
-            .getElementById("returnModal")
-            .classList.add("open");
-
-    };
-
-
-window.closeReturn =
-    function() {
-
-
-        returningId = null;
-
-
-        document
-            .getElementById("returnModal")
-            .classList.remove("open");
-
-    };
-
-
-window.confirmReturn =
-    async function() {
-
-
-        if (
-            !currentUser ||
-            !returningId
-        ) {
-
-            return;
-
-        }
-
-
-        const cls =
-            document
-                .getElementById("returnClass")
-                .value
-                .trim();
-
-
-        const how =
-            document
-                .getElementById("returnHow")
-                .value
-                .trim();
-
-
-        const button =
-            document.querySelector(
-                "#returnModal .btn-submit"
-            );
-
-
-        button.disabled = true;
-
-
-        try {
-
-
-            const itemRef =
-                doc(
-                    db,
-                    "items",
-                    returningId
-                );
-
-
-            const now =
-                Date.now();
-
-
-            await updateDoc(
-
-                itemRef,
-
-                {
-
-                    status:
-                        "returned",
-
-                    returnedBy:
-                        getUserName(),
-
-                    returnedByUid:
-                        currentUser.uid,
-
-                    returnedByEmail:
-                        currentUser.email
-                            .toLowerCase(),
-
-                    returnedClass:
-                        cls ||
-                        "N/A",
-
-                    returnedHow:
-                        how ||
-                        "Not specified",
-
-                    expiresAt:
-                        now + 10 * DAY
-
-                }
-
-            );
-
-
-            closeReturn();
-
-
-        } catch (error) {
-
-
-            console.error(
-                "Return error:",
-                error
-            );
-
-
-            alert(
-                "Failed to mark item as returned."
-            );
-
-
-        } finally {
-
-
-            button.disabled = false;
-
-        }
-
-    };
-
-
-/* =========================================================
-   LIVE TIMERS
-========================================================= */
-
-function updateTimers() {
-
-
-    items.forEach(
-        item => {
-
-
-            const element =
-                document.getElementById(
-                    "timer-" +
-                    item.id
-                );
-
-
-            if (!element) {
-
-                return;
-
-            }
-
-
-            element.textContent =
-                "⏳ Deletes in: " +
-                getRemainingTime(
-                    item.expiresAt
-                );
-
-        }
-    );
-
-}
-
-
-setInterval(
-    updateTimers,
-    1000
+    }
 );
-
-
-/* =========================================================
-   CLOSE MODALS WHEN CLICKING OUTSIDE
-========================================================= */
-
-document
-    .querySelectorAll(".modal-overlay")
-    .forEach(
-        overlay => {
-
-
-            overlay.addEventListener(
-                "click",
-                event => {
-
-
-                    if (
-                        event.target ===
-                        overlay
-                    ) {
-
-                        overlay.classList.remove(
-                            "open"
-                        );
-
-
-                        claimingId =
-                            null;
-
-
-                        returningId =
-                            null;
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
 
 </script>
 
-
 </body>
-
 </html>
