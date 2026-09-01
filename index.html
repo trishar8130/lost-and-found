@@ -1,244 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lost & Found — Khaitan Public School</title>
+<title>Khaitan Public School | Lost & Found</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
-rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-*,
-*::before,
-*::after {
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 :root {
+    --teal: #0e8388;
+    --teal-dark: #0b6267;
+    --teal-deep: #0d4f55;
 
-    --brand-top-bar: #0e8388;
-    --brand-emerald: #21b897;
-    --brand-emerald-hover: #1ca385;
-    --brand-teal-light: #36b3b0;
-    --brand-teal-dark: #0f7187;
-    --brand-dark: #1a1a1a;
+    --green: #21b897;
+    --green-dark: #189b7d;
 
-    --cream: #f4f8f8;
+    --bg: #f4f8f8;
     --white: #ffffff;
 
-    --text: #1a2729;
-    --text-2: #4a5c5f;
-    --text-3: #7a8e91;
+    --text: #172426;
+    --text-light: #617477;
+    --muted: #87999c;
 
-    --border: #d4e0e2;
-    --border-strong: #21b897;
+    --border: #d8e3e5;
 
-    --success-bg: #e6f8f2;
-    --success-text: #00875a;
+    --lost-bg: #fff3df;
+    --lost-text: #9a5b00;
 
-    --found-bg: #e8f6f8;
-    --found-text: #0e6470;
+    --found-bg: #e4f8f5;
+    --found-text: #087567;
 
-    --lost-bg: #fef5e8;
-    --lost-text: #7a4a0a;
+    --claimed-bg: #edf4e9;
+    --claimed-text: #487239;
 
-    --claimed-bg: #eaf0e8;
-    --claimed-text: #2a5a24;
+    --returned-bg: #eee9fb;
+    --returned-text: #6143a3;
 
-    --returned-bg: #f0eafa;
-    --returned-text: #4a2a8a;
+    --danger-bg: #fff0f0;
+    --danger-text: #c33a3a;
 
-    --radius: 8px;
-    --radius-lg: 14px;
+    --shadow-sm: 0 4px 15px rgba(15, 55, 60, .07);
+    --shadow-md: 0 12px 35px rgba(15, 55, 60, .10);
+    --shadow-lg: 0 25px 70px rgba(15, 55, 60, .18);
+
+    --radius: 14px;
+    --radius-lg: 22px;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-
-    font-family: 'Inter', sans-serif;
-
-    background: var(--cream);
-
+    font-family: "Inter", sans-serif;
+    background: var(--bg);
     color: var(--text);
-
     min-height: 100vh;
 }
 
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
 
 /* =========================================================
-   LOGIN SCREEN
+   LOGIN
 ========================================================= */
 
 #loginScreen {
-
     position: fixed;
-
     inset: 0;
-
-    z-index: 9999;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0e757a,
-            #0f7187
-        );
+    z-index: 99999;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(54,179,176,.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(33,184,151,.20),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #0a686e,
+            #0f7187
+        );
 }
 
 .login-card {
+    width: min(100%, 460px);
 
-    width: 100%;
+    background: rgba(255,255,255,.98);
 
-    max-width: 440px;
+    border-radius: 26px;
 
-    background: white;
-
-    border-radius: 22px;
-
-    padding: 42px 35px;
+    padding: 42px 38px;
 
     text-align: center;
 
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.25);
+    box-shadow: var(--shadow-lg);
 
-    animation: loginAppear .5s ease;
+    animation: loginIn .55s ease;
 }
 
-@keyframes loginAppear {
-
+@keyframes loginIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(25px) scale(.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 .login-logo {
-
-    width: 85px;
-
+    width: 100px;
     height: 70px;
-
-    margin: 0 auto 15px;
+    margin: 0 auto 16px;
 }
 
 .login-logo svg {
-
     width: 100%;
-
     height: 100%;
 }
 
 .login-card h1 {
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-size: 25px;
-
-    margin-bottom: 8px;
-
-    color: var(--brand-dark);
+    font-family: "Montserrat", sans-serif;
+    font-size: 27px;
+    margin-bottom: 10px;
 }
 
-.login-card p {
-
-    color: var(--text-3);
-
-    font-size: 14px;
-
+.login-card > p {
+    color: var(--text-light);
     line-height: 1.6;
-
-    margin-bottom: 28px;
+    font-size: 14px;
 }
 
 .school-domain {
+    display: inline-flex;
+    align-items: center;
 
-    display: inline-block;
+    margin: 22px 0;
 
-    background: var(--success-bg);
+    padding: 9px 15px;
 
-    color: var(--success-text);
+    border-radius: 999px;
 
-    border-radius: 99px;
+    background: #e6f8f4;
+    color: #087567;
 
-    padding: 6px 12px;
-
-    font-size: 12px;
-
+    font-size: 13px;
     font-weight: 700;
-
-    margin-bottom: 22px;
 }
 
 .microsoft-login {
-
     width: 100%;
 
-    border: none;
+    border: 0;
+    border-radius: 12px;
 
-    border-radius: 10px;
-
-    background: #2f2f2f;
-
+    background: #292929;
     color: white;
 
-    padding: 13px 18px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
+    padding: 15px;
 
     display: flex;
-
-    align-items: center;
-
     justify-content: center;
-
+    align-items: center;
     gap: 12px;
+
+    font-size: 15px;
+    font-weight: 700;
 
     transition: .2s;
 }
 
 .microsoft-login:hover {
-
-    background: #1f1f1f;
-
+    background: #171717;
     transform: translateY(-1px);
 }
 
+.microsoft-login:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .microsoft-logo {
-
     display: grid;
-
     grid-template-columns: 10px 10px;
-
     grid-template-rows: 10px 10px;
-
     gap: 2px;
 }
 
@@ -259,21 +246,18 @@ body {
 }
 
 .login-error {
-
     display: none;
 
     margin-top: 15px;
 
-    padding: 10px 12px;
+    padding: 12px 14px;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
-    background: #fff0f0;
+    background: var(--danger-bg);
+    color: var(--danger-text);
 
-    color: #a52828;
-
-    font-size: 12px;
-
+    font-size: 13px;
     line-height: 1.5;
 }
 
@@ -282,742 +266,577 @@ body {
 }
 
 .login-note {
-
-    margin-top: 18px;
-
+    margin-top: 18px !important;
     font-size: 11px !important;
-
-    color: #8a999b !important;
-
-    margin-bottom: 0 !important;
+    color: var(--muted) !important;
 }
-
 
 /* =========================================================
-   APP
-========================================================= */
-
-#app {
-
-    display: none;
-}
-
-#app.visible {
-
-    display: block;
-}
-
-
-/* =========================================================
-   TOP BAR
+   TOP ACCENT
 ========================================================= */
 
 .top-accent-bar {
-
     height: 6px;
-
-    background: var(--brand-top-bar);
-
-    width: 100%;
+    background: var(--teal);
 }
-
 
 /* =========================================================
    HEADER
 ========================================================= */
 
 header {
-
-    background: var(--white);
+    background: white;
 
     position: sticky;
-
     top: 0;
 
-    z-index: 50;
+    z-index: 100;
 
-    box-shadow:
-        0 2px 12px rgba(0,0,0,.08);
+    border-bottom: 1px solid var(--border);
+
+    box-shadow: 0 3px 18px rgba(0,0,0,.05);
 }
 
 .header-inner {
-
-    max-width: 1100px;
+    width: min(1180px, calc(100% - 32px));
 
     margin: auto;
 
-    padding: 10px 24px;
+    min-height: 76px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
-    min-height: 72px;
 
     gap: 20px;
 }
 
 .logo-group {
-
     display: flex;
-
     align-items: center;
-
-    gap: 14px;
+    gap: 12px;
 }
 
 .logo-mountains {
-
-    width: 48px;
-
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
+    width: 50px;
+    height: 40px;
 }
 
 .logo-mountains svg {
-
     width: 100%;
-
     height: 100%;
 }
 
 .logo-text {
-
     display: flex;
-
     flex-direction: column;
 }
 
 .school-name {
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-size: 18px;
-
+    font-family: "Montserrat", sans-serif;
     font-weight: 800;
-
-    color: var(--brand-dark);
-
-    letter-spacing: .08em;
-
-    line-height: 1.1;
+    letter-spacing: 1.5px;
+    font-size: 17px;
 }
 
 .school-tagline {
-
     font-size: 9px;
-
-    color: var(--brand-teal-dark);
-
-    letter-spacing: .18em;
-
-    font-weight: 600;
-
-    text-transform: uppercase;
-
-    margin-top: 2px;
+    color: var(--teal);
+    letter-spacing: 2px;
+    font-weight: 700;
 }
 
 .portal-label {
+    border-left: 1px solid var(--border);
+    margin-left: 4px;
+    padding-left: 14px;
 
-    font-size: 11px;
-
-    color: var(--text-2);
-
-    letter-spacing: .08em;
-
-    text-transform: uppercase;
-
-    border-left: 2px solid var(--brand-emerald);
-
-    padding-left: 10px;
-
-    margin-left: 8px;
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 600;
 }
 
-
-/* USER AREA */
-
 .user-area {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
 }
 
 .user-info {
-
     text-align: right;
 }
 
 .user-name {
-
     font-size: 13px;
-
     font-weight: 700;
-
-    color: var(--text);
 }
 
 .user-email {
-
-    font-size: 10px;
-
-    color: var(--text-3);
-
+    font-size: 11px;
+    color: var(--muted);
     margin-top: 2px;
 }
 
 .logout-btn {
-
     border: 1px solid var(--border);
-
     background: white;
+    color: var(--text);
 
-    color: var(--text-2);
+    padding: 9px 13px;
 
-    border-radius: 8px;
-
-    padding: 8px 12px;
-
-    cursor: pointer;
+    border-radius: 9px;
 
     font-size: 12px;
-
-    font-weight: 600;
+    font-weight: 700;
 
     transition: .2s;
 }
 
 .logout-btn:hover {
-
-    border-color: var(--brand-emerald);
-
-    color: var(--brand-emerald);
+    background: #f4f8f8;
 }
-
 
 /* =========================================================
    HERO
 ========================================================= */
 
 .hero {
-
     background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255,255,255,.10),
+            transparent 30%
+        ),
         linear-gradient(
             135deg,
-            #0e757a,
-            var(--brand-teal-dark)
+            var(--teal),
+            var(--teal-dark)
         );
 
-    padding: 48px 24px 36px;
+    color: white;
+
+    padding: 58px 20px 48px;
 
     text-align: center;
 }
 
 .hero h1 {
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-size: clamp(28px,5vw,40px);
-
-    font-weight: 700;
-
-    color: white;
-
-    margin-bottom: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(30px, 5vw, 48px);
+    line-height: 1.1;
+    font-weight: 800;
 }
 
 .hero h1 span {
-
-    color: #21b897;
+    color: #a8f3df;
 }
 
 .hero-sub {
+    max-width: 680px;
+    margin: 17px auto 28px;
 
-    font-size: 15px;
+    color: rgba(255,255,255,.83);
 
-    color: rgba(255,255,255,.85);
+    line-height: 1.65;
 
-    max-width: 480px;
-
-    margin: auto auto 28px;
-
-    line-height: 1.6;
+    font-size: 14px;
 }
-
 
 /* =========================================================
    STATS
 ========================================================= */
 
 .stats-bar {
+    width: min(650px, 100%);
 
-    display: flex;
+    margin: auto;
 
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
-    flex-wrap: wrap;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.22);
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.09);
+
+    backdrop-filter: blur(8px);
 }
 
 .stat-pill {
+    padding: 15px 10px;
 
-    background: rgba(255,255,255,.12);
-
-    border: 1px solid rgba(255,255,255,.2);
-
-    padding: 12px 28px;
-
-    text-align: center;
-
-    min-width: 110px;
-}
-
-.stat-pill:first-child {
-
-    border-radius: 10px 0 0 10px;
+    border-right: 1px solid rgba(255,255,255,.20);
 }
 
 .stat-pill:last-child {
-
-    border-radius: 0 10px 10px 0;
+    border-right: 0;
 }
 
 .stat-num {
-
-    font-size: 26px;
-
-    font-weight: 700;
-
-    color: white;
-
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    font-weight: 800;
 }
 
 .stat-label {
+    margin-top: 3px;
 
-    font-size: 11px;
-
-    color: rgba(255,255,255,.8);
+    font-size: 10px;
 
     text-transform: uppercase;
 
-    letter-spacing: .05em;
-}
+    letter-spacing: .5px;
 
+    color: rgba(255,255,255,.78);
+}
 
 /* =========================================================
    MAIN
 ========================================================= */
 
-.main-wrap {
+main {
+    width: min(1180px, calc(100% - 32px));
 
-    max-width: 1000px;
-
-    margin: auto;
-
-    padding: 36px 20px 60px;
+    margin: 30px auto 60px;
 }
-
 
 /* =========================================================
    TABS
 ========================================================= */
 
 .tabs {
-
     display: flex;
+    align-items: center;
 
-    margin-bottom: 28px;
+    width: fit-content;
+
+    margin-bottom: 25px;
 
     background: white;
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius-lg);
+    border-radius: 12px;
 
     padding: 5px;
 
-    width: fit-content;
+    box-shadow: var(--shadow-sm);
 }
 
 .tab {
-
-    padding: 9px 22px;
-
-    border-radius: 10px;
-
-    border: none;
-
+    border: 0;
     background: transparent;
 
-    color: var(--text-2);
+    padding: 11px 20px;
 
-    font-size: 14px;
+    border-radius: 9px;
 
-    font-weight: 600;
+    color: var(--text-light);
 
-    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
 
     transition: .2s;
 }
 
 .tab:hover {
-
-    background: #eef8f6;
+    color: var(--teal);
 }
 
 .tab.active {
-
-    background: var(--brand-emerald);
-
+    background: var(--green);
     color: white;
 }
 
-.section {
+/* =========================================================
+   SECTIONS
+========================================================= */
 
+.section {
     display: none;
 }
 
 .section.active {
-
     display: block;
 }
 
-
 /* =========================================================
-   FILTERS
+   BROWSE CONTROLS
 ========================================================= */
 
-.filters {
+.controls {
+    display: grid;
 
-    display: flex;
+    grid-template-columns: minmax(220px, 1fr) 180px 160px;
 
     gap: 10px;
 
-    flex-wrap: wrap;
-
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
-.search-wrap {
-
-    position: relative;
-
-    flex: 1;
-
-    min-width: 200px;
-
-    max-width: 340px;
-}
-
-
-/* =========================================================
-   INPUTS
-========================================================= */
-
-input,
-select,
-textarea {
-
-    font-family: 'Inter', sans-serif;
-
-    font-size: 14px;
+.input,
+.select,
+.textarea {
+    width: 100%;
 
     border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    padding: 9px 13px;
 
     background: white;
 
     color: var(--text);
 
+    border-radius: 10px;
+
+    padding: 12px 13px;
+
     outline: none;
 
-    width: 100%;
+    transition: .2s;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+.input:focus,
+.select:focus,
+.textarea:focus {
+    border-color: var(--green);
 
-    border-color: var(--brand-emerald);
-
-    box-shadow:
-        0 0 0 3px rgba(33,184,151,.1);
+    box-shadow: 0 0 0 3px rgba(33,184,151,.10);
 }
 
-textarea {
-
+.textarea {
+    min-height: 105px;
     resize: vertical;
-
-    min-height: 80px;
 }
-
-.filters select {
-
-    width: auto;
-
-    min-width: 140px;
-}
-
 
 /* =========================================================
-   CARDS
+   ITEMS GRID
 ========================================================= */
 
 .items-grid {
-
     display: grid;
 
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
 }
 
 .item-card {
-
     background: white;
 
     border: 1px solid var(--border);
 
     border-radius: var(--radius-lg);
 
-    padding: 16px 18px;
+    overflow: hidden;
+
+    box-shadow: var(--shadow-sm);
 
     display: flex;
+    flex-direction: column;
 
-    gap: 14px;
-
-    align-items: flex-start;
-
-    transition: .2s;
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        border-color .2s;
 }
 
 .item-card:hover {
+    transform: translateY(-4px);
 
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 
-    box-shadow:
-        0 8px 25px rgba(16,70,76,.08);
-
-    border-color: #b9d9d6;
+    border-color: #b9d5d7;
 }
 
-.item-emoji {
+.item-visual {
+    height: 180px;
 
-    font-size: 28px;
-
-    width: 48px;
-
-    height: 48px;
-
-    background: var(--cream);
-
-    border-radius: 10px;
+    background:
+        linear-gradient(
+            135deg,
+            #edf8f6,
+            #e4f1f4
+        );
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    flex-shrink: 0;
+    overflow: hidden;
 }
 
 .item-photo {
-
-    width: 72px;
-
-    height: 72px;
+    width: 100%;
+    height: 100%;
 
     object-fit: cover;
+}
 
-    border-radius: 10px;
-
-    border: 1px solid var(--border);
+.item-emoji {
+    font-size: 65px;
 }
 
 .item-body {
+    padding: 18px 18px 13px;
 
     flex: 1;
-
-    min-width: 0;
 }
 
 .item-name {
+    font-family: "Montserrat", sans-serif;
 
-    font-size: 15px;
+    font-size: 17px;
 
-    font-weight: 600;
+    font-weight: 800;
 
-    margin-bottom: 3px;
+    margin-bottom: 8px;
 }
 
 .item-meta {
+    font-size: 12px;
 
-    font-size: 13px;
+    color: var(--text-light);
 
-    color: var(--text-3);
+    line-height: 1.55;
 
-    line-height: 1.5;
+    margin-top: 6px;
 }
 
 .item-meta strong {
-
-    color: var(--text-2);
+    color: var(--text);
 }
 
 .badge {
+    display: inline-flex;
 
-    display: inline-block;
+    margin-top: 12px;
 
-    font-size: 11px;
+    padding: 6px 9px;
 
-    font-weight: 600;
+    border-radius: 999px;
 
-    padding: 3px 10px;
+    font-size: 10px;
 
-    border-radius: 99px;
+    font-weight: 800;
 
     text-transform: uppercase;
 
-    margin-top: 7px;
+    letter-spacing: .5px;
 }
 
 .badge-lost {
-
     background: var(--lost-bg);
-
     color: var(--lost-text);
 }
 
 .badge-found {
-
     background: var(--found-bg);
-
     color: var(--found-text);
 }
 
 .badge-claimed {
-
     background: var(--claimed-bg);
-
     color: var(--claimed-text);
 }
 
 .badge-returned {
-
     background: var(--returned-bg);
-
     color: var(--returned-text);
 }
 
 .timer {
+    margin-top: 10px;
 
-    display: inline-block;
+    padding: 7px 9px;
 
-    margin-top: 7px;
+    background: #f5f8f8;
 
-    padding: 5px 9px;
+    border-radius: 7px;
 
-    border-radius: 6px;
+    color: var(--text-light);
 
-    background: #eef7f8;
-
-    color: #12636d;
-
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 600;
 }
 
 .item-actions {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
+    padding: 0 18px 18px;
 }
 
-.claim-btn,
-.return-btn {
+.action-btn {
+    width: 100%;
 
-    font-size: 13px;
+    border: 0;
 
-    font-weight: 600;
+    border-radius: 9px;
 
-    border-radius: var(--radius);
+    padding: 10px;
 
-    padding: 7px 16px;
+    color: white;
 
-    cursor: pointer;
+    font-weight: 700;
 
-    white-space: nowrap;
+    font-size: 12px;
 
     transition: .2s;
 }
 
 .claim-btn {
-
-    color: var(--brand-teal-dark);
-
-    background: var(--found-bg);
-
-    border: 1px solid var(--brand-emerald);
+    background: var(--green);
 }
 
 .claim-btn:hover {
-
-    background: #d9f2ed;
+    background: var(--green-dark);
 }
 
 .return-btn {
-
-    color: #4a2a8a;
-
-    background: var(--returned-bg);
-
-    border: 1px solid #b89ee0;
+    background: var(--teal);
 }
 
 .return-btn:hover {
-
-    background: #e8dcf8;
+    background: var(--teal-dark);
 }
 
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
 .empty-state {
+    grid-column: 1 / -1;
+
+    padding: 65px 20px;
 
     text-align: center;
 
-    padding: 56px 24px;
-
-    color: var(--text-3);
+    color: var(--muted);
 }
 
 .empty-icon {
-
-    font-size: 44px;
-
-    margin-bottom: 12px;
+    font-size: 52px;
+    margin-bottom: 14px;
 }
 
+.empty-state h3 {
+    color: var(--text);
+    margin-bottom: 7px;
+}
+
+.empty-state p {
+    font-size: 13px;
+}
 
 /* =========================================================
-   FORMS
+   FORM
 ========================================================= */
 
 .form-card {
+    max-width: 800px;
+
+    margin: auto;
 
     background: white;
 
@@ -1025,368 +844,424 @@ textarea {
 
     border-radius: var(--radius-lg);
 
-    padding: 28px;
+    padding: 27px;
 
-    max-width: 620px;
+    box-shadow: var(--shadow-sm);
 }
 
-.form-section-title {
+.form-card h2 {
+    font-family: "Montserrat", sans-serif;
 
-    font-size: 11px;
+    font-size: 22px;
 
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    letter-spacing: .1em;
-
-    color: var(--brand-emerald);
-
-    margin-bottom: 14px;
-
-    padding-bottom: 10px;
-
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 7px;
 }
 
-.form-row {
-
-    margin-bottom: 16px;
-}
-
-.form-row label {
-
-    display: block;
+.form-subtitle {
+    color: var(--text-light);
 
     font-size: 13px;
 
-    font-weight: 500;
+    line-height: 1.6;
 
-    color: var(--text-2);
-
-    margin-bottom: 6px;
+    margin-bottom: 22px;
 }
 
 .form-2col {
-
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 14px;
+    gap: 15px;
+}
+
+.form-row {
+    margin-bottom: 16px;
+}
+
+.form-row label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.readonly-input {
+    background: #f1f5f5;
+
+    color: var(--text-light);
+
+    cursor: not-allowed;
 }
 
 .photo-upload {
+    border: 1px dashed #b8cdcf;
 
-    border: 1px dashed var(--border-strong);
+    background: #f8fbfb;
 
-    border-radius: var(--radius);
+    border-radius: 11px;
 
     padding: 14px;
-
-    background: var(--cream);
 }
 
 .photo-upload input {
+    width: 100%;
+}
 
-    border: none;
+.photo-help {
+    font-size: 10px;
 
-    background: transparent;
+    color: var(--muted);
+
+    margin-top: 6px;
 }
 
 .photo-preview {
-
     display: none;
 
     margin-top: 12px;
 }
 
 .photo-preview.show {
-
     display: block;
 }
 
 .photo-preview img {
-
-    width: 150px;
-
-    height: 115px;
+    width: 170px;
+    height: 125px;
 
     object-fit: cover;
 
-    border-radius: 8px;
+    border-radius: 9px;
+
+    border: 1px solid var(--border);
+}
+
+.form-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 8px;
 }
 
 .btn-submit {
+    border: 0;
 
-    background: var(--brand-emerald);
+    border-radius: 10px;
+
+    background: var(--green);
 
     color: white;
 
-    border: none;
+    padding: 12px 24px;
 
-    border-radius: var(--radius);
+    font-weight: 800;
 
-    padding: 11px 28px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
+    font-size: 13px;
 
     transition: .2s;
 }
 
 .btn-submit:hover {
-
-    background: var(--brand-emerald-hover);
-
+    background: var(--green-dark);
     transform: translateY(-1px);
 }
 
 .btn-submit:disabled {
-
-    opacity: .5;
-
+    opacity: .55;
     cursor: not-allowed;
-
     transform: none;
 }
 
-
 /* =========================================================
-   ALERTS
+   ALERT
 ========================================================= */
 
 .alert {
-
     display: none;
-
-    border-radius: var(--radius);
-
-    padding: 12px 16px;
-
-    font-size: 13px;
 
     margin-bottom: 18px;
 
-    background: var(--success-bg);
+    padding: 12px 14px;
 
-    color: var(--success-text);
+    border-radius: 10px;
+
+    background: var(--found-bg);
+
+    color: var(--found-text);
+
+    font-size: 12px;
+
+    font-weight: 600;
 }
 
 .alert.show {
-
     display: block;
 }
 
-.alert-note {
-
-    background: #eaf6f8;
-
-    color: #0e5661;
-
-    padding: 10px 14px;
-
-    border-radius: var(--radius);
-
-    margin-bottom: 18px;
-}
-
-
 /* =========================================================
-   MODALS
+   MODAL
 ========================================================= */
 
 .modal-overlay {
-
-    display: none;
-
     position: fixed;
 
     inset: 0;
 
-    background: rgba(15,56,62,.6);
+    z-index: 500;
 
-    z-index: 200;
+    display: none;
 
     align-items: center;
-
     justify-content: center;
 
     padding: 20px;
+
+    background: rgba(8, 42, 46, .65);
+
+    backdrop-filter: blur(4px);
 }
 
 .modal-overlay.open {
-
     display: flex;
 }
 
 .modal {
+    width: min(100%, 430px);
 
     background: white;
 
-    border-radius: var(--radius-lg);
+    border-radius: 18px;
 
-    padding: 28px;
+    padding: 27px;
 
-    max-width: 400px;
+    box-shadow: var(--shadow-lg);
 
-    width: 100%;
+    animation: modalIn .25s ease;
+}
 
-    box-shadow:
-        0 20px 70px rgba(0,0,0,.2);
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(.96) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .modal h3 {
+    font-family: "Montserrat", sans-serif;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 }
 
 .modal-sub {
+    color: var(--text-light);
 
-    font-size: 13px;
+    font-size: 12px;
 
-    color: var(--text-3);
+    line-height: 1.6;
 
-    margin-bottom: 18px;
-
-    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 .modal-actions {
-
     display: flex;
 
     justify-content: flex-end;
 
-    gap: 10px;
+    gap: 9px;
+
+    margin-top: 20px;
 }
 
 .btn-ghost {
+    border: 1px solid var(--border);
 
-    background: transparent;
+    background: white;
 
-    border: 1px solid var(--border-strong);
+    color: var(--text);
 
-    color: var(--text-2);
+    border-radius: 9px;
 
-    padding: 9px 18px;
+    padding: 10px 16px;
 
-    border-radius: var(--radius);
+    font-weight: 700;
 
-    cursor: pointer;
+    font-size: 12px;
 }
-
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
 footer {
-
     background: #0d2a2e;
 
-    color: rgba(255,255,255,.6);
+    color: rgba(255,255,255,.60);
 
     text-align: center;
 
-    padding: 24px 20px;
+    padding: 27px 20px;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 footer strong {
-
     color: white;
 }
 
-
 /* =========================================================
-   MOBILE
+   LOADING
 ========================================================= */
 
-@media(max-width:600px) {
+.loading {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 55px;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+.spinner {
+    width: 18px;
+    height: 18px;
+
+    border: 2px solid #d5e4e4;
+
+    border-top-color: var(--green);
+
+    border-radius: 50%;
+
+    animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px) {
+
+    .items-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .controls {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .controls .input {
+        grid-column: 1 / -1;
+    }
+}
+
+@media(max-width:650px) {
 
     .header-inner {
-
-        padding: 10px 15px;
+        min-height: 65px;
+        width: min(100% - 22px, 1180px);
     }
 
     .portal-label {
-
         display: none;
     }
 
     .user-info {
-
         display: none;
     }
 
+    .hero {
+        padding: 42px 16px 38px;
+    }
+
+    .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-pill:nth-child(2) {
+        border-right: 0;
+    }
+
+    .stat-pill:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(255,255,255,.20);
+    }
+
+    main {
+        width: min(100% - 20px, 1180px);
+        margin-top: 20px;
+    }
+
     .tabs {
-
         width: 100%;
-
         overflow-x: auto;
     }
 
     .tab {
-
-        padding: 9px 14px;
-
         white-space: nowrap;
+        padding: 10px 15px;
     }
 
-    .form-2col {
-
+    .controls {
         grid-template-columns: 1fr;
     }
 
-    .item-card {
-
-        flex-wrap: wrap;
+    .controls .input {
+        grid-column: auto;
     }
 
-    .item-actions {
+    .items-grid {
+        grid-template-columns: 1fr;
+    }
 
-        width: 100%;
-
-        flex-direction: row;
-
-        justify-content: flex-end;
+    .form-2col {
+        grid-template-columns: 1fr;
     }
 
     .form-card {
-
         padding: 20px;
     }
 
-    .stat-pill {
-
-        min-width: 50%;
-
-        border-radius: 0 !important;
+    .login-card {
+        padding: 32px 22px;
     }
 
-    .login-card {
-
-        padding: 32px 22px;
+    .login-card h1 {
+        font-size: 24px;
     }
 }
 
 </style>
 </head>
 
-
 <body>
 
-
-<!-- ======================================================
+<!-- =========================================================
      LOGIN SCREEN
-====================================================== -->
+========================================================= -->
 
 <div id="loginScreen">
 
@@ -1415,9 +1290,7 @@ footer strong {
 
         </div>
 
-        <h1>
-            Khaitan Lost & Found
-        </h1>
+        <h1>Khaitan Lost & Found</h1>
 
         <p>
             Sign in with your school Microsoft account
@@ -1434,12 +1307,10 @@ footer strong {
         >
 
             <span class="microsoft-logo">
-
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-
             </span>
 
             Continue with Microsoft
@@ -1461,11 +1332,11 @@ footer strong {
 </div>
 
 
-<!-- ======================================================
-     MAIN APP
-====================================================== -->
+<!-- =========================================================
+     APPLICATION
+========================================================= -->
 
-<div id="app">
+<div id="app" class="hidden">
 
     <div class="top-accent-bar"></div>
 
@@ -1535,6 +1406,7 @@ footer strong {
                         class="user-email"
                         id="headerUserEmail"
                     >
+                        -
                     </div>
 
                 </div>
@@ -1555,7 +1427,7 @@ footer strong {
 
     <!-- HERO -->
 
-    <div class="hero">
+    <section class="hero">
 
         <h1>
             Lost something at school?<br>
@@ -1563,8 +1435,8 @@ footer strong {
         </h1>
 
         <p class="hero-sub">
-            Browse reported items, post what you've lost
-            or found, and reunite belongings with their owners.
+            Browse reported items, report something you've lost
+            or found, and help return belongings to their owners.
         </p>
 
         <div class="stats-bar">
@@ -1634,12 +1506,12 @@ footer strong {
 
         </div>
 
-    </div>
+    </section>
 
 
     <!-- MAIN -->
 
-    <div class="main-wrap">
+    <main>
 
 
         <!-- TABS -->
@@ -1650,7 +1522,7 @@ footer strong {
                 class="tab active"
                 onclick="switchTab('browse')"
             >
-                🔍 Browse items
+                🔎 Browse items
             </button>
 
             <button
@@ -1670,59 +1542,54 @@ footer strong {
         </div>
 
 
-        <!-- ==================================================
+        <!-- =================================================
              BROWSE
         ================================================== -->
 
-        <div
+        <section
             class="section active"
             id="section-browse"
         >
 
-            <div class="filters">
+            <div class="controls">
 
-                <div class="search-wrap">
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search by name or description..."
-                        oninput="renderItems()"
-                    >
-
-                </div>
-
+                <input
+                    class="input"
+                    id="searchInput"
+                    type="search"
+                    placeholder="Search by item name, description or location..."
+                >
 
                 <select
+                    class="select"
                     id="filterCat"
-                    onchange="renderItems()"
                 >
 
                     <option value="">
                         All categories
                     </option>
 
-                    <option>
+                    <option value="Clothing">
                         Clothing
                     </option>
 
-                    <option>
+                    <option value="Electronics">
                         Electronics
                     </option>
 
-                    <option>
+                    <option value="Stationery">
                         Stationery
                     </option>
 
-                    <option>
+                    <option value="Bag / backpack">
                         Bag / backpack
                     </option>
 
-                    <option>
+                    <option value="Sports gear">
                         Sports gear
                     </option>
 
-                    <option>
+                    <option value="Other">
                         Other
                     </option>
 
@@ -1730,8 +1597,8 @@ footer strong {
 
 
                 <select
+                    class="select"
                     id="filterStatus"
-                    onchange="renderItems()"
                 >
 
                     <option value="">
@@ -1762,32 +1629,46 @@ footer strong {
             <div
                 class="items-grid"
                 id="itemsGrid"
-            ></div>
+            >
 
-        </div>
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Loading items...
+
+                </div>
+
+            </div>
+
+        </section>
 
 
-        <!-- ==================================================
-             LOST
+        <!-- =================================================
+             LOST FORM
         ================================================== -->
 
-        <div
+        <section
             class="section"
             id="section-lost"
         >
 
-            <div
-                class="alert"
-                id="lostAlert"
-            >
-                ✓ Your lost item has been posted successfully.
-            </div>
-
-
             <div class="form-card">
 
-                <div class="form-section-title">
-                    Your details
+                <h2>
+                    Report a lost item
+                </h2>
+
+                <p class="form-subtitle">
+                    Tell other students what you lost so they
+                    can help you find it.
+                </p>
+
+                <div
+                    class="alert"
+                    id="lostAlert"
+                >
+                    ✅ Your lost item has been posted successfully.
                 </div>
 
 
@@ -1796,11 +1677,11 @@ footer strong {
                     <div class="form-row">
 
                         <label>
-                            Full name
+                            Your name
                         </label>
 
                         <input
-                            type="text"
+                            class="input readonly-input"
                             id="lostName"
                             readonly
                         >
@@ -1815,71 +1696,11 @@ footer strong {
                         </label>
 
                         <input
-                            type="text"
+                            class="input"
                             id="lostClass"
-                            placeholder="e.g. 10-A"
+                            placeholder="e.g. 12-A"
+                            maxlength="30"
                         >
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section-title">
-                    Item details
-                </div>
-
-
-                <div class="form-2col">
-
-                    <div class="form-row">
-
-                        <label>
-                            Item name *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="lostItem"
-                            placeholder="e.g. Blue water bottle"
-                        >
-
-                    </div>
-
-
-                    <div class="form-row">
-
-                        <label>
-                            Category
-                        </label>
-
-                        <select id="lostCat">
-
-                            <option>
-                                Clothing
-                            </option>
-
-                            <option>
-                                Electronics
-                            </option>
-
-                            <option>
-                                Stationery
-                            </option>
-
-                            <option>
-                                Bag / backpack
-                            </option>
-
-                            <option>
-                                Sports gear
-                            </option>
-
-                            <option>
-                                Other
-                            </option>
-
-                        </select>
 
                     </div>
 
@@ -1889,14 +1710,75 @@ footer strong {
                 <div class="form-row">
 
                     <label>
-                        Last seen location
+                        Item name *
                     </label>
 
                     <input
-                        type="text"
-                        id="lostLocation"
-                        placeholder="e.g. Canteen"
+                        class="input"
+                        id="lostItem"
+                        placeholder="e.g. Black water bottle"
+                        maxlength="80"
                     >
+
+                </div>
+
+
+                <div class="form-2col">
+
+                    <div class="form-row">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select
+                            class="select"
+                            id="lostCat"
+                        >
+
+                            <option value="Clothing">
+                                Clothing
+                            </option>
+
+                            <option value="Electronics">
+                                Electronics
+                            </option>
+
+                            <option value="Stationery">
+                                Stationery
+                            </option>
+
+                            <option value="Bag / backpack">
+                                Bag / backpack
+                            </option>
+
+                            <option value="Sports gear">
+                                Sports gear
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <label>
+                            Where did you lose it?
+                        </label>
+
+                        <input
+                            class="input"
+                            id="lostLocation"
+                            placeholder="e.g. Library"
+                            maxlength="100"
+                        >
+
+                    </div>
 
                 </div>
 
@@ -1908,8 +1790,10 @@ footer strong {
                     </label>
 
                     <textarea
+                        class="textarea"
                         id="lostDesc"
-                        placeholder="Colour, brand, markings..."
+                        placeholder="Add colour, brand, identifying marks or other useful details..."
+                        maxlength="500"
                     ></textarea>
 
                 </div>
@@ -1924,21 +1808,21 @@ footer strong {
                     <div class="photo-upload">
 
                         <input
-                            type="file"
                             id="lostPhoto"
+                            type="file"
                             accept="image/*"
                             onchange="previewPhoto(this,'lostPhotoPreview')"
                         >
+
+                        <div class="photo-help">
+                            Optional. Images are automatically compressed before being stored.
+                        </div>
 
                         <div
                             class="photo-preview"
                             id="lostPhotoPreview"
                         >
-
-                            <img
-                                id="lostPhotoPreviewImg"
-                            >
-
+                            <img alt="Photo preview">
                         </div>
 
                     </div>
@@ -1946,48 +1830,48 @@ footer strong {
                 </div>
 
 
-                <button
-                    class="btn-submit"
-                    id="lostSubmitBtn"
-                    onclick="submitLost()"
-                >
-                    Post lost item →
-                </button>
+                <div class="form-footer">
+
+                    <button
+                        class="btn-submit"
+                        id="lostSubmitBtn"
+                        onclick="submitLost()"
+                    >
+                        Post lost item
+                    </button>
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- ==================================================
-             FOUND
+        <!-- =================================================
+             FOUND FORM
         ================================================== -->
 
-        <div
+        <section
             class="section"
             id="section-found"
         >
 
-            <div
-                class="alert"
-                id="foundAlert"
-            >
-                ✓ Found item posted successfully.
-            </div>
-
-
-            <div class="alert-note">
-
-                📌 Please hand all found items to the
-                <strong>school office</strong>.
-
-            </div>
-
-
             <div class="form-card">
 
-                <div class="form-section-title">
-                    Your details
+                <h2>
+                    Report a found item
+                </h2>
+
+                <p class="form-subtitle">
+                    Found something that belongs to someone else?
+                    Report it here so the owner can identify it.
+                </p>
+
+                <div
+                    class="alert"
+                    id="foundAlert"
+                >
+                    ✅ Your found item has been posted successfully.
                 </div>
 
 
@@ -1996,11 +1880,11 @@ footer strong {
                     <div class="form-row">
 
                         <label>
-                            Full name
+                            Your name
                         </label>
 
                         <input
-                            type="text"
+                            class="input readonly-input"
                             id="foundName"
                             readonly
                         >
@@ -2015,71 +1899,11 @@ footer strong {
                         </label>
 
                         <input
-                            type="text"
+                            class="input"
                             id="foundClass"
-                            placeholder="e.g. 9-B"
+                            placeholder="e.g. 12-A"
+                            maxlength="30"
                         >
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-section-title">
-                    Item details
-                </div>
-
-
-                <div class="form-2col">
-
-                    <div class="form-row">
-
-                        <label>
-                            Item name *
-                        </label>
-
-                        <input
-                            type="text"
-                            id="foundItem"
-                            placeholder="e.g. Red umbrella"
-                        >
-
-                    </div>
-
-
-                    <div class="form-row">
-
-                        <label>
-                            Category
-                        </label>
-
-                        <select id="foundCat">
-
-                            <option>
-                                Clothing
-                            </option>
-
-                            <option>
-                                Electronics
-                            </option>
-
-                            <option>
-                                Stationery
-                            </option>
-
-                            <option>
-                                Bag / backpack
-                            </option>
-
-                            <option>
-                                Sports gear
-                            </option>
-
-                            <option>
-                                Other
-                            </option>
-
-                        </select>
 
                     </div>
 
@@ -2089,14 +1913,75 @@ footer strong {
                 <div class="form-row">
 
                     <label>
-                        Where did you find it?
+                        Item name *
                     </label>
 
                     <input
-                        type="text"
-                        id="foundLocation"
-                        placeholder="e.g. Library"
+                        class="input"
+                        id="foundItem"
+                        placeholder="e.g. Blue school bag"
+                        maxlength="80"
                     >
+
+                </div>
+
+
+                <div class="form-2col">
+
+                    <div class="form-row">
+
+                        <label>
+                            Category
+                        </label>
+
+                        <select
+                            class="select"
+                            id="foundCat"
+                        >
+
+                            <option value="Clothing">
+                                Clothing
+                            </option>
+
+                            <option value="Electronics">
+                                Electronics
+                            </option>
+
+                            <option value="Stationery">
+                                Stationery
+                            </option>
+
+                            <option value="Bag / backpack">
+                                Bag / backpack
+                            </option>
+
+                            <option value="Sports gear">
+                                Sports gear
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <label>
+                            Where did you find it?
+                        </label>
+
+                        <input
+                            class="input"
+                            id="foundLocation"
+                            placeholder="e.g. Ground floor"
+                            maxlength="100"
+                        >
+
+                    </div>
 
                 </div>
 
@@ -2108,8 +1993,10 @@ footer strong {
                     </label>
 
                     <textarea
+                        class="textarea"
                         id="foundDesc"
-                        placeholder="Colour, brand, markings..."
+                        placeholder="Add colour, brand, identifying marks or other useful details..."
+                        maxlength="500"
                     ></textarea>
 
                 </div>
@@ -2124,21 +2011,21 @@ footer strong {
                     <div class="photo-upload">
 
                         <input
-                            type="file"
                             id="foundPhoto"
+                            type="file"
                             accept="image/*"
                             onchange="previewPhoto(this,'foundPhotoPreview')"
                         >
+
+                        <div class="photo-help">
+                            Optional. Images are automatically compressed before being stored.
+                        </div>
 
                         <div
                             class="photo-preview"
                             id="foundPhotoPreview"
                         >
-
-                            <img
-                                id="foundPhotoPreviewImg"
-                            >
-
+                            <img alt="Photo preview">
                         </div>
 
                     </div>
@@ -2146,22 +2033,26 @@ footer strong {
                 </div>
 
 
-                <button
-                    class="btn-submit"
-                    id="foundSubmitBtn"
-                    onclick="submitFound()"
-                >
-                    Post found item →
-                </button>
+                <div class="form-footer">
+
+                    <button
+                        class="btn-submit"
+                        id="foundSubmitBtn"
+                        onclick="submitFound()"
+                    >
+                        Post found item
+                    </button>
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
-    </div>
+    </main>
 
 
-    <!-- ==================================================
+    <!-- =================================================
          CLAIM MODAL
     ================================================== -->
 
@@ -2173,7 +2064,7 @@ footer strong {
         <div class="modal">
 
             <h3>
-                🙋 Claim this item
+                🎒 Claim this item
             </h3>
 
             <p
@@ -2185,10 +2076,11 @@ footer strong {
             <div class="form-row">
 
                 <label>
-                    Your full name
+                    Your name
                 </label>
 
                 <input
+                    class="input readonly-input"
                     id="claimName"
                     readonly
                 >
@@ -2203,8 +2095,10 @@ footer strong {
                 </label>
 
                 <input
+                    class="input"
                     id="claimClass"
-                    placeholder="e.g. 8-C"
+                    placeholder="e.g. 12-A"
+                    maxlength="30"
                 >
 
             </div>
@@ -2221,9 +2115,10 @@ footer strong {
 
                 <button
                     class="btn-submit"
+                    id="claimConfirmBtn"
                     onclick="confirmClaim()"
                 >
-                    Submit claim
+                    Confirm claim
                 </button>
 
             </div>
@@ -2233,7 +2128,7 @@ footer strong {
     </div>
 
 
-    <!-- ==================================================
+    <!-- =================================================
          RETURN MODAL
     ================================================== -->
 
@@ -2257,10 +2152,11 @@ footer strong {
             <div class="form-row">
 
                 <label>
-                    Your full name
+                    Your name
                 </label>
 
                 <input
+                    class="input readonly-input"
                     id="returnName"
                     readonly
                 >
@@ -2275,8 +2171,10 @@ footer strong {
                 </label>
 
                 <input
+                    class="input"
                     id="returnClass"
-                    placeholder="e.g. 7-A"
+                    placeholder="e.g. 12-A"
+                    maxlength="30"
                 >
 
             </div>
@@ -2289,8 +2187,10 @@ footer strong {
                 </label>
 
                 <input
+                    class="input"
                     id="returnHow"
-                    placeholder="Handed to owner directly"
+                    placeholder="e.g. Handed it to the owner"
+                    maxlength="200"
                 >
 
             </div>
@@ -2307,6 +2207,7 @@ footer strong {
 
                 <button
                     class="btn-submit"
+                    id="returnConfirmBtn"
                     onclick="confirmReturn()"
                 >
                     Confirm return
@@ -2319,7 +2220,9 @@ footer strong {
     </div>
 
 
-    <!-- FOOTER -->
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
 
     <footer>
 
@@ -2345,11 +2248,15 @@ footer strong {
 </div>
 
 
-<!-- ======================================================
-     FIREBASE
-====================================================== -->
+<!-- =========================================================
+     FIREBASE — ONLY ONE SCRIPT
+========================================================= -->
 
 <script type="module">
+
+/* =========================================================
+   FIREBASE IMPORTS
+========================================================= */
 
 import {
     initializeApp
@@ -2371,9 +2278,7 @@ import {
     addDoc,
     onSnapshot,
     updateDoc,
-    doc,
-    query,
-    orderBy
+    doc
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
@@ -2407,21 +2312,24 @@ const firebaseConfig = {
 
 
 /* =========================================================
-   INITIALIZE
+   INITIALIZE FIREBASE
 ========================================================= */
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+    getAuth(app);
 
-const db = getFirestore(app);
+const db =
+    getFirestore(app);
 
 const itemsCollection =
     collection(db, "items");
 
 
 /* =========================================================
-   MICROSOFT PROVIDER
+   MICROSOFT AUTHENTICATION
 ========================================================= */
 
 const microsoftProvider =
@@ -2429,10 +2337,7 @@ const microsoftProvider =
 
 
 /*
-    KHaitan Public School Microsoft Tenant
-
-    This prevents Firebase from using the default
-    "common" Microsoft tenant.
+    Khaitan Public School Microsoft Tenant ID
 */
 
 microsoftProvider.setCustomParameters({
@@ -2444,20 +2349,17 @@ microsoftProvider.setCustomParameters({
 
 
 /* =========================================================
-   VARIABLES
+   CONSTANTS
 ========================================================= */
-
-let items = [];
-
-let claimingId = null;
-
-let returningId = null;
-
-let currentUser = null;
-
 
 const SCHOOL_DOMAIN =
     "@khaitanpublicschool.com";
+
+const LOST_EXPIRY =
+    30 * 24 * 60 * 60 * 1000;
+
+const CLAIMED_EXPIRY =
+    10 * 24 * 60 * 60 * 1000;
 
 
 const CAT_EMOJI = {
@@ -2478,12 +2380,29 @@ const CAT_EMOJI = {
 
 
 /* =========================================================
-   HTML ESCAPE
+   STATE
+========================================================= */
+
+let items = [];
+
+let currentUser = null;
+
+let claimingId = null;
+
+let returningId = null;
+
+let firestoreUnsubscribe = null;
+
+let submissionLocked = false;
+
+
+/* =========================================================
+   HELPERS
 ========================================================= */
 
 function escapeHTML(value) {
 
-    return String(value || "")
+    return String(value ?? "")
 
         .replace(/&/g, "&amp;")
 
@@ -2497,6 +2416,93 @@ function escapeHTML(value) {
 }
 
 
+function getDisplayName(user) {
+
+    if (user.displayName) {
+
+        return user.displayName.trim();
+
+    }
+
+    if (user.email) {
+
+        return user.email
+            .split("@")[0]
+            .replace(/[._-]+/g, " ");
+
+    }
+
+    return "Student";
+
+}
+
+
+function normaliseStatus(status) {
+
+    return String(status || "")
+        .trim()
+        .toLowerCase();
+
+}
+
+
+function toMillis(value) {
+
+    if (!value) {
+        return null;
+    }
+
+    if (
+        typeof value === "number"
+    ) {
+        return value;
+    }
+
+    if (
+        typeof value === "string"
+    ) {
+
+        const parsed =
+            Number(value);
+
+        if (!Number.isNaN(parsed)) {
+            return parsed;
+        }
+
+        const date =
+            Date.parse(value);
+
+        return Number.isNaN(date)
+            ? null
+            : date;
+    }
+
+    if (
+        typeof value.toMillis === "function"
+    ) {
+
+        return value.toMillis();
+
+    }
+
+    if (
+        value.seconds !== undefined
+    ) {
+
+        return (
+            Number(value.seconds) * 1000
+            +
+            Math.floor(
+                Number(value.nanoseconds || 0) / 1000000
+            )
+        );
+
+    }
+
+    return null;
+}
+
+
 /* =========================================================
    LOGIN ERROR
 ========================================================= */
@@ -2506,7 +2512,8 @@ function showLoginError(message) {
     const box =
         document.getElementById("loginError");
 
-    box.textContent = message;
+    box.textContent =
+        message;
 
     box.classList.add("show");
 }
@@ -2529,87 +2536,123 @@ function hideLoginError() {
 
 document
     .getElementById("loginBtn")
-    .addEventListener("click", async () => {
+    .addEventListener(
+        "click",
+        async () => {
 
-        hideLoginError();
+            hideLoginError();
 
-        const button =
-            document.getElementById("loginBtn");
+            const button =
+                document.getElementById("loginBtn");
 
-        button.disabled = true;
-
-        button.textContent =
-            "Opening Microsoft login...";
-
-        try {
-
-            const result =
-                await signInWithPopup(
-                    auth,
-                    microsoftProvider
-                );
-
-            const user =
-                result.user;
-
-            const email =
-                (user.email || "")
-                    .toLowerCase()
-                    .trim();
-
-
-            /*
-                Extra security check.
-
-                Microsoft tenant restriction is already
-                configured, but we also check the email.
-            */
-
-            if (
-                !email.endsWith(
-                    SCHOOL_DOMAIN
-                )
-            ) {
-
-                await signOut(auth);
-
-                throw new Error(
-                    "Only @khaitanpublicschool.com accounts are allowed."
-                );
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Microsoft login error:",
-                error
-            );
-
-            showLoginError(
-                error.message ||
-                "Login failed. Please try again."
-            );
-
-        } finally {
-
-            button.disabled = false;
+            button.disabled = true;
 
             button.innerHTML = `
-
                 <span class="microsoft-logo">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
-
-                Continue with Microsoft
-
+                Signing in...
             `;
 
-        }
+            try {
 
-    });
+                const result =
+                    await signInWithPopup(
+                        auth,
+                        microsoftProvider
+                    );
+
+                const user =
+                    result.user;
+
+                const email =
+                    String(
+                        user.email || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                if (
+                    !email.endsWith(
+                        SCHOOL_DOMAIN
+                    )
+                ) {
+
+                    await signOut(auth);
+
+                    throw new Error(
+                        "Only @khaitanpublicschool.com accounts are allowed."
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Microsoft login error:",
+                    error
+                );
+
+                let message =
+                    "Login failed. Please try again.";
+
+                if (
+                    error.code ===
+                    "auth/popup-closed-by-user"
+                ) {
+
+                    message =
+                        "The Microsoft login window was closed.";
+
+                } else if (
+                    error.code ===
+                    "auth/popup-blocked"
+                ) {
+
+                    message =
+                        "Your browser blocked the login popup. Please allow popups for this website.";
+
+                } else if (
+                    error.code ===
+                    "auth/unauthorized-domain"
+                ) {
+
+                    message =
+                        "This website is not authorised in Firebase Authentication. Add trishar8130.github.io under Firebase → Authentication → Settings → Authorized domains.";
+
+                } else if (
+                    error.message
+                ) {
+
+                    message =
+                        error.message;
+
+                }
+
+                showLoginError(message);
+
+            } finally {
+
+                button.disabled = false;
+
+                button.innerHTML = `
+                    <span class="microsoft-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    Continue with Microsoft
+                `;
+
+            }
+
+        }
+    );
 
 
 /* =========================================================
@@ -2630,20 +2673,31 @@ onAuthStateChanged(
 
             document
                 .getElementById("app")
-                .classList.remove("visible");
+                .classList.add("hidden");
+
+            if (firestoreUnsubscribe) {
+
+                firestoreUnsubscribe();
+
+                firestoreUnsubscribe = null;
+
+            }
 
             return;
+
         }
 
 
         const email =
-            (user.email || "")
-                .toLowerCase()
-                .trim();
+            String(
+                user.email || ""
+            )
+            .toLowerCase()
+            .trim();
 
 
         /*
-            Final client-side domain check.
+            Final client-side school-domain check.
         */
 
         if (
@@ -2659,68 +2713,81 @@ onAuthStateChanged(
             );
 
             return;
+
         }
 
 
         currentUser = user;
 
 
-        /*
-            Display name comes directly from
-            Microsoft account.
-        */
-
         const displayName =
-            user.displayName ||
-            email.split("@")[0];
+            getDisplayName(user);
 
+
+        /*
+            Header
+        */
 
         document
             .getElementById("headerUserName")
-            .textContent = displayName;
+            .textContent =
+                displayName;
 
 
         document
             .getElementById("headerUserEmail")
-            .textContent = email;
+            .textContent =
+                email;
 
 
         /*
-            Automatically put the Microsoft name
-            into every name field.
+            Automatically fill every name field.
         */
 
         document
             .getElementById("lostName")
-            .value = displayName;
+            .value =
+                displayName;
 
 
         document
             .getElementById("foundName")
-            .value = displayName;
+            .value =
+                displayName;
 
 
         document
             .getElementById("claimName")
-            .value = displayName;
+            .value =
+                displayName;
 
 
         document
             .getElementById("returnName")
-            .value = displayName;
+            .value =
+                displayName;
 
 
         document
             .getElementById("loginScreen")
-            .style.display = "none";
+            .style.display =
+                "none";
 
 
         document
             .getElementById("app")
-            .classList.add("visible");
+            .classList.remove("hidden");
 
 
-        loadFirestoreItems();
+        /*
+            Start Firestore listener once.
+        */
+
+        if (!firestoreUnsubscribe) {
+
+            loadFirestoreItems();
+
+        }
 
     }
 );
@@ -2754,95 +2821,139 @@ document
 
 
 /* =========================================================
-   LOAD FIRESTORE
+   LOAD FIRESTORE ITEMS
 ========================================================= */
+
+/*
+    IMPORTANT:
+
+    This listener DOES NOT delete anything.
+
+    Expired documents are simply hidden from the UI.
+
+    Your Cloud Function is responsible for permanently
+    deleting expired documents from Firestore.
+
+    We intentionally do NOT use deleteDoc() here.
+*/
 
 function loadFirestoreItems() {
 
-    const q = query(
+    const grid =
+        document.getElementById("itemsGrid");
 
-        itemsCollection,
-
-        orderBy(
-            "createdAt",
-            "desc"
-        )
-
-    );
-
-
-    onSnapshot(
-
-        q,
-
-        (snapshot) => {
-
-            items = [];
+    grid.innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            Loading items...
+        </div>
+    `;
 
 
-            snapshot.forEach(
-                (firebaseDoc) => {
+    firestoreUnsubscribe =
+        onSnapshot(
 
-                    const data =
-                        firebaseDoc.data();
+            itemsCollection,
 
+            (snapshot) => {
 
-                    const item = {
-
-                        id:
-                            firebaseDoc.id,
-
-                        ...data
-
-                    };
+                const loadedItems = [];
 
 
-                    /*
-                        IMPORTANT:
+                snapshot.forEach(
+                    (firebaseDoc) => {
 
-                        We DO NOT delete expired
-                        documents here.
+                        const data =
+                            firebaseDoc.data();
 
-                        The server-side Cloud Function
-                        is responsible for permanent deletion.
 
-                        Expired documents are simply
-                        hidden until the server removes them.
-                    */
+                        const item = {
 
-                    if (
-                        item.expiresAt &&
-                        Date.now() >=
-                        item.expiresAt
-                    ) {
+                            id:
+                                firebaseDoc.id,
 
-                        return;
+                            ...data
+
+                        };
+
+
+                        item.status =
+                            normaliseStatus(
+                                item.status
+                            );
+
+
+                        item.expiresAt =
+                            toMillis(
+                                item.expiresAt
+                            );
+
+
+                        item.createdAt =
+                            toMillis(
+                                item.createdAt
+                            );
+
+
+                        /*
+                            Hide expired items.
+
+                            DO NOT delete them from the browser.
+                        */
+
+                        if (
+                            item.expiresAt &&
+                            Date.now() >=
+                            item.expiresAt
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        loadedItems.push(item);
 
                     }
+                );
 
 
-                    items.push(item);
+                /*
+                    Sort in JavaScript instead of using
+                    Firestore orderBy.
 
-                }
-            );
+                    This makes the app more tolerant of
+                    older documents that may have different
+                    createdAt values or missing fields.
+                */
+
+                loadedItems.sort(
+                    (a, b) =>
+                        (b.createdAt || 0)
+                        -
+                        (a.createdAt || 0)
+                );
 
 
-            updateStats();
+                items =
+                    loadedItems;
 
-            renderItems();
 
-        },
+                updateStats();
 
-        (error) => {
+                renderItems();
 
-            console.error(
-                "Firestore listener error:",
-                error
-            );
+            },
 
-            document
-                .getElementById("itemsGrid")
-                .innerHTML = `
+            (error) => {
+
+                console.error(
+                    "Firestore listener error:",
+                    error
+                );
+
+
+                grid.innerHTML = `
 
                     <div class="empty-state">
 
@@ -2850,17 +2961,24 @@ function loadFirestoreItems() {
                             ⚠️
                         </div>
 
+                        <h3>
+                            Unable to load items
+                        </h3>
+
                         <p>
-                            Unable to load items.
+                            ${escapeHTML(
+                                error.message ||
+                                "Please check your Firestore rules."
+                            )}
                         </p>
 
                     </div>
 
                 `;
 
-        }
+            }
 
-    );
+        );
 
 }
 
@@ -2875,7 +2993,10 @@ function updateStats() {
         .getElementById("statLost")
         .textContent =
             items.filter(
-                i => i.status === "lost"
+                item =>
+                    normaliseStatus(
+                        item.status
+                    ) === "lost"
             ).length;
 
 
@@ -2883,7 +3004,10 @@ function updateStats() {
         .getElementById("statFound")
         .textContent =
             items.filter(
-                i => i.status === "found"
+                item =>
+                    normaliseStatus(
+                        item.status
+                    ) === "found"
             ).length;
 
 
@@ -2891,7 +3015,10 @@ function updateStats() {
         .getElementById("statClaimed")
         .textContent =
             items.filter(
-                i => i.status === "claimed"
+                item =>
+                    normaliseStatus(
+                        item.status
+                    ) === "claimed"
             ).length;
 
 
@@ -2899,27 +3026,34 @@ function updateStats() {
         .getElementById("statReturned")
         .textContent =
             items.filter(
-                i => i.status === "returned"
+                item =>
+                    normaliseStatus(
+                        item.status
+                    ) === "returned"
             ).length;
 
 }
 
 
 /* =========================================================
-   TIMER
+   EXPIRY TIMER
 ========================================================= */
 
 function getRemainingTime(expiresAt) {
 
-    if (!expiresAt) {
+    const expiry =
+        toMillis(expiresAt);
 
-        return "No expiry";
+
+    if (!expiry) {
+
+        return "No expiry information";
 
     }
 
 
     const remaining =
-        expiresAt - Date.now();
+        expiry - Date.now();
 
 
     if (remaining <= 0) {
@@ -2985,14 +3119,10 @@ function getRemainingTime(expiresAt) {
 }
 
 
-/* =========================================================
-   UPDATE TIMERS
-========================================================= */
-
 function updateTimers() {
 
     items.forEach(
-        (item) => {
+        item => {
 
             const element =
                 document.getElementById(
@@ -3001,9 +3131,7 @@ function updateTimers() {
 
 
             if (!element) {
-
                 return;
-
             }
 
 
@@ -3019,6 +3147,18 @@ function updateTimers() {
 }
 
 
+/*
+    Update countdown every second.
+
+    This DOES NOT delete anything.
+*/
+
+setInterval(
+    updateTimers,
+    1000
+);
+
+
 /* =========================================================
    RENDER ITEMS
 ========================================================= */
@@ -3027,9 +3167,7 @@ function renderItems() {
 
     const search =
         document
-            .getElementById(
-                "searchInput"
-            )
+            .getElementById("searchInput")
             .value
             .toLowerCase()
             .trim();
@@ -3037,62 +3175,71 @@ function renderItems() {
 
     const category =
         document
-            .getElementById(
-                "filterCat"
-            )
+            .getElementById("filterCat")
             .value;
 
 
     const status =
         document
-            .getElementById(
-                "filterStatus"
-            )
+            .getElementById("filterStatus")
             .value;
 
 
     const filtered =
         items.filter(
-            (item) => {
+            item => {
 
-                const searchable =
+                const searchable = [
+
+                    item.name,
+
+                    item.desc,
+
+                    item.location,
+
+                    item.reporter,
+
+                    item.cls
+
+                ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+
+
+                const itemStatus =
+                    normaliseStatus(
+                        item.status
+                    );
+
+
+                return (
 
                     (
-                        item.name ||
-                        ""
-                    ).toLowerCase()
-
-                    + " " +
-
-                    (
-                        item.desc ||
-                        ""
-                    ).toLowerCase()
-
-                    + " " +
-
-                    (
-                        item.location ||
-                        ""
-                    ).toLowerCase();
-
-
-                return
-
-                    (!search ||
+                        !search ||
                         searchable.includes(
                             search
-                        ))
+                        )
+                    )
 
                     &&
 
-                    (!category ||
-                        item.cat === category)
+                    (
+                        !category ||
+                        String(item.cat || "")
+                            .trim()
+                            ===
+                        category
+                    )
 
                     &&
 
-                    (!status ||
-                        item.status === status);
+                    (
+                        !status ||
+                        itemStatus === status
+                    )
+
+                );
 
             }
         );
@@ -3111,11 +3258,15 @@ function renderItems() {
             <div class="empty-state">
 
                 <div class="empty-icon">
-                    🔍
+                    🔎
                 </div>
 
+                <h3>
+                    No items found
+                </h3>
+
                 <p>
-                    No items match your filters.
+                    Try changing your search or filters.
                 </p>
 
             </div>
@@ -3130,7 +3281,18 @@ function renderItems() {
     grid.innerHTML =
 
         filtered.map(
-            (item) => {
+            item => {
+
+                const status =
+                    normaliseStatus(
+                        item.status
+                    );
+
+
+                const categoryName =
+                    item.cat ||
+                    "Other";
+
 
                 const visual =
 
@@ -3139,28 +3301,40 @@ function renderItems() {
                     ?
 
                     `
-                    <img
-                        class="item-photo"
-                        src="${escapeHTML(item.photo)}"
-                        alt="Item photo"
-                    >
+                    <div class="item-visual">
+
+                        <img
+                            class="item-photo"
+                            src="${escapeHTML(item.photo)}"
+                            alt="Photo of ${escapeHTML(item.name || "item")}"
+                            loading="lazy"
+                        >
+
+                    </div>
                     `
 
                     :
 
                     `
-                    <div class="item-emoji">
-                        ${
-                            CAT_EMOJI[item.cat]
-                            || "📦"
-                        }
+                    <div class="item-visual">
+
+                        <div class="item-emoji">
+                            ${
+                                CAT_EMOJI[
+                                    categoryName
+                                ]
+                                ||
+                                "📦"
+                            }
+                        </div>
+
                     </div>
                     `;
 
 
                 return `
 
-                    <div class="item-card">
+                    <article class="item-card">
 
                         ${visual}
 
@@ -3170,7 +3344,8 @@ function renderItems() {
                             <div class="item-name">
 
                                 ${escapeHTML(
-                                    item.name
+                                    item.name ||
+                                    "Unnamed item"
                                 )}
 
                             </div>
@@ -3182,59 +3357,73 @@ function renderItems() {
 
                                 <strong>
                                     ${escapeHTML(
-                                        item.location
+                                        item.location ||
+                                        "Campus"
                                     )}
                                 </strong>
 
-                                &nbsp;·&nbsp;
-
-                                ${escapeHTML(
+                                ${
                                     item.date
-                                )}
+                                    ?
+                                    ` · ${escapeHTML(item.date)}`
+                                    :
+                                    ""
+                                }
 
                             </div>
 
 
+                            ${
+                                item.desc
+                                ?
+
+                                `
+                                <div
+                                    class="item-meta"
+                                >
+                                    ${escapeHTML(
+                                        item.desc
+                                    )}
+                                </div>
+                                `
+
+                                :
+
+                                ""
+                            }
+
+
                             <div
                                 class="item-meta"
-                                style="margin-top:4px"
-                            >
-
-                                ${escapeHTML(
-                                    item.desc
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="item-meta"
-                                style="margin-top:4px"
                             >
 
                                 Reported by
 
-                                ${escapeHTML(
-                                    item.reporter
-                                )}
+                                <strong>
+                                    ${escapeHTML(
+                                        item.reporter ||
+                                        "Student"
+                                    )}
+                                </strong>
 
-                                ·
-
-                                ${escapeHTML(
+                                ${
                                     item.cls
-                                )}
+                                    ?
+                                    ` · ${escapeHTML(item.cls)}`
+                                    :
+                                    ""
+                                }
 
                             </div>
 
 
                             <span
-                                class="badge badge-${escapeHTML(
-                                    item.status
-                                )}"
+                                class="badge badge-${escapeHTML(status)}"
                             >
 
                                 ${escapeHTML(
-                                    item.status
+                                    status ||
+                                    "active"
                                 )}
 
                             </span>
@@ -3242,13 +3431,10 @@ function renderItems() {
 
                             <div
                                 class="timer"
-                                id="timer-${escapeHTML(
-                                    item.id
-                                )}"
+                                id="timer-${escapeHTML(item.id)}"
                             >
 
                                 ⏳ Deletes in:
-
                                 ${getRemainingTime(
                                     item.expiresAt
                                 )}
@@ -3260,18 +3446,17 @@ function renderItems() {
 
                         <div class="item-actions">
 
-
                             ${
-                                item.status === "found"
+                                status === "found"
 
                                 ?
 
                                 `
                                 <button
-                                    class="claim-btn"
+                                    class="action-btn claim-btn"
                                     onclick="openClaim('${escapeHTML(item.id)}')"
                                 >
-                                    Claim →
+                                    🎒 This is mine
                                 </button>
                                 `
 
@@ -3282,16 +3467,16 @@ function renderItems() {
 
 
                             ${
-                                item.status === "lost"
+                                status === "lost"
 
                                 ?
 
                                 `
                                 <button
-                                    class="return-btn"
+                                    class="action-btn return-btn"
                                     onclick="openReturn('${escapeHTML(item.id)}')"
                                 >
-                                    Return ↩
+                                    🔄 I returned this
                                 </button>
                                 `
 
@@ -3302,7 +3487,7 @@ function renderItems() {
 
                         </div>
 
-                    </div>
+                    </article>
 
                 `;
 
@@ -3315,8 +3500,32 @@ function renderItems() {
 }
 
 
-window.renderItems =
-    renderItems;
+/* =========================================================
+   SEARCH / FILTERS
+========================================================= */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        renderItems
+    );
+
+
+document
+    .getElementById("filterCat")
+    .addEventListener(
+        "change",
+        renderItems
+    );
+
+
+document
+    .getElementById("filterStatus")
+    .addEventListener(
+        "change",
+        renderItems
+    );
 
 
 /* =========================================================
@@ -3329,8 +3538,8 @@ window.switchTab =
         document
             .querySelectorAll(".tab")
             .forEach(
-                t =>
-                    t.classList.remove(
+                tab =>
+                    tab.classList.remove(
                         "active"
                     )
             );
@@ -3339,38 +3548,11 @@ window.switchTab =
         document
             .querySelectorAll(".section")
             .forEach(
-                s =>
-                    s.classList.remove(
+                section =>
+                    section.classList.remove(
                         "active"
                     )
             );
-
-
-        const buttons =
-            document.querySelectorAll(
-                ".tab"
-            );
-
-
-        buttons.forEach(
-            button => {
-
-                if (
-                    button
-                        .getAttribute("onclick")
-                        .includes(
-                            tabName
-                        )
-                ) {
-
-                    button.classList.add(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
 
 
         const section =
@@ -3387,6 +3569,43 @@ window.switchTab =
 
         }
 
+
+        document
+            .querySelectorAll(".tab")
+            .forEach(
+                tab => {
+
+                    const onclick =
+                        tab.getAttribute(
+                            "onclick"
+                        )
+                        ||
+                        "";
+
+
+                    if (
+                        onclick.includes(
+                            "'" +
+                            tabName +
+                            "'"
+                        )
+                    ) {
+
+                        tab.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
     };
 
 
@@ -3395,7 +3614,10 @@ window.switchTab =
 ========================================================= */
 
 window.previewPhoto =
-    function(input, previewId) {
+    function(
+        input,
+        previewId
+    ) {
 
         const preview =
             document.getElementById(
@@ -3403,7 +3625,7 @@ window.previewPhoto =
             );
 
 
-        const img =
+        const image =
             preview.querySelector(
                 "img"
             );
@@ -3434,10 +3656,14 @@ window.previewPhoto =
         ) {
 
             alert(
-                "Please select an image file."
+                "Please choose an image file."
             );
 
             input.value = "";
+
+            preview.classList.remove(
+                "show"
+            );
 
             return;
 
@@ -3446,14 +3672,18 @@ window.previewPhoto =
 
         if (
             file.size >
-            5 * 1024 * 1024
+            8 * 1024 * 1024
         ) {
 
             alert(
-                "Please choose a photo smaller than 5 MB."
+                "Please choose an image smaller than 8 MB."
             );
 
             input.value = "";
+
+            preview.classList.remove(
+                "show"
+            );
 
             return;
 
@@ -3465,10 +3695,10 @@ window.previewPhoto =
 
 
         reader.onload =
-            function(e) {
+            event => {
 
-                img.src =
-                    e.target.result;
+                image.src =
+                    event.target.result;
 
                 preview.classList.add(
                     "show"
@@ -3477,12 +3707,21 @@ window.previewPhoto =
             };
 
 
-        reader.readAsDataURL(
-            file
-        );
+        reader.readAsDataURL(file);
 
     };
 
+
+/* =========================================================
+   IMAGE COMPRESSION
+========================================================= */
+
+/*
+    Photos are compressed before being saved.
+
+    This prevents large original images from making the
+    Firestore document unnecessarily large.
+*/
 
 function getPhotoData(file) {
 
@@ -3503,23 +3742,179 @@ function getPhotoData(file) {
 
 
             reader.onload =
-                e =>
-                    resolve(
-                        e.target.result
-                    );
+                event => {
+
+                    const image =
+                        new Image();
+
+
+                    image.onload =
+                        () => {
+
+                            const MAX_SIZE =
+                                1000;
+
+
+                            let width =
+                                image.width;
+
+                            let height =
+                                image.height;
+
+
+                            if (
+                                width >
+                                MAX_SIZE ||
+                                height >
+                                MAX_SIZE
+                            ) {
+
+                                if (
+                                    width >
+                                    height
+                                ) {
+
+                                    height =
+                                        Math.round(
+                                            height *
+                                            MAX_SIZE /
+                                            width
+                                        );
+
+                                    width =
+                                        MAX_SIZE;
+
+                                } else {
+
+                                    width =
+                                        Math.round(
+                                            width *
+                                            MAX_SIZE /
+                                            height
+                                        );
+
+                                    height =
+                                        MAX_SIZE;
+
+                                }
+
+                            }
+
+
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
+                                );
+
+
+                            canvas.width =
+                                width;
+
+                            canvas.height =
+                                height;
+
+
+                            const context =
+                                canvas.getContext(
+                                    "2d"
+                                );
+
+
+                            context.drawImage(
+                                image,
+                                0,
+                                0,
+                                width,
+                                height
+                            );
+
+
+                            const compressed =
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    .72
+                                );
+
+
+                            resolve(
+                                compressed
+                            );
+
+                        };
+
+
+                    image.onerror =
+                        reject;
+
+
+                    image.src =
+                        event.target.result;
+
+                };
 
 
             reader.onerror =
-                err =>
-                    reject(err);
+                reject;
 
 
-            reader.readAsDataURL(
-                file
-            );
+            reader.readAsDataURL(file);
 
         }
     );
+
+}
+
+
+/* =========================================================
+   COMMON FORM DATA
+========================================================= */
+
+function getCurrentUserData() {
+
+    if (!currentUser) {
+
+        throw new Error(
+            "You must be signed in."
+        );
+
+    }
+
+
+    const email =
+        String(
+            currentUser.email || ""
+        )
+        .toLowerCase()
+        .trim();
+
+
+    if (
+        !email.endsWith(
+            SCHOOL_DOMAIN
+        )
+    ) {
+
+        throw new Error(
+            "Only Khaitan Public School accounts are allowed."
+        );
+
+    }
+
+
+    return {
+
+        uid:
+            currentUser.uid,
+
+        email:
+            email,
+
+        displayName:
+            getDisplayName(
+                currentUser
+            )
+
+    };
 
 }
 
@@ -3531,72 +3926,53 @@ function getPhotoData(file) {
 window.submitLost =
     async function() {
 
-        if (!currentUser) {
-
-            alert(
-                "Please sign in first."
-            );
-
+        if (submissionLocked) {
             return;
-
         }
 
 
-        const name =
-            currentUser.displayName ||
-            currentUser.email
-                .split("@")[0];
-
-
-        const cls =
-            document
-                .getElementById(
-                    "lostClass"
-                )
-                .value
-                .trim();
+        const user =
+            getCurrentUserData();
 
 
         const item =
             document
-                .getElementById(
-                    "lostItem"
-                )
+                .getElementById("lostItem")
+                .value
+                .trim();
+
+
+        const cls =
+            document
+                .getElementById("lostClass")
                 .value
                 .trim();
 
 
         const cat =
             document
-                .getElementById(
-                    "lostCat"
-                )
+                .getElementById("lostCat")
                 .value;
 
 
         const location =
             document
-                .getElementById(
-                    "lostLocation"
-                )
+                .getElementById("lostLocation")
                 .value
                 .trim();
 
 
         const desc =
             document
-                .getElementById(
-                    "lostDesc"
-                )
+                .getElementById("lostDesc")
                 .value
                 .trim();
 
 
         const photoInput =
-            document
-                .getElementById(
-                    "lostPhoto"
-                );
+            document.getElementById(
+                "lostPhoto"
+            );
 
 
         if (!item) {
@@ -3610,13 +3986,29 @@ window.submitLost =
         }
 
 
-        const btn =
+        if (item.length < 2) {
+
+            alert(
+                "Please enter a valid item name."
+            );
+
+            return;
+
+        }
+
+
+        const button =
             document.getElementById(
                 "lostSubmitBtn"
             );
 
 
-        btn.disabled = true;
+        submissionLocked = true;
+
+        button.disabled = true;
+
+        button.textContent =
+            "Posting...";
 
 
         try {
@@ -3635,32 +4027,37 @@ window.submitLost =
                 itemsCollection,
                 {
 
-                    name: item,
+                    name:
+                        item,
 
-                    cat: cat,
+                    cat:
+                        cat,
 
                     location:
                         location ||
                         "Campus",
 
-                    desc: desc,
+                    desc:
+                        desc,
 
-                    reporter: name,
-
-                    reporterUid:
-                        currentUser.uid,
+                    reporter:
+                        user.displayName,
 
                     reporterEmail:
-                        currentUser.email
-                            .toLowerCase(),
+                        user.email,
+
+                    reporterUid:
+                        user.uid,
 
                     cls:
                         cls ||
                         "N/A",
 
-                    photo: photoData,
+                    photo:
+                        photoData,
 
-                    status: "lost",
+                    status:
+                        "lost",
 
                     date:
                         new Date()
@@ -3668,50 +4065,25 @@ window.submitLost =
                                 "en-US",
                                 {
                                     month: "short",
-                                    day: "numeric"
+                                    day: "numeric",
+                                    year: "numeric"
                                 }
                             ),
 
-                    createdAt: now,
+                    createdAt:
+                        now,
 
                     expiresAt:
                         now +
-                        (
-                            30 *
-                            24 *
-                            60 *
-                            60 *
-                            1000
-                        )
+                        LOST_EXPIRY
 
                 }
             );
 
 
-            document
-                .getElementById(
-                    "lostAlert"
-                )
-                .classList.add(
-                    "show"
-                );
-
-
-            setTimeout(
-                () => {
-
-                    document
-                        .getElementById(
-                            "lostAlert"
-                        )
-                        .classList.remove(
-                            "show"
-                        );
-
-                },
-                4000
-            );
-
+            /*
+                Clear the form.
+            */
 
             document
                 .getElementById(
@@ -3752,10 +4124,34 @@ window.submitLost =
                 .getElementById(
                     "lostPhotoPreview"
                 )
-                .classList.remove(
-                    "show"
+                .classList
+                .remove("show");
+
+
+            const alertBox =
+                document.getElementById(
+                    "lostAlert"
                 );
 
+
+            alertBox.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () =>
+                    alertBox.classList.remove(
+                        "show"
+                    ),
+                4000
+            );
+
+
+            /*
+                Immediately take the student back
+                to the main Browse page.
+            */
 
             switchTab(
                 "browse"
@@ -3768,13 +4164,23 @@ window.submitLost =
                 error
             );
 
+
             alert(
-                "Failed to post lost item. Please try again."
+                "Failed to post the lost item.\n\n" +
+                (
+                    error.message ||
+                    "Please try again."
+                )
             );
 
         } finally {
 
-            btn.disabled = false;
+            submissionLocked = false;
+
+            button.disabled = false;
+
+            button.textContent =
+                "Post lost item";
 
         }
 
@@ -3788,72 +4194,53 @@ window.submitLost =
 window.submitFound =
     async function() {
 
-        if (!currentUser) {
-
-            alert(
-                "Please sign in first."
-            );
-
+        if (submissionLocked) {
             return;
-
         }
 
 
-        const name =
-            currentUser.displayName ||
-            currentUser.email
-                .split("@")[0];
-
-
-        const cls =
-            document
-                .getElementById(
-                    "foundClass"
-                )
-                .value
-                .trim();
+        const user =
+            getCurrentUserData();
 
 
         const item =
             document
-                .getElementById(
-                    "foundItem"
-                )
+                .getElementById("foundItem")
+                .value
+                .trim();
+
+
+        const cls =
+            document
+                .getElementById("foundClass")
                 .value
                 .trim();
 
 
         const cat =
             document
-                .getElementById(
-                    "foundCat"
-                )
+                .getElementById("foundCat")
                 .value;
 
 
         const location =
             document
-                .getElementById(
-                    "foundLocation"
-                )
+                .getElementById("foundLocation")
                 .value
                 .trim();
 
 
         const desc =
             document
-                .getElementById(
-                    "foundDesc"
-                )
+                .getElementById("foundDesc")
                 .value
                 .trim();
 
 
         const photoInput =
-            document
-                .getElementById(
-                    "foundPhoto"
-                );
+            document.getElementById(
+                "foundPhoto"
+            );
 
 
         if (!item) {
@@ -3867,13 +4254,29 @@ window.submitFound =
         }
 
 
-        const btn =
+        if (item.length < 2) {
+
+            alert(
+                "Please enter a valid item name."
+            );
+
+            return;
+
+        }
+
+
+        const button =
             document.getElementById(
                 "foundSubmitBtn"
             );
 
 
-        btn.disabled = true;
+        submissionLocked = true;
+
+        button.disabled = true;
+
+        button.textContent =
+            "Posting...";
 
 
         try {
@@ -3892,32 +4295,37 @@ window.submitFound =
                 itemsCollection,
                 {
 
-                    name: item,
+                    name:
+                        item,
 
-                    cat: cat,
+                    cat:
+                        cat,
 
                     location:
                         location ||
                         "Campus",
 
-                    desc: desc,
+                    desc:
+                        desc,
 
-                    reporter: name,
-
-                    reporterUid:
-                        currentUser.uid,
+                    reporter:
+                        user.displayName,
 
                     reporterEmail:
-                        currentUser.email
-                            .toLowerCase(),
+                        user.email,
+
+                    reporterUid:
+                        user.uid,
 
                     cls:
                         cls ||
                         "N/A",
 
-                    photo: photoData,
+                    photo:
+                        photoData,
 
-                    status: "found",
+                    status:
+                        "found",
 
                     date:
                         new Date()
@@ -3925,50 +4333,25 @@ window.submitFound =
                                 "en-US",
                                 {
                                     month: "short",
-                                    day: "numeric"
+                                    day: "numeric",
+                                    year: "numeric"
                                 }
                             ),
 
-                    createdAt: now,
+                    createdAt:
+                        now,
 
                     expiresAt:
                         now +
-                        (
-                            30 *
-                            24 *
-                            60 *
-                            60 *
-                            1000
-                        )
+                        LOST_EXPIRY
 
                 }
             );
 
 
-            document
-                .getElementById(
-                    "foundAlert"
-                )
-                .classList.add(
-                    "show"
-                );
-
-
-            setTimeout(
-                () => {
-
-                    document
-                        .getElementById(
-                            "foundAlert"
-                        )
-                        .classList.remove(
-                            "show"
-                        );
-
-                },
-                4000
-            );
-
+            /*
+                Clear form.
+            */
 
             document
                 .getElementById(
@@ -4009,9 +4392,28 @@ window.submitFound =
                 .getElementById(
                     "foundPhotoPreview"
                 )
-                .classList.remove(
-                    "show"
+                .classList
+                .remove("show");
+
+
+            const alertBox =
+                document.getElementById(
+                    "foundAlert"
                 );
+
+
+            alertBox.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () =>
+                    alertBox.classList.remove(
+                        "show"
+                    ),
+                4000
+            );
 
 
             switchTab(
@@ -4025,13 +4427,23 @@ window.submitFound =
                 error
             );
 
+
             alert(
-                "Failed to post found item. Please try again."
+                "Failed to post the found item.\n\n" +
+                (
+                    error.message ||
+                    "Please try again."
+                )
             );
 
         } finally {
 
-            btn.disabled = false;
+            submissionLocked = false;
+
+            button.disabled = false;
+
+            button.textContent =
+                "Post found item";
 
         }
 
@@ -4045,20 +4457,41 @@ window.submitFound =
 window.openClaim =
     function(id) {
 
-        claimingId = id;
-
-
         const target =
             items.find(
-                i => i.id === id
+                item =>
+                    item.id === id
             );
 
 
         if (!target) {
 
+            alert(
+                "This item is no longer available."
+            );
+
             return;
 
         }
+
+
+        if (
+            normaliseStatus(
+                target.status
+            ) !== "found"
+        ) {
+
+            alert(
+                "This item has already been claimed or updated."
+            );
+
+            return;
+
+        }
+
+
+        claimingId =
+            id;
 
 
         document
@@ -4066,7 +4499,7 @@ window.openClaim =
                 "claimDesc"
             )
             .textContent =
-                `Claiming: "${target.name}"`;
+                `You are claiming "${target.name}".`;
 
 
         document
@@ -4074,18 +4507,17 @@ window.openClaim =
                 "claimName"
             )
             .value =
-                currentUser.displayName ||
-                currentUser.email
-                    .split("@")[0];
+                getDisplayName(
+                    currentUser
+                );
 
 
         document
             .getElementById(
                 "claimModal"
             )
-            .classList.add(
-                "open"
-            );
+            .classList
+            .add("open");
 
     };
 
@@ -4093,7 +4525,8 @@ window.openClaim =
 window.closeClaim =
     function() {
 
-        claimingId = null;
+        claimingId =
+            null;
 
 
         document
@@ -4107,9 +4540,8 @@ window.closeClaim =
             .getElementById(
                 "claimModal"
             )
-            .classList.remove(
-                "open"
-            );
+            .classList
+            .remove("open");
 
     };
 
@@ -4117,22 +4549,13 @@ window.closeClaim =
 window.confirmClaim =
     async function() {
 
-        if (!currentUser) {
-
-            alert(
-                "Please sign in first."
-            );
-
-            return;
-
-        }
-
-
         if (!claimingId) {
-
             return;
-
         }
+
+
+        const user =
+            getCurrentUserData();
 
 
         const cls =
@@ -4144,14 +4567,50 @@ window.confirmClaim =
                 .trim();
 
 
+        const button =
+            document.getElementById(
+                "claimConfirmBtn"
+            );
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "Updating...";
+
+
         try {
 
-            const itemRef =
-                doc(
-                    db,
-                    "items",
-                    claimingId
+            const target =
+                items.find(
+                    item =>
+                        item.id ===
+                        claimingId
                 );
+
+
+            if (!target) {
+
+                throw new Error(
+                    "Item no longer exists."
+                );
+
+            }
+
+
+            if (
+                normaliseStatus(
+                    target.status
+                ) !== "found"
+            ) {
+
+                throw new Error(
+                    "This item has already been claimed or updated."
+                );
+
+            }
 
 
             const now =
@@ -4159,35 +4618,35 @@ window.confirmClaim =
 
 
             await updateDoc(
-                itemRef,
+                doc(
+                    db,
+                    "items",
+                    claimingId
+                ),
                 {
 
-                    status: "claimed",
+                    status:
+                        "claimed",
 
                     claimedBy:
-                        currentUser.displayName ||
-                        currentUser.email,
-
-                    claimedByUid:
-                        currentUser.uid,
+                        user.displayName,
 
                     claimedByEmail:
-                        currentUser.email
-                            .toLowerCase(),
+                        user.email,
+
+                    claimedByUid:
+                        user.uid,
 
                     claimedClass:
                         cls ||
                         "N/A",
 
+                    claimedAt:
+                        now,
+
                     expiresAt:
                         now +
-                        (
-                            10 *
-                            24 *
-                            60 *
-                            60 *
-                            1000
-                        )
+                        CLAIMED_EXPIRY
 
                 }
             );
@@ -4202,9 +4661,22 @@ window.confirmClaim =
                 error
             );
 
+
             alert(
-                "Failed to claim item. Please try again."
+                "Unable to claim this item.\n\n" +
+                (
+                    error.message ||
+                    "Please try again."
+                )
             );
+
+        } finally {
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Confirm claim";
 
         }
 
@@ -4218,20 +4690,41 @@ window.confirmClaim =
 window.openReturn =
     function(id) {
 
-        returningId = id;
-
-
         const target =
             items.find(
-                i => i.id === id
+                item =>
+                    item.id === id
             );
 
 
         if (!target) {
 
+            alert(
+                "This item is no longer available."
+            );
+
             return;
 
         }
+
+
+        if (
+            normaliseStatus(
+                target.status
+            ) !== "lost"
+        ) {
+
+            alert(
+                "This item has already been updated."
+            );
+
+            return;
+
+        }
+
+
+        returningId =
+            id;
 
 
         document
@@ -4239,7 +4732,7 @@ window.openReturn =
                 "returnDesc"
             )
             .textContent =
-                `Marking as returned: "${target.name}"`;
+                `You are marking "${target.name}" as returned.`;
 
 
         document
@@ -4247,18 +4740,17 @@ window.openReturn =
                 "returnName"
             )
             .value =
-                currentUser.displayName ||
-                currentUser.email
-                    .split("@")[0];
+                getDisplayName(
+                    currentUser
+                );
 
 
         document
             .getElementById(
                 "returnModal"
             )
-            .classList.add(
-                "open"
-            );
+            .classList
+            .add("open");
 
     };
 
@@ -4266,7 +4758,8 @@ window.openReturn =
 window.closeReturn =
     function() {
 
-        returningId = null;
+        returningId =
+            null;
 
 
         document
@@ -4287,9 +4780,8 @@ window.closeReturn =
             .getElementById(
                 "returnModal"
             )
-            .classList.remove(
-                "open"
-            );
+            .classList
+            .remove("open");
 
     };
 
@@ -4297,22 +4789,13 @@ window.closeReturn =
 window.confirmReturn =
     async function() {
 
-        if (!currentUser) {
-
-            alert(
-                "Please sign in first."
-            );
-
-            return;
-
-        }
-
-
         if (!returningId) {
-
             return;
-
         }
+
+
+        const user =
+            getCurrentUserData();
 
 
         const cls =
@@ -4333,14 +4816,50 @@ window.confirmReturn =
                 .trim();
 
 
+        const button =
+            document.getElementById(
+                "returnConfirmBtn"
+            );
+
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            "Updating...";
+
+
         try {
 
-            const itemRef =
-                doc(
-                    db,
-                    "items",
-                    returningId
+            const target =
+                items.find(
+                    item =>
+                        item.id ===
+                        returningId
                 );
+
+
+            if (!target) {
+
+                throw new Error(
+                    "Item no longer exists."
+                );
+
+            }
+
+
+            if (
+                normaliseStatus(
+                    target.status
+                ) !== "lost"
+            ) {
+
+                throw new Error(
+                    "This item has already been updated."
+                );
+
+            }
 
 
             const now =
@@ -4348,21 +4867,24 @@ window.confirmReturn =
 
 
             await updateDoc(
-                itemRef,
+                doc(
+                    db,
+                    "items",
+                    returningId
+                ),
                 {
 
-                    status: "returned",
+                    status:
+                        "returned",
 
                     returnedBy:
-                        currentUser.displayName ||
-                        currentUser.email,
-
-                    returnedByUid:
-                        currentUser.uid,
+                        user.displayName,
 
                     returnedByEmail:
-                        currentUser.email
-                            .toLowerCase(),
+                        user.email,
+
+                    returnedByUid:
+                        user.uid,
 
                     returnedClass:
                         cls ||
@@ -4370,17 +4892,14 @@ window.confirmReturn =
 
                     returnMethod:
                         how ||
-                        "N/A",
+                        "Not specified",
+
+                    returnedAt:
+                        now,
 
                     expiresAt:
                         now +
-                        (
-                            10 *
-                            24 *
-                            60 *
-                            60 *
-                            1000
-                        )
+                        CLAIMED_EXPIRY
 
                 }
             );
@@ -4395,9 +4914,22 @@ window.confirmReturn =
                 error
             );
 
+
             alert(
-                "Failed to mark item as returned. Please try again."
+                "Unable to mark this item as returned.\n\n" +
+                (
+                    error.message ||
+                    "Please try again."
+                )
             );
+
+        } finally {
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Confirm return";
 
         }
 
@@ -4405,12 +4937,83 @@ window.confirmReturn =
 
 
 /* =========================================================
-   TIMER REFRESH
+   CLOSE MODALS WHEN CLICKING OUTSIDE
 ========================================================= */
 
-setInterval(
-    updateTimers,
-    1000
+document
+    .querySelectorAll(".modal-overlay")
+    .forEach(
+        overlay => {
+
+            overlay.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target !==
+                        overlay
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    overlay
+                        .classList
+                        .remove("open");
+
+
+                    claimingId =
+                        null;
+
+                    returningId =
+                        null;
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key !==
+            "Escape"
+        ) {
+
+            return;
+
+        }
+
+
+        document
+            .querySelectorAll(
+                ".modal-overlay.open"
+            )
+            .forEach(
+                modal =>
+                    modal.classList.remove(
+                        "open"
+                    )
+            );
+
+
+        claimingId =
+            null;
+
+        returningId =
+            null;
+
+    }
 );
 
 </script>
