@@ -23,8 +23,8 @@
 :root {
     --brand-teal-light: #52C3D3;
     --brand-teal: #179DAE;
-    /* Updated green color to match the exact right peak of the school logo */
-    --brand-emerald: #00B67A; 
+    /* Updated lighter green color to match the exact right peak of the school logo */
+    --brand-emerald: #2ECC71; 
     --brand-dark: #0f383e;
     
     --cream: #f4f8f8;
@@ -33,7 +33,7 @@
     --text-2: #4a5c5f;
     --text-3: #7a8e91;
     --border: #d4e0e2;
-    --border-strong: #00B67A;
+    --border-strong: #2ECC71;
 
     --success-bg: #e6f8f2;
     --success-text: #00875a;
@@ -659,10 +659,10 @@ footer strong {
 
 <div class="logo-group">
 
-<!-- Authentic Khaitan Public School Mountain Logo SVG with extracted green color -->
+<!-- Authentic Khaitan Public School Mountain Logo SVG with lighter green color -->
 <div class="logo-mountains">
 <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M50 8L76 52H24L50 8Z" fill="#00B67A" opacity="0.95"/>
+  <path d="M50 8L76 52H24L50 8Z" fill="#2ECC71" opacity="0.95"/>
   <path d="M28 22L48 52H8L28 22Z" fill="#52C3D3" opacity="0.85"/>
   <path d="M68 14L92 52H44L68 14Z" fill="#179DAE" opacity="0.9"/>
 </svg>
@@ -1638,14 +1638,17 @@ window.confirmClaim = async function() {
         try {
             const itemRef = doc(db, "items", claimingId);
             const now = Date.now();
+
             await updateDoc(itemRef, {
                 status: "claimed",
-                claimedBy: name + (cls ? ` (${cls})` : ""),
-                expiresAt: now + (10 * 24 * 60 * 60 * 1000) // Expires in 10 days once claimed
+                claimedBy: name,
+                claimedClass: cls || "N/A",
+                expiresAt: now + (10 * 24 * 60 * 60 * 1000) // Permanently deleted in 10 Days
             });
+
             closeClaim();
         } catch (e) {
-            console.error("Error updating claim status:", e);
+            console.error("Error claiming item: ", e);
             alert("Failed to claim item. Please try again.");
         }
     }
@@ -1655,7 +1658,7 @@ window.openReturn = function(id) {
     returningId = id;
     const target = items.find(i => i.id === id);
     if (!target) return;
-    document.getElementById("returnDesc").textContent = `Returning: "${target.name}"`;
+    document.getElementById("returnDesc").textContent = `Marking as returned: "${target.name}"`;
     document.getElementById("returnModal").classList.add("open");
 };
 
@@ -1681,25 +1684,27 @@ window.confirmReturn = async function() {
         try {
             const itemRef = doc(db, "items", returningId);
             const now = Date.now();
+
             await updateDoc(itemRef, {
                 status: "returned",
-                returnedBy: name + (cls ? ` (${cls})` : ""),
-                returnMethod: how || "Handed to owner",
-                expiresAt: now + (10 * 24 * 60 * 60 * 1000) // Expires in 10 days once returned
+                returnedBy: name,
+                returnedClass: cls || "N/A",
+                returnMethod: how || "N/A",
+                expiresAt: now + (10 * 24 * 60 * 60 * 1000) // Permanently deleted in 10 Days
             });
+
             closeReturn();
         } catch (e) {
-            console.error("Error updating return status:", e);
+            console.error("Error returning item: ", e);
             alert("Failed to mark item as returned. Please try again.");
         }
     }
 };
 
-/* INITIALIZE APP */
+// Start real-time Firestore synchronization and timer updates
 loadFirestoreItems();
 setInterval(updateTimers, 1000);
 
 </script>
-
 </body>
 </html>
