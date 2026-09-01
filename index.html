@@ -1,3845 +1,2599 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Khaitan Public School | Lost & Found</title>
-
-<style>
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-:root{
-    --primary:#08777e;
-    --primary-dark:#075d63;
-    --accent:#18b99a;
-    --accent-dark:#11977e;
-
-    --background:#f4f8f9;
-    --card:#ffffff;
-
-    --text:#17343c;
-    --muted:#71868d;
-
-    --border:#d7e3e6;
-
-    --danger:#e45858;
-    --success:#20a56b;
-
-    --shadow:
-        0 10px 30px rgba(18,55,65,.10);
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:var(--background);
-    color:var(--text);
-
-    min-height:100vh;
-}
-
-button,
-input,
-select,
-textarea{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-
-/* =========================================================
-   LOGIN SCREEN
-========================================================= */
-
-#loginScreen{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    padding:25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #08747b,
-            #15949a
-        );
-}
-
-.login-card{
-
-    width:100%;
-    max-width:470px;
-
-    background:white;
-
-    border-radius:28px;
-
-    padding:45px 35px;
-
-    text-align:center;
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.20);
-}
-
-.login-logo{
-
-    width:80px;
-    height:80px;
-
-    margin:0 auto 22px;
-
-    border-radius:22px;
-
-    background:#eefafa;
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    font-size:40px;
-}
-
-.login-card h1{
-
-    font-size:29px;
-
-    margin-bottom:10px;
-
-    color:#111;
-}
-
-.login-card p{
-
-    color:var(--muted);
-
-    line-height:1.6;
-
-    font-size:15px;
-}
-
-.school-badge{
-
-    display:inline-block;
-
-    margin:20px 0;
-
-    padding:9px 16px;
-
-    border-radius:30px;
-
-    background:#e4f8f3;
-
-    color:#08766d;
-
-    font-weight:bold;
-
-    font-size:13px;
-}
-
-.microsoft-btn{
-
-    width:100%;
-
-    border:none;
-
-    background:#292929;
-
-    color:white;
-
-    padding:16px;
-
-    border-radius:12px;
-
-    font-weight:bold;
-
-    font-size:15px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:12px;
-
-    transition:.2s;
-}
-
-.microsoft-btn:hover{
-
-    background:#111;
-
-    transform:translateY(-1px);
-}
-
-.microsoft-btn:disabled{
-
-    opacity:.6;
-
-    cursor:not-allowed;
-
-}
-
-.microsoft-logo{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    width:22px;
-    height:22px;
-
-    gap:2px;
-}
-
-.microsoft-logo span:nth-child(1){
-    background:#f35325;
-}
-
-.microsoft-logo span:nth-child(2){
-    background:#81bc06;
-}
-
-.microsoft-logo span:nth-child(3){
-    background:#05a6f0;
-}
-
-.microsoft-logo span:nth-child(4){
-    background:#ffba08;
-}
-
-.login-error{
-
-    display:none;
-
-    margin-top:15px;
-
-    padding:12px;
-
-    border-radius:10px;
-
-    background:#fff0f0;
-
-    color:#c33;
-
-    font-size:13px;
-
-    line-height:1.5;
-}
-
-.login-loading{
-
-    display:none;
-
-    margin-top:15px;
-
-    color:var(--muted);
-}
-
-
-/* =========================================================
-   APP
-========================================================= */
-
-#app{
-    display:none;
-
-    min-height:100vh;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header{
-
-    background:
-        linear-gradient(
-            135deg,
-            #086d74,
-            #13868d
-        );
-
-    color:white;
-
-    padding:18px 25px;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:1000;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,.12);
-}
-
-.header-inner{
-
-    width:100%;
-
-    max-width:1250px;
-
-    margin:0 auto;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
-}
-
-.logo-area{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-}
-
-.logo{
-
-    width:52px;
-    height:52px;
-
-    border-radius:15px;
-
-    background:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:27px;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.15);
-}
-
-.logo-area h1{
-
-    font-size:22px;
-}
-
-.logo-area p{
-
-    font-size:12px;
-
-    opacity:.85;
-
-    margin-top:4px;
-}
-
-.user-area{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-}
-
-.user-info{
-
-    text-align:right;
-}
-
-.user-name{
-
-    font-weight:bold;
-
-    font-size:14px;
-}
-
-.user-email{
-
-    font-size:12px;
-
-    opacity:.8;
-
-    margin-top:3px;
-}
-
-.logout-btn{
-
-    background:white;
-
-    color:var(--primary);
-
-    border:none;
-
-    padding:10px 16px;
-
-    border-radius:10px;
-
-    font-weight:bold;
-
-    transition:.2s;
-}
-
-.logout-btn:hover{
-
-    transform:translateY(-1px);
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.15);
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-
-    background:
-        linear-gradient(
-            135deg,
-            #08747b,
-            #12888e
-        );
-
-    color:white;
-
-    padding:50px 20px 45px;
-
-    text-align:center;
-}
-
-.hero-inner{
-
-    width:100%;
-
-    max-width:1000px;
-
-    margin:0 auto;
-
-    text-align:center;
-}
-
-.hero h2{
-
-    font-size:36px;
-
-    margin-bottom:10px;
-}
-
-.hero p{
-
-    opacity:.9;
-
-    line-height:1.5;
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats{
-
-    width:100%;
-
-    max-width:650px;
-
-    margin:30px auto 0;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-    background:
-        rgba(255,255,255,.10);
-}
-
-.stat{
-
-    padding:15px 8px;
-
-    border-right:
-        1px solid
-        rgba(255,255,255,.25);
-
-    text-align:center;
-}
-
-.stat:last-child{
-
-    border-right:none;
-}
-
-.stat-number{
-
-    font-size:27px;
-
-    font-weight:bold;
-}
-
-.stat-label{
-
-    font-size:11px;
-
-    opacity:.8;
-
-    margin-top:4px;
-}
-
-
-/* =========================================================
-   MAIN CONTENT
-========================================================= */
-
-main{
-
-    width:100%;
-
-    max-width:1200px;
-
-    margin:0 auto;
-
-    padding:32px 20px 60px;
-
-    text-align:center;
-}
-
-
-/* =========================================================
-   TABS
-========================================================= */
-
-.tabs{
-
-    width:fit-content;
-
-    max-width:100%;
-
-    margin:0 auto 28px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:white;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:14px;
-
-    padding:5px;
-
-    gap:4px;
-
-    box-shadow:var(--shadow);
-
-    overflow-x:auto;
-}
-
-.tab{
-
-    border:none;
-
-    background:transparent;
-
-    padding:
-        13px
-        19px;
-
-    border-radius:10px;
-
-    color:#36545d;
-
-    font-weight:bold;
-
-    white-space:nowrap;
-
-    transition:.2s;
-}
-
-.tab:hover{
-
-    background:#eef8f8;
-}
-
-.tab.active{
-
-    background:var(--accent);
-
-    color:white;
-
-    box-shadow:
-        0 4px 10px
-        rgba(24,185,154,.20);
-}
-
-
-/* =========================================================
-   FILTER AREA
-========================================================= */
-
-.filters{
-
-    width:100%;
-
-    max-width:1180px;
-
-    margin:
-        0 auto 28px;
-
-    display:grid;
-
-    grid-template-columns:
-        minmax(300px,1fr)
-        180px
-        160px;
-
-    gap:10px;
-
-    align-items:center;
-}
-
-.input,
-select,
-textarea{
-
-    width:100%;
-
-    border:
-        1px solid
-        var(--border);
-
-    background:white;
-
-    border-radius:10px;
-
-    padding:13px 14px;
-
-    outline:none;
-
-    color:var(--text);
-
-    transition:.2s;
-}
-
-.input::placeholder{
-
-    color:#8aa0a7;
-}
-
-.input:focus,
-select:focus,
-textarea:focus{
-
-    border-color:var(--accent);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(24,185,154,.12);
-}
-
-
-/* =========================================================
-   ITEMS GRID
-========================================================= */
-
-.items-grid{
-
-    width:100%;
-
-    max-width:1180px;
-
-    margin:0 auto;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
-    gap:22px;
-
-    justify-content:center;
-
-    align-items:start;
-}
-
-
-/* =========================================================
-   ITEM CARD
-========================================================= */
-
-.item-card{
-
-    width:100%;
-
-    background:white;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 7px 25px
-        rgba(20,60,70,.08);
-
-    transition:
-        transform .2s,
-        box-shadow .2s;
-
-    text-align:left;
-}
-
-.item-card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:
-        0 15px 35px
-        rgba(20,60,70,.13);
-}
-
-.item-image{
-
-    width:100%;
-
-    height:190px;
-
-    background:#edf5f6;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    overflow:hidden;
-}
-
-.item-image img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-}
-
-.no-image{
-
-    font-size:55px;
-
-    opacity:.55;
-}
-
-.item-content{
-
-    padding:18px;
-}
-
-.item-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
-
-    gap:10px;
-
-    margin-bottom:10px;
-}
-
-.item-title{
-
-    font-size:19px;
-
-    font-weight:bold;
-
-    line-height:1.3;
-}
-
-.badge{
-
-    padding:5px 9px;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    white-space:nowrap;
-}
-
-.badge-lost{
-
-    background:#fff1e8;
-
-    color:#d35b18;
-}
-
-.badge-found{
-
-    background:#e8f8ee;
-
-    color:#158553;
-}
-
-.badge-claimed{
-
-    background:#eeeaff;
-
-    color:#6750c5;
-}
-
-.badge-returned{
-
-    background:#e5f5fa;
-
-    color:#16728b;
-}
-
-.item-description{
-
-    color:#61777d;
-
-    font-size:14px;
-
-    line-height:1.5;
-
-    margin-bottom:13px;
-}
-
-.item-details{
-
-    display:grid;
-
-    gap:7px;
-
-    color:#506970;
-
-    font-size:13px;
-}
-
-.item-footer{
-
-    margin-top:15px;
-
-    padding-top:12px;
-
-    border-top:
-        1px solid
-        #edf1f2;
-
-    color:#80939a;
-
-    font-size:11px;
-}
-
-
-/* =========================================================
-   EMPTY STATE
-========================================================= */
-
-.empty-state{
-
-    width:100%;
-
-    grid-column:1/-1;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    padding:75px 20px;
-
-    color:var(--muted);
-}
-
-.empty-icon{
-
-    font-size:55px;
-
-    margin-bottom:15px;
-}
-
-.empty-state h3{
-
-    margin-bottom:7px;
-
-    color:#536b72;
-
-    font-size:19px;
-}
-
-.empty-state p{
-
-    line-height:1.5;
-}
-
-
-/* =========================================================
-   FORM
-========================================================= */
-
-.form-container{
-
-    width:100%;
-
-    max-width:760px;
-
-    margin:0 auto;
-
-    text-align:left;
-}
-
-.form-card{
-
-    width:100%;
-
-    background:white;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius:20px;
-
-    padding:30px;
-
-    box-shadow:var(--shadow);
-}
-
-.form-card h2{
-
-    margin-bottom:7px;
-
-    text-align:center;
-}
-
-.form-card>p{
-
-    color:var(--muted);
-
-    margin-bottom:25px;
-
-    text-align:center;
-
-    line-height:1.5;
-}
-
-.form-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:17px;
-}
-
-.form-group{
-
-    margin-bottom:17px;
-}
-
-.form-group.full{
-
-    grid-column:1/-1;
-}
-
-.form-group label{
-
-    display:block;
-
-    font-weight:bold;
-
-    font-size:13px;
-
-    margin-bottom:7px;
-}
-
-.required{
-
-    color:var(--danger);
-}
-
-textarea{
-
-    resize:vertical;
-
-    min-height:110px;
-}
-
-.readonly-user{
-
-    background:#f1f7f7;
-
-    color:#527078;
-
-    cursor:not-allowed;
-}
-
-.submit-btn{
-
-    width:100%;
-
-    border:none;
-
-    padding:14px;
-
-    border-radius:11px;
-
-    background:var(--accent);
-
-    color:white;
-
-    font-weight:bold;
-
-    margin-top:5px;
-
-    transition:.2s;
-}
-
-.submit-btn:hover{
-
-    background:var(--accent-dark);
-
-    transform:translateY(-1px);
-}
-
-.submit-btn:disabled{
-
-    opacity:.6;
-
-    cursor:not-allowed;
-
-    transform:none;
-}
-
-
-/* =========================================================
-   MY REPORTS
-========================================================= */
-
-.my-reports-header{
-
-    width:100%;
-
-    max-width:900px;
-
-    margin:
-        0 auto 22px;
-
-    background:white;
-
-    border:
-        1px solid
-        var(--border);
-
-    padding:25px;
-
-    border-radius:18px;
-
-    box-shadow:var(--shadow);
-
-    text-align:center;
-}
-
-.my-reports-header h2{
-
-    margin-bottom:7px;
-}
-
-.my-reports-header p{
-
-    color:var(--muted);
-
-    line-height:1.5;
-}
-
-.report-owner{
-
-    margin-top:15px;
-
-    display:inline-block;
-
-    background:#edf9f7;
-
-    color:#147e6b;
-
-    padding:10px 14px;
-
-    border-radius:10px;
-
-    font-size:13px;
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-.modal{
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-        rgba(0,0,0,.50);
-
-    z-index:3000;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-}
-
-.modal.show{
-
-    display:flex;
-}
-
-.modal-card{
-
-    background:white;
-
-    max-width:450px;
-
-    width:100%;
-
-    border-radius:20px;
-
-    padding:28px;
-
-    text-align:center;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.25);
-}
-
-.modal-icon{
-
-    font-size:45px;
-
-    margin-bottom:12px;
-}
-
-.modal-card h3{
-
-    margin-bottom:8px;
-}
-
-.modal-card p{
-
-    color:var(--muted);
-
-    line-height:1.5;
-}
-
-.modal-btn{
-
-    margin-top:20px;
-
-    border:none;
-
-    background:var(--accent);
-
-    color:white;
-
-    padding:11px 22px;
-
-    border-radius:10px;
-
-    font-weight:bold;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-
-    width:100%;
-
-    text-align:center;
-
-    padding:28px 20px;
-
-    color:#71868c;
-
-    font-size:12px;
-
-    line-height:1.6;
-
-    background:white;
-
-    border-top:
-        1px solid
-        var(--border);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:950px){
-
-    .items-grid{
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Khaitan Lost & Found</title>
+
+  <style>
+    :root {
+      --primary: #0f858b;
+      --primary-dark: #096b70;
+      --accent: #18b99b;
+      --accent-dark: #10947d;
+      --bg: #f4f8f8;
+      --card: #ffffff;
+      --text: #162b35;
+      --muted: #71838c;
+      --border: #d9e4e7;
+      --danger: #e74c3c;
+      --warning: #f39c12;
+      --success: #1ca66b;
+      --shadow: 0 12px 35px rgba(15, 70, 75, 0.10);
     }
 
-    .filters{
-
-        grid-template-columns:
-            1fr 1fr;
-
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .filters .input{
-
-        grid-column:1/-1;
-
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-}
-
-
-@media(max-width:680px){
-
-    header{
-
-        position:relative;
-
-        padding:15px;
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
     }
 
-    .header-inner{
-
-        flex-direction:column;
-
-        align-items:center;
-
-        text-align:center;
+    button {
+      cursor: pointer;
     }
 
-    .logo-area{
+    /* =========================
+       LOGIN
+    ========================= */
 
-        justify-content:center;
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.12), transparent 35%),
+        linear-gradient(135deg, #08777d, #15909a);
     }
 
-    .user-area{
-
-        justify-content:center;
+    .login-card {
+      width: min(500px, 100%);
+      background: white;
+      border-radius: 28px;
+      padding: 45px 38px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,.18);
     }
 
-    .user-info{
-
-        display:none;
+    .school-logo {
+      width: 85px;
+      height: 85px;
+      margin: 0 auto 20px;
+      border-radius: 24px;
+      background: #eefafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
     }
 
-    .hero{
-
-        padding:
-            35px
-            15px
-            35px;
+    .login-card h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: #101c22;
     }
 
-    .hero h2{
-
-        font-size:27px;
+    .login-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
 
-    .stats{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+    .school-badge {
+      display: inline-block;
+      background: #e7f8f4;
+      color: #07816c;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 22px;
     }
 
-    .stat{
-
-        border-bottom:
-            1px solid
-            rgba(255,255,255,.2);
-
+    #loginButton {
+      width: 100%;
+      border: 0;
+      background: #292929;
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: .2s;
     }
 
-    .stat:nth-child(2){
-
-        border-right:none;
+    #loginButton:hover {
+      background: #111;
+      transform: translateY(-1px);
     }
 
-    .tabs{
-
-        width:100%;
-
-        justify-content:flex-start;
+    .microsoft-icon {
+      display: inline-grid;
+      grid-template-columns: repeat(2, 10px);
+      grid-template-rows: repeat(2, 10px);
+      gap: 2px;
+      margin-right: 10px;
+      vertical-align: middle;
     }
 
-    main{
+    .microsoft-icon span:nth-child(1) { background:#f35325; }
+    .microsoft-icon span:nth-child(2) { background:#81bc06; }
+    .microsoft-icon span:nth-child(3) { background:#05a6f0; }
+    .microsoft-icon span:nth-child(4) { background:#ffba08; }
 
-        padding:
-            25px
-            12px
-            50px;
+    #loginError {
+      display: none;
+      margin-top: 16px;
+      padding: 13px;
+      border-radius: 10px;
+      background: #fff0ef;
+      color: #c0392b;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
-    .filters{
-
-        grid-template-columns:1fr;
+    .login-note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #87979e;
     }
 
-    .filters .input{
+    /* =========================
+       APP
+    ========================= */
 
-        grid-column:auto;
+    #app {
+      display: none;
+      min-height: 100vh;
     }
 
-    .items-grid{
-
-        grid-template-columns:1fr;
-
-        max-width:520px;
+    .top-header {
+      background: linear-gradient(135deg, #08777d, #118e94);
+      color: white;
+      padding: 28px 20px 35px;
     }
 
-    .form-grid{
-
-        grid-template-columns:1fr;
+    .header-inner {
+      width: min(1180px, 100%);
+      margin: auto;
     }
 
-    .form-group.full{
-
-        grid-column:auto;
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
     }
 
-    .form-card{
-
-        padding:22px 18px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
     }
 
-}
-
-
-@media(max-width:450px){
-
-    .login-card{
-
-        padding:
-            35px
-            22px;
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,.16);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
     }
 
-    .login-card h1{
-
-        font-size:25px;
+    .brand h1 {
+      font-size: 23px;
     }
 
-    .stats{
-
-        max-width:350px;
+    .brand p {
+      font-size: 12px;
+      opacity: .82;
+      margin-top: 3px;
     }
 
-    .stat-number{
-
-        font-size:24px;
+    .user-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-}
+    .user-name {
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-</style>
+    #logoutButton {
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.1);
+      color: white;
+      padding: 9px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #logoutButton:hover {
+      background: rgba(255,255,255,.2);
+    }
+
+    .hero-title {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 25px;
+    }
+
+    .hero-title h2 {
+      font-size: 34px;
+      margin-bottom: 9px;
+    }
+
+    .hero-title p {
+      opacity: .85;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 15px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 15px 10px;
+      border-right: 1px solid rgba(255,255,255,.2);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 11px;
+      margin-top: 3px;
+      opacity: .82;
+      font-weight: bold;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .main {
+      width: min(1180px, calc(100% - 30px));
+      margin: 30px auto 60px;
+    }
+
+    /* =========================
+       TABS
+    ========================= */
+
+    .tabs {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto 26px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      background: white;
+      padding: 5px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .tab {
+      border: none;
+      background: transparent;
+      color: #35515c;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .tab:hover {
+      background: #eef8f7;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* =========================
+       TOOLBAR
+    ========================= */
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1 1 400px;
+    }
+
+    .search-box input,
+    .toolbar select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 11px;
+      padding: 14px;
+      outline: none;
+      color: var(--text);
+    }
+
+    .toolbar select {
+      width: 190px;
+    }
+
+    .search-box input:focus,
+    .toolbar select:focus,
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(24,185,155,.12);
+    }
+
+    /* =========================
+       ITEMS
+    ========================= */
+
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .item-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: .2s;
+    }
+
+    .item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15,70,75,.14);
+    }
+
+    .item-image {
+      width: 100%;
+      height: 210px;
+      background: #edf5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-placeholder {
+      font-size: 55px;
+      opacity: .6;
+    }
+
+    .item-content {
+      padding: 19px;
+    }
+
+    .item-badges {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .badge-lost {
+      background: #fff0ed;
+      color: #d94c3e;
+    }
+
+    .badge-found {
+      background: #e9f9f2;
+      color: #16845c;
+    }
+
+    .badge-status {
+      background: #edf3f5;
+      color: #536870;
+    }
+
+    .item-content h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .item-description {
+      color: #627780;
+      line-height: 1.55;
+      font-size: 14px;
+      margin-bottom: 13px;
+    }
+
+    .item-info {
+      display: grid;
+      gap: 7px;
+      color: #61747c;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .item-info div {
+      display: flex;
+      gap: 7px;
+    }
+
+    .reporter {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      color: #788b92;
+      font-size: 12px;
+    }
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    .empty {
+      text-align: center;
+      padding: 70px 20px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .empty h3 {
+      color: #50656d;
+      margin-bottom: 6px;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-section {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-section h2 {
+      text-align: center;
+      margin-bottom: 7px;
+    }
+
+    .form-description {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 7px;
+      color: #405963;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background: white;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .readonly-name {
+      background: #f0f6f6 !important;
+      color: #62747a;
+    }
+
+    .submit-button {
+      width: 100%;
+      border: none;
+      padding: 15px;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      border-radius: 11px;
+      transition: .2s;
+    }
+
+    .submit-button:hover {
+      background: var(--accent-dark);
+    }
+
+    .submit-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       MY REPORTS
+    ========================= */
+
+    .reports-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .reports-header h2 {
+      margin-bottom: 7px;
+    }
+
+    .reports-header p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #dcebea;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    #toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 1000;
+      max-width: 360px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: #1f3036;
+      color: white;
+      box-shadow: 0 15px 35px rgba(0,0,0,.2);
+      display: none;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    #toast.success {
+      background: #16845c;
+    }
+
+    #toast.error {
+      background: #c7463b;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #7c8f95;
+      font-size: 12px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .items-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
+      #loginScreen {
+        padding: 15px;
+      }
+
+      .login-card {
+        padding: 35px 22px;
+      }
+
+      .login-card h1 {
+        font-size: 27px;
+      }
+
+      .header-top {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .user-area {
+        justify-content: center;
+      }
+
+      .hero-title h2 {
+        font-size: 27px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(255,255,255,.2);
+      }
+
+      .tabs {
+        width: 100%;
+      }
+
+      .tab {
+        flex: 1;
+        padding: 11px 8px;
+        font-size: 12px;
+      }
+
+      .items-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        align-items: stretch;
+      }
+
+      .toolbar select {
+        width: 100%;
+      }
+
+      .form-section {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+<!-- =========================
+     LOGIN SCREEN
+========================= -->
 
-<!-- =========================================================
-     LOGIN
-========================================================= -->
+<section id="loginScreen">
 
-<div id="loginScreen">
+  <div class="login-card">
 
-    <div class="login-card">
-
-        <div class="login-logo">
-            🏫
-        </div>
-
-        <h1>
-            Khaitan Lost & Found
-        </h1>
-
-        <p>
-            Sign in with your school Microsoft account
-            to access the Lost & Found Portal.
-        </p>
-
-        <div class="school-badge">
-            🏫 @khaitanpublicschool.com only
-        </div>
-
-        <button
-            class="microsoft-btn"
-            id="loginBtn"
-            onclick="loginWithMicrosoft()"
-        >
-
-            <span class="microsoft-logo">
-
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </span>
-
-            Continue with Microsoft
-
-        </button>
-
-        <div
-            id="loginLoading"
-            class="login-loading"
-        >
-            Signing you in...
-        </div>
-
-        <div
-            id="loginError"
-            class="login-error"
-        ></div>
-
+    <div class="school-logo">
+      🏫
     </div>
 
-</div>
+    <h1>Khaitan Lost & Found</h1>
+
+    <p>
+      Sign in with your school Microsoft account
+      to access the Lost & Found Portal.
+    </p>
+
+    <div class="school-badge">
+      🏫 @khaitanpublicschool.com only
+    </div>
+
+    <button id="loginButton">
+      <span class="microsoft-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      Continue with Microsoft
+    </button>
+
+    <div id="loginError"></div>
+
+    <div class="login-note">
+      Only authorised Khaitan Public School Microsoft accounts
+      can use this portal.
+    </div>
+
+  </div>
+
+</section>
 
 
-
-<!-- =========================================================
-     APPLICATION
-========================================================= -->
+<!-- =========================
+     MAIN APP
+========================= -->
 
 <div id="app">
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
-<header>
+  <header class="top-header">
 
     <div class="header-inner">
 
-        <div class="logo-area">
+      <div class="header-top">
 
-            <div class="logo">
-                🏫
-            </div>
+        <div class="brand">
+          <div class="brand-icon">🏫</div>
 
-            <div>
-
-                <h1>
-                    Khaitan Lost & Found
-                </h1>
-
-                <p>
-                    Khaitan Public School
-                </p>
-
-            </div>
-
+          <div>
+            <h1>Khaitan Lost & Found</h1>
+            <p>Khaitan Public School</p>
+          </div>
         </div>
-
 
         <div class="user-area">
 
-            <div class="user-info">
+          <div class="user-name" id="userName">
+            Loading...
+          </div>
 
-                <div
-                    class="user-name"
-                    id="headerUserName"
-                >
-                    Student
-                </div>
-
-                <div
-                    class="user-email"
-                    id="headerUserEmail"
-                >
-                    student@khaitanpublicschool.com
-                </div>
-
-            </div>
-
-            <button
-                class="logout-btn"
-                onclick="logout()"
-            >
-                Logout
-            </button>
+          <button id="logoutButton">
+            Sign out
+          </button>
 
         </div>
 
-    </div>
+      </div>
 
-</header>
-
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero">
-
-    <div class="hero-inner">
-
-        <h2>
-            Lost something? Found something?
-        </h2>
-
+      <div class="hero-title">
+        <h2>Lost something? Found something?</h2>
         <p>
-            Help your fellow students reunite with their belongings.
+          Help your school community reconnect lost belongings
+          with their rightful owners.
         </p>
+      </div>
 
+      <div class="stats">
 
-        <div class="stats">
-
-            <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="lostCount"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    ITEMS LOST
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="foundCount"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    ITEMS FOUND
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="claimedCount"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    CLAIMED
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    class="stat-number"
-                    id="returnedCount"
-                >
-                    0
-                </div>
-
-                <div class="stat-label">
-                    RETURNED
-                </div>
-
-            </div>
-
+        <div class="stat">
+          <strong id="lostCount">0</strong>
+          <span>ITEMS LOST</span>
         </div>
+
+        <div class="stat">
+          <strong id="foundCount">0</strong>
+          <span>ITEMS FOUND</span>
+        </div>
+
+        <div class="stat">
+          <strong id="claimedCount">0</strong>
+          <span>CLAIMED</span>
+        </div>
+
+        <div class="stat">
+          <strong id="returnedCount">0</strong>
+          <span>RETURNED</span>
+        </div>
+
+      </div>
 
     </div>
 
-</section>
+  </header>
 
 
+  <main class="main">
 
-<!-- =========================================================
-     MAIN
-========================================================= -->
+    <!-- TABS -->
 
-<main>
+    <nav class="tabs">
 
-
-<!-- =========================================================
-     TABS
-========================================================= -->
-
-<div class="tabs">
-
-    <button
-        class="tab active"
-        onclick="showTab('browse',this)"
-    >
+      <button class="tab active" data-tab="browse">
         🔎 Browse Items
-    </button>
+      </button>
 
+      <button class="tab" data-tab="lost">
+        ❗ Report Lost
+      </button>
 
-    <button
-        class="tab"
-        onclick="showTab('lost',this)"
-    >
-        🚩 Report Lost
-    </button>
-
-
-    <button
-        class="tab"
-        onclick="showTab('found',this)"
-    >
+      <button class="tab" data-tab="found">
         📍 Report Found
-    </button>
+      </button>
 
-
-    <button
-        class="tab"
-        onclick="showTab('myReports',this)"
-    >
+      <button class="tab" data-tab="reports">
         📋 My Reports
-    </button>
+      </button>
 
-</div>
-
-
-
-<!-- =========================================================
-     BROWSE
-========================================================= -->
-
-<section id="browseTab">
+    </nav>
 
 
-    <div class="filters">
+    <!-- =========================
+         BROWSE
+    ========================= -->
 
-        <input
+    <section id="browseTab">
+
+      <div class="toolbar">
+
+        <div class="search-box">
+          <input
             id="searchInput"
-            class="input"
-            type="text"
+            type="search"
             placeholder="Search by item name, description or location..."
-            oninput="renderItems()"
-        >
-
-
-        <select
-            id="categoryFilter"
-            onchange="renderItems()"
-        >
-
-            <option value="">
-                All categories
-            </option>
-
-            <option value="Electronics">
-                Electronics
-            </option>
-
-            <option value="Books">
-                Books
-            </option>
-
-            <option value="Clothing">
-                Clothing
-            </option>
-
-            <option value="Stationery">
-                Stationery
-            </option>
-
-            <option value="ID Card">
-                ID Card
-            </option>
-
-            <option value="Bag">
-                Bag
-            </option>
-
-            <option value="Bottle">
-                Bottle
-            </option>
-
-            <option value="Sports">
-                Sports
-            </option>
-
-            <option value="Other">
-                Other
-            </option>
-
-        </select>
-
-
-        <select
-            id="statusFilter"
-            onchange="renderItems()"
-        >
-
-            <option value="">
-                All status
-            </option>
-
-            <option value="Lost">
-                Lost
-            </option>
-
-            <option value="Found">
-                Found
-            </option>
-
-            <option value="Claimed">
-                Claimed
-            </option>
-
-            <option value="Returned">
-                Returned
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <div
-        id="itemsContainer"
-        class="items-grid"
-    ></div>
-
-</section>
-
-
-
-<!-- =========================================================
-     LOST FORM
-========================================================= -->
-
-<section
-    id="lostTab"
-    style="display:none;"
->
-
-<div class="form-container">
-
-<div class="form-card">
-
-    <h2>
-        🚩 Report a Lost Item
-    </h2>
-
-    <p>
-        Provide accurate information so someone can help return it.
-    </p>
-
-
-    <form
-        id="lostForm"
-        onsubmit="submitReport(event,'Lost')"
-    >
-
-        <div class="form-grid">
-
-
-            <div class="form-group">
-
-                <label>
-                    Your Name
-                </label>
-
-                <input
-                    id="lostReporterName"
-                    class="input readonly-user"
-                    readonly
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    School Email
-                </label>
-
-                <input
-                    id="lostReporterEmail"
-                    class="input readonly-user"
-                    readonly
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Item Name
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    id="lostItemName"
-                    class="input"
-                    required
-                    placeholder="e.g. Black water bottle"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Category
-                    <span class="required">*</span>
-                </label>
-
-                <select
-                    id="lostCategory"
-                    required
-                >
-
-                    <option value="">
-                        Select category
-                    </option>
-
-                    <option>Electronics</option>
-                    <option>Books</option>
-                    <option>Clothing</option>
-                    <option>Stationery</option>
-                    <option>ID Card</option>
-                    <option>Bag</option>
-                    <option>Bottle</option>
-                    <option>Sports</option>
-                    <option>Other</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Location
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    id="lostLocation"
-                    class="input"
-                    required
-                    placeholder="Where did you lose it?"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Date Lost
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    id="lostDate"
-                    class="input"
-                    type="date"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Description
-                </label>
-
-                <textarea
-                    id="lostDescription"
-                    placeholder="Describe the item, colour, brand, identifying marks, etc."
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Image URL
-                </label>
-
-                <input
-                    id="lostImage"
-                    class="input"
-                    placeholder="Optional image URL"
-                >
-
-            </div>
-
+          >
         </div>
 
+        <select id="categoryFilter">
+          <option value="">All categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="stationery">Stationery</option>
+          <option value="clothing">Clothing</option>
+          <option value="books">Books</option>
+          <option value="id">ID / Cards</option>
+          <option value="accessories">Accessories</option>
+          <option value="sports">Sports</option>
+          <option value="other">Other</option>
+        </select>
 
-        <button
-            id="lostSubmit"
-            class="submit-btn"
-            type="submit"
-        >
-            🚩 Submit Lost Report
-        </button>
+        <select id="statusFilter">
+          <option value="">All status</option>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+          <option value="claimed">Claimed</option>
+          <option value="returned">Returned</option>
+        </select>
 
-    </form>
+      </div>
 
-</div>
+      <div id="itemsGrid" class="items-grid">
 
-</div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FOUND FORM
-========================================================= -->
-
-<section
-    id="foundTab"
-    style="display:none;"
->
-
-<div class="form-container">
-
-<div class="form-card">
-
-    <h2>
-        📍 Report a Found Item
-    </h2>
-
-    <p>
-        Tell other students where you found the item.
-    </p>
-
-
-    <form
-        id="foundForm"
-        onsubmit="submitReport(event,'Found')"
-    >
-
-        <div class="form-grid">
-
-
-            <div class="form-group">
-
-                <label>
-                    Your Name
-                </label>
-
-                <input
-                    id="foundReporterName"
-                    class="input readonly-user"
-                    readonly
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    School Email
-                </label>
-
-                <input
-                    id="foundReporterEmail"
-                    class="input readonly-user"
-                    readonly
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Item Name
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    id="foundItemName"
-                    class="input"
-                    required
-                    placeholder="e.g. Blue school bag"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Category
-                    <span class="required">*</span>
-                </label>
-
-                <select
-                    id="foundCategory"
-                    required
-                >
-
-                    <option value="">
-                        Select category
-                    </option>
-
-                    <option>Electronics</option>
-                    <option>Books</option>
-                    <option>Clothing</option>
-                    <option>Stationery</option>
-                    <option>ID Card</option>
-                    <option>Bag</option>
-                    <option>Bottle</option>
-                    <option>Sports</option>
-                    <option>Other</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Found Location
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    id="foundLocation"
-                    class="input"
-                    required
-                    placeholder="Where did you find it?"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Date Found
-                    <span class="required">*</span>
-                </label>
-
-                <input
-                    id="foundDate"
-                    class="input"
-                    type="date"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Description
-                </label>
-
-                <textarea
-                    id="foundDescription"
-                    placeholder="Describe the item and where it can be collected."
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Image URL
-                </label>
-
-                <input
-                    id="foundImage"
-                    class="input"
-                    placeholder="Optional image URL"
-                >
-
-            </div>
-
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading items...
         </div>
 
+      </div>
 
-        <button
-            id="foundSubmit"
-            class="submit-btn"
-            type="submit"
-        >
-            📍 Submit Found Report
-        </button>
-
-    </form>
-
-</div>
-
-</div>
-
-</section>
+    </section>
 
 
+    <!-- =========================
+         REPORT LOST
+    ========================= -->
 
-<!-- =========================================================
-     MY REPORTS
-========================================================= -->
+    <section id="lostTab" style="display:none">
 
-<section
-    id="myReportsTab"
-    style="display:none;"
->
+      <div class="form-section">
+
+        <h2>❗ Report a Lost Item</h2>
+
+        <p class="form-description">
+          Tell the school community what you lost.
+        </p>
+
+        <form id="lostForm">
+
+          <div class="form-group">
+            <label>Your Name</label>
+
+            <input
+              id="lostReporterName"
+              class="readonly-name"
+              type="text"
+              readonly
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Item Name *</label>
+
+            <input
+              id="lostItemName"
+              type="text"
+              placeholder="e.g. Black water bottle"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+
+            <label>Category *</label>
+
+            <select id="lostCategory" required>
+              <option value="">Select category</option>
+              <option value="electronics">Electronics</option>
+              <option value="stationery">Stationery</option>
+              <option value="clothing">Clothing</option>
+              <option value="books">Books</option>
+              <option value="id">ID / Cards</option>
+              <option value="accessories">Accessories</option>
+              <option value="sports">Sports</option>
+              <option value="other">Other</option>
+            </select>
+
+          </div>
+
+          <div class="form-group">
+            <label>Where did you lose it? *</label>
+
+            <input
+              id="lostLocation"
+              type="text"
+              placeholder="e.g. Library"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Description *</label>
+
+            <textarea
+              id="lostDescription"
+              placeholder="Describe the item, colour, identifying marks, etc."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+
+            <label>Image URL (optional)</label>
+
+            <input
+              id="lostImage"
+              type="url"
+              placeholder="https://..."
+            >
+
+          </div>
+
+          <button class="submit-button" type="submit">
+            Submit Lost Report
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
 
 
-    <div class="my-reports-header">
+    <!-- =========================
+         REPORT FOUND
+    ========================= -->
 
-        <h2>
-            📋 My Reports
-        </h2>
+    <section id="foundTab" style="display:none">
+
+      <div class="form-section">
+
+        <h2>📍 Report a Found Item</h2>
+
+        <p class="form-description">
+          Help return an item to its owner.
+        </p>
+
+        <form id="foundForm">
+
+          <div class="form-group">
+
+            <label>Your Name</label>
+
+            <input
+              id="foundReporterName"
+              class="readonly-name"
+              type="text"
+              readonly
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Item Name *</label>
+
+            <input
+              id="foundItemName"
+              type="text"
+              placeholder="e.g. Blue pencil case"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Category *</label>
+
+            <select id="foundCategory" required>
+              <option value="">Select category</option>
+              <option value="electronics">Electronics</option>
+              <option value="stationery">Stationery</option>
+              <option value="clothing">Clothing</option>
+              <option value="books">Books</option>
+              <option value="id">ID / Cards</option>
+              <option value="accessories">Accessories</option>
+              <option value="sports">Sports</option>
+              <option value="other">Other</option>
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Where was it found? *</label>
+
+            <input
+              id="foundLocation"
+              type="text"
+              placeholder="e.g. Basketball court"
+              required
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Description *</label>
+
+            <textarea
+              id="foundDescription"
+              placeholder="Describe the item, colour, identifying marks, etc."
+              required
+            ></textarea>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Image URL (optional)</label>
+
+            <input
+              id="foundImage"
+              type="url"
+              placeholder="https://..."
+            >
+
+          </div>
+
+          <button class="submit-button" type="submit">
+            Submit Found Report
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MY REPORTS
+    ========================= -->
+
+    <section id="reportsTab" style="display:none">
+
+      <div class="reports-header">
+
+        <h2>📋 My Reports</h2>
 
         <p>
-            See all Lost & Found reports submitted
-            using your school account.
+          Here you can see the lost and found items you have reported.
         </p>
 
-        <div
-            class="report-owner"
-            id="reportOwner"
-        >
-            Logged in as:
+      </div>
+
+      <div id="myReportsGrid" class="items-grid">
+
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading your reports...
         </div>
 
-    </div>
+      </div>
+
+    </section>
+
+  </main>
 
 
-    <div
-        id="myReportsContainer"
-        class="items-grid"
-    ></div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-    Khaitan Public School Lost & Found Portal
-
-    <br>
-
-    Only authorised school accounts can access this portal.
-
-</footer>
+  <footer>
+    Khaitan Public School • Lost & Found Portal
+  </footer>
 
 </div>
 
 
-
-<!-- =========================================================
-     MODAL
-========================================================= -->
-
-<div
-    id="modal"
-    class="modal"
->
-
-    <div class="modal-card">
-
-        <div
-            id="modalIcon"
-            class="modal-icon"
-        >
-            ✅
-        </div>
-
-        <h3
-            id="modalTitle"
-        >
-            Success
-        </h3>
-
-        <p
-            id="modalMessage"
-        >
-            Your report has been submitted.
-        </p>
-
-        <button
-            class="modal-btn"
-            onclick="closeModal()"
-        >
-            OK
-        </button>
-
-    </div>
-
-</div>
+<div id="toast"></div>
 
 
-
-<!-- =========================================================
+<!-- =========================
      FIREBASE
-========================================================= -->
+========================= -->
 
 <script type="module">
 
-import {
-    initializeApp
-}
-from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
-
-import {
+  import {
     getAuth,
-    OAuthProvider,
+    MicrosoftAuthProvider,
     signInWithPopup,
     signOut,
     onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-
-import {
+  import {
     getFirestore,
     collection,
     addDoc,
     getDocs,
     query,
-    orderBy,
+    where,
     serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 
+  /* =====================================================
+     YOUR FIREBASE CONFIG
+  ===================================================== */
 
-/* =========================================================
-   FIREBASE CONFIG
-========================================================= */
-
-const firebaseConfig = {
-
-    apiKey:
-        "YOUR_FIREBASE_API_KEY",
-
-    authDomain:
-        "lost-and-found-portal-2ea30.firebaseapp.com",
-
-    projectId:
-        "lost-and-found-portal-2ea30",
-
-    storageBucket:
-        "lost-and-found-portal-2ea30.firebasestorage.app",
-
-    messagingSenderId:
-        "YOUR_MESSAGING_SENDER_ID",
-
-    appId:
-        "YOUR_FIREBASE_APP_ID"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyAuQLE2jvTJuF-qPBa_i7KmjM9sHWgOCZg",
+    authDomain: "lost-and-found-portal-2ea30.firebaseapp.com",
+    projectId: "lost-and-found-portal-2ea30",
+    storageBucket: "lost-and-found-portal-2ea30.firebasestorage.app",
+    messagingSenderId: "853583190246",
+    appId: "1:853583190246:web:be311a6ca6eaadd9674327",
+    measurementId: "G-XC3RFHEJ13"
+  };
 
 
+  /* =====================================================
+     SCHOOL SETTINGS
+  ===================================================== */
 
-/* =========================================================
-   INITIALIZE
-========================================================= */
+  const SCHOOL_DOMAIN = "@khaitanpublicschool.com";
 
-const app =
-    initializeApp(firebaseConfig);
-
-
-const auth =
-    getAuth(app);
+  const SCHOOL_TENANT_ID =
+    "a10a41eb-d010-485b-946c-ed3a3a42f964";
 
 
-const db =
-    getFirestore(app);
+  /* =====================================================
+     INITIALIZE FIREBASE
+  ===================================================== */
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+
+  const db = getFirestore(app);
 
 
+  /* =====================================================
+     MICROSOFT PROVIDER
+  ===================================================== */
 
-/* =========================================================
-   MICROSOFT PROVIDER
-========================================================= */
+  const microsoftProvider =
+    new MicrosoftAuthProvider();
 
-const microsoftProvider =
-    new OAuthProvider("microsoft.com");
-
-
-microsoftProvider.setCustomParameters({
-
-    tenant:
-        "a10a41eb-d010-485b-946c-ed3a3a42f964",
-
-    prompt:
-        "select_account"
-
-});
+  microsoftProvider.setCustomParameters({
+    tenant: SCHOOL_TENANT_ID
+  });
 
 
+  /* =====================================================
+     DOM
+  ===================================================== */
 
-/* =========================================================
-   GLOBAL VARIABLES
-========================================================= */
+  const loginScreen =
+    document.getElementById("loginScreen");
 
-let currentUser = null;
+  const appScreen =
+    document.getElementById("app");
 
-let allItems = [];
+  const loginButton =
+    document.getElementById("loginButton");
+
+  const loginError =
+    document.getElementById("loginError");
+
+  const logoutButton =
+    document.getElementById("logoutButton");
+
+  const userName =
+    document.getElementById("userName");
+
+  const lostReporterName =
+    document.getElementById("lostReporterName");
+
+  const foundReporterName =
+    document.getElementById("foundReporterName");
+
+  const itemsGrid =
+    document.getElementById("itemsGrid");
+
+  const myReportsGrid =
+    document.getElementById("myReportsGrid");
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+  const categoryFilter =
+    document.getElementById("categoryFilter");
+
+  const statusFilter =
+    document.getElementById("statusFilter");
+
+  let currentUser = null;
+
+  let allItems = [];
 
 
+  /* =====================================================
+     HELPERS
+  ===================================================== */
 
-/* =========================================================
-   MICROSOFT LOGIN
-========================================================= */
+  function escapeHTML(value) {
 
-window.loginWithMicrosoft =
-async function(){
+    if (value === null || value === undefined) {
+      return "";
+    }
 
-    const loginBtn =
-        document.getElementById(
-            "loginBtn"
-        );
-
-    const loading =
-        document.getElementById(
-            "loginLoading"
-        );
-
-    const error =
-        document.getElementById(
-            "loginError"
-        );
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
 
 
-    error.style.display =
-        "none";
+  function showLoginError(message) {
+
+    loginError.textContent = message;
+    loginError.style.display = "block";
+
+  }
 
 
-    loading.style.display =
-        "block";
+  function hideLoginError() {
+
+    loginError.textContent = "";
+    loginError.style.display = "none";
+
+  }
 
 
-    loginBtn.disabled =
-        true;
+  function showToast(message, type = "") {
+
+    const toast =
+      document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.className = type;
+
+    toast.style.display = "block";
+
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 3500);
+
+  }
 
 
-    try{
+  function getUserDisplayName(user) {
+
+    if (!user) return "";
+
+    return (
+      user.displayName ||
+      user.email?.split("@")[0] ||
+      "Student"
+    );
+
+  }
+
+
+  function getItemField(item, fields) {
+
+    for (const field of fields) {
+
+      if (
+        item[field] !== undefined &&
+        item[field] !== null &&
+        item[field] !== ""
+      ) {
+        return item[field];
+      }
+
+    }
+
+    return "";
+
+  }
+
+
+  function normalizeStatus(item) {
+
+    const raw =
+      getItemField(item, [
+        "status",
+        "itemStatus",
+        "type"
+      ]);
+
+    return String(raw || "")
+      .toLowerCase()
+      .trim();
+
+  }
+
+
+  function normalizeCategory(item) {
+
+    return String(
+      getItemField(item, [
+        "category",
+        "itemCategory"
+      ])
+    )
+      .toLowerCase()
+      .trim();
+
+  }
+
+
+  function formatDate(value) {
+
+    if (!value) return "Recently";
+
+    try {
+
+      if (value?.toDate) {
+        return value.toDate().toLocaleDateString();
+      }
+
+      if (value instanceof Date) {
+        return value.toLocaleDateString();
+      }
+
+      return new Date(value).toLocaleDateString();
+
+    } catch {
+      return "Recently";
+    }
+
+  }
+
+
+  /* =====================================================
+     LOGIN
+  ===================================================== */
+
+  loginButton.addEventListener(
+    "click",
+    async () => {
+
+      hideLoginError();
+
+      loginButton.disabled = true;
+
+      loginButton.innerHTML =
+        "Signing in...";
+
+      try {
 
         const result =
-            await signInWithPopup(
-                auth,
-                microsoftProvider
-            );
-
+          await signInWithPopup(
+            auth,
+            microsoftProvider
+          );
 
         const user =
-            result.user;
-
+          result.user;
 
         const email =
-            (user.email || "")
-            .toLowerCase();
+          (user.email || "").toLowerCase();
 
+        if (
+          !email.endsWith(
+            SCHOOL_DOMAIN
+          )
+        ) {
 
-        if(
-            !email.endsWith(
-                "@khaitanpublicschool.com"
-            )
-        ){
+          await signOut(auth);
 
-            await signOut(auth);
+          throw new Error(
+            "Only @khaitanpublicschool.com accounts are allowed."
+          );
 
-            throw new Error(
-                "Only @khaitanpublicschool.com accounts are allowed."
-            );
         }
 
-
-    }catch(error){
-
-        console.error(error);
-
-
-        showLoginError(
-            error.message ||
-            "Unable to sign in."
+        showToast(
+          "Login successful!",
+          "success"
         );
 
+      } catch (error) {
 
-    }finally{
+        console.error(
+          "Microsoft login error:",
+          error
+        );
 
-        loading.style.display =
-            "none";
+        let message =
+          "Login failed. Please try again.";
 
-        loginBtn.disabled =
-            false;
+        if (
+          error.code ===
+          "auth/popup-closed-by-user"
+        ) {
 
-    }
+          message =
+            "The Microsoft login window was closed.";
 
-};
+        } else if (
+          error.code ===
+          "auth/unauthorized-domain"
+        ) {
 
+          message =
+            "This website is not authorised in Firebase Authentication. Add your GitHub Pages domain under Firebase → Authentication → Settings → Authorised domains.";
 
+        } else if (
+          error.code ===
+          "auth/invalid-api-key"
+        ) {
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
+          message =
+            "Firebase rejected the API key. Check the Web API key in Google Cloud/Firebase and its restrictions.";
 
-onAuthStateChanged(
-    auth,
-    async(user)=>{
+        } else if (
+          error.message
+        ) {
 
-
-        if(!user){
-
-            currentUser =
-                null;
-
-
-            document.getElementById(
-                "loginScreen"
-            ).style.display =
-                "flex";
-
-
-            document.getElementById(
-                "app"
-            ).style.display =
-                "none";
-
-
-            return;
-
+          message =
+            error.message;
         }
 
+        showLoginError(
+          "Firebase: " + message
+        );
 
-        const email =
-            (user.email || "")
-            .toLowerCase();
+      } finally {
 
+        loginButton.disabled = false;
 
-        if(
-            !email.endsWith(
-                "@khaitanpublicschool.com"
-            )
-        ){
+        loginButton.innerHTML = `
+          <span class="microsoft-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          Continue with Microsoft
+        `;
 
-            await signOut(auth);
-
-            showLoginError(
-                "Only Khaitan Public School accounts can use this portal."
-            );
-
-            return;
-
-        }
-
-
-        currentUser =
-            user;
-
-
-        document.getElementById(
-            "loginScreen"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "app"
-        ).style.display =
-            "block";
-
-
-        setupUserInformation();
-
-
-        await loadItems();
+      }
 
     }
-);
+  );
 
 
+  /* =====================================================
+     LOGOUT
+  ===================================================== */
 
-/* =========================================================
-   USER INFORMATION
-========================================================= */
+  logoutButton.addEventListener(
+    "click",
+    async () => {
 
-function setupUserInformation(){
-
-    if(!currentUser)
-        return;
-
-
-    const name =
-        currentUser.displayName ||
-        currentUser.email
-            .split("@")[0];
-
-
-    const email =
-        currentUser.email;
-
-
-    document.getElementById(
-        "headerUserName"
-    ).textContent =
-        name;
-
-
-    document.getElementById(
-        "headerUserEmail"
-    ).textContent =
-        email;
-
-
-    document.getElementById(
-        "lostReporterName"
-    ).value =
-        name;
-
-
-    document.getElementById(
-        "foundReporterName"
-    ).value =
-        name;
-
-
-    document.getElementById(
-        "lostReporterEmail"
-    ).value =
-        email;
-
-
-    document.getElementById(
-        "foundReporterEmail"
-    ).value =
-        email;
-
-
-    document.getElementById(
-        "reportOwner"
-    ).textContent =
-        "Logged in as: " +
-        name +
-        " • " +
-        email;
-
-}
-
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-window.logout =
-async function(){
-
-    try{
+      try {
 
         await signOut(auth);
 
-    }catch(error){
+      } catch (error) {
 
         console.error(error);
 
-    }
-
-};
-
-
-
-/* =========================================================
-   LOAD ITEMS
-========================================================= */
-
-async function loadItems(){
-
-    try{
-
-        const itemsRef =
-            collection(
-                db,
-                "items"
-            );
-
-
-        const q =
-            query(
-                itemsRef,
-                orderBy(
-                    "createdAt",
-                    "desc"
-                )
-            );
-
-
-        const snapshot =
-            await getDocs(q);
-
-
-        allItems = [];
-
-
-        snapshot.forEach(
-            (doc)=>{
-
-                allItems.push({
-
-                    id:
-                        doc.id,
-
-                    ...doc.data()
-
-                });
-
-            }
+        showToast(
+          "Unable to sign out.",
+          "error"
         );
 
-
-        /*
-           Expired items are hidden from students.
-
-           Permanent deletion should be performed
-           by a Firebase Cloud Function / trusted
-           backend, not by the student.
-        */
-
-        const now =
-            new Date();
-
-
-        allItems =
-            allItems.filter(
-                item=>{
-
-                    if(
-                        !item.expiresAt
-                    ){
-
-                        return true;
-
-                    }
-
-
-                    try{
-
-                        const expiry =
-                            item.expiresAt.toDate
-                            ? item.expiresAt.toDate()
-                            : new Date(
-                                item.expiresAt
-                            );
-
-
-                        return expiry > now;
-
-                    }catch{
-
-                        return true;
-
-                    }
-
-                }
-            );
-
-
-        renderItems();
-
-        updateStats();
-
-        renderMyReports();
-
-
-    }catch(error){
-
-        console.error(
-            "Firestore error:",
-            error
-        );
-
-
-        document.getElementById(
-            "itemsContainer"
-        ).innerHTML = `
-
-            <div class="empty-state">
-
-                <div class="empty-icon">
-                    ⚠️
-                </div>
-
-                <h3>
-                    Could not load items
-                </h3>
-
-                <p>
-                    Please check your Firebase
-                    configuration and Firestore rules.
-                </p>
-
-            </div>
-
-        `;
+      }
 
     }
-
-}
-
+  );
 
 
-/* =========================================================
-   RENDER ITEMS
-========================================================= */
+  /* =====================================================
+     AUTH STATE
+  ===================================================== */
 
-window.renderItems =
-function(){
+  onAuthStateChanged(
+    auth,
+    async (user) => {
 
-    const container =
-        document.getElementById(
-            "itemsContainer"
-        );
+      if (!user) {
 
+        currentUser = null;
 
-    const search =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
+        appScreen.style.display = "none";
 
-
-    const category =
-        document.getElementById(
-            "categoryFilter"
-        ).value;
-
-
-    const status =
-        document.getElementById(
-            "statusFilter"
-        ).value;
-
-
-    const filtered =
-        allItems.filter(
-            item=>{
-
-                const text =
-
-                    (item.itemName || "")
-                    + " "
-                    +
-                    (item.description || "")
-                    + " "
-                    +
-                    (item.location || "");
-
-
-                const matchesSearch =
-                    !search ||
-                    text
-                    .toLowerCase()
-                    .includes(search);
-
-
-                const matchesCategory =
-                    !category ||
-                    item.category ===
-                    category;
-
-
-                const matchesStatus =
-                    !status ||
-                    item.status ===
-                    status;
-
-
-                return (
-
-                    matchesSearch &&
-                    matchesCategory &&
-                    matchesStatus
-
-                );
-
-            }
-        );
-
-
-    renderItemCards(
-        container,
-        filtered
-    );
-
-};
-
-
-
-/* =========================================================
-   RENDER ITEM CARDS
-========================================================= */
-
-function renderItemCards(
-    container,
-    items
-){
-
-    if(!items.length){
-
-        container.innerHTML = `
-
-            <div class="empty-state">
-
-                <div class="empty-icon">
-                    🔎
-                </div>
-
-                <h3>
-                    No items match your filters.
-                </h3>
-
-                <p>
-                    Try changing your search or filters.
-                </p>
-
-            </div>
-
-        `;
+        loginScreen.style.display = "flex";
 
         return;
+      }
+
+
+      const email =
+        (user.email || "").toLowerCase();
+
+
+      if (
+        !email.endsWith(
+          SCHOOL_DOMAIN
+        )
+      ) {
+
+        await signOut(auth);
+
+        showLoginError(
+          "Only Khaitan Public School accounts ending in @khaitanpublicschool.com can use this portal."
+        );
+
+        return;
+      }
+
+
+      currentUser = user;
+
+
+      loginScreen.style.display = "none";
+
+      appScreen.style.display = "block";
+
+
+      const name =
+        getUserDisplayName(user);
+
+
+      userName.textContent =
+        name;
+
+      lostReporterName.value =
+        name;
+
+      foundReporterName.value =
+        name;
+
+
+      await loadItems();
 
     }
+  );
 
 
-    container.innerHTML =
-        items
-        .map(
-            item =>
-                createItemCard(item)
-        )
-        .join("");
+  /* =====================================================
+     LOAD ITEMS
+  ===================================================== */
 
-}
+  async function loadItems() {
 
-
-
-/* =========================================================
-   ITEM CARD
-========================================================= */
-
-function createItemCard(item){
-
-    const status =
-        item.status ||
-        "Lost";
-
-
-    let badgeClass =
-        "badge-lost";
-
-
-    if(status === "Found")
-        badgeClass =
-            "badge-found";
-
-
-    if(status === "Claimed")
-        badgeClass =
-            "badge-claimed";
-
-
-    if(status === "Returned")
-        badgeClass =
-            "badge-returned";
-
-
-    const image =
-        item.imageUrl
-
-        ? `
-
-            <img
-                src="${escapeHTML(
-                    item.imageUrl
-                )}"
-                alt="${escapeHTML(
-                    item.itemName ||
-                    "Item"
-                )}"
-                onerror="
-                    this.style.display='none';
-                "
-            >
-
-        `
-
-        : `
-
-            <div class="no-image">
-                📦
-            </div>
-
-        `;
-
-
-    return `
-
-        <article class="item-card">
-
-            <div class="item-image">
-
-                ${image}
-
-            </div>
-
-
-            <div class="item-content">
-
-                <div class="item-top">
-
-                    <div class="item-title">
-
-                        ${escapeHTML(
-                            item.itemName ||
-                            "Unnamed item"
-                        )}
-
-                    </div>
-
-
-                    <span
-                        class="
-                            badge
-                            ${badgeClass}
-                        "
-                    >
-
-                        ${escapeHTML(
-                            status
-                        )}
-
-                    </span>
-
-                </div>
-
-
-                <div class="item-description">
-
-                    ${escapeHTML(
-                        item.description ||
-                        "No description provided."
-                    )}
-
-                </div>
-
-
-                <div class="item-details">
-
-                    <div>
-
-                        📂
-
-                        ${escapeHTML(
-                            item.category ||
-                            "Other"
-                        )}
-
-                    </div>
-
-
-                    <div>
-
-                        📍
-
-                        ${escapeHTML(
-                            item.location ||
-                            "Location not specified"
-                        )}
-
-                    </div>
-
-
-                    <div>
-
-                        📅
-
-                        ${formatDate(
-                            item.date
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="item-footer">
-
-                    Reported by
-                    ${escapeHTML(
-                        item.reporterName ||
-                        "School student"
-                    )}
-
-                </div>
-
-            </div>
-
-        </article>
-
+    itemsGrid.innerHTML = `
+      <div class="loading">
+        <div class="spinner"></div>
+        Loading items...
+      </div>
     `;
 
-}
+    try {
 
-
-
-/* =========================================================
-   MY REPORTS
-========================================================= */
-
-function renderMyReports(){
-
-    const container =
-        document.getElementById(
-            "myReportsContainer"
+      const snapshot =
+        await getDocs(
+          collection(db, "items")
         );
 
+      allItems = [];
 
-    if(!currentUser){
+      snapshot.forEach(
+        (doc) => {
 
-        container.innerHTML =
-            "";
+          allItems.push({
+            id: doc.id,
+            ...doc.data()
+          });
 
-        return;
+        }
+      );
+
+
+      updateStats();
+
+      renderItems();
+
+    } catch (error) {
+
+      console.error(
+        "Firestore load error:",
+        error
+      );
+
+      itemsGrid.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">⚠️</div>
+          <h3>Unable to load items</h3>
+          <p>
+            Please check your Firestore rules
+            and Firebase configuration.
+          </p>
+        </div>
+      `;
 
     }
 
-
-    const myReports =
-        allItems.filter(
-            item=>{
-
-                /*
-                   UID is the preferred
-                   identifier.
-                */
-
-                if(
-                    item.reporterUid &&
-                    currentUser.uid
-                ){
-
-                    return (
-                        item.reporterUid ===
-                        currentUser.uid
-                    );
-
-                }
+  }
 
 
-                /*
-                   Fallback to email
-                   for older reports.
-                */
+  /* =====================================================
+     STATS
+  ===================================================== */
 
-                return (
-
-                    item.reporterEmail &&
-                    currentUser.email &&
-                    item.reporterEmail
-                        .toLowerCase() ===
-                    currentUser.email
-                        .toLowerCase()
-
-                );
-
-            }
-        );
-
-
-    if(!myReports.length){
-
-        container.innerHTML = `
-
-            <div class="empty-state">
-
-                <div class="empty-icon">
-                    📋
-                </div>
-
-                <h3>
-                    You haven't reported anything yet.
-                </h3>
-
-                <p>
-                    Your reports will appear here
-                    automatically.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    renderItemCards(
-        container,
-        myReports
-    );
-
-}
-
-
-
-/* =========================================================
-   STATISTICS
-========================================================= */
-
-function updateStats(){
+  function updateStats() {
 
     let lost = 0;
-
     let found = 0;
-
     let claimed = 0;
-
     let returned = 0;
 
 
-    allItems.forEach(
-        item=>{
+    allItems.forEach(item => {
 
-            if(
-                item.status ===
-                "Lost"
-            )
-                lost++;
+      const status =
+        normalizeStatus(item);
 
 
-            if(
-                item.status ===
-                "Found"
-            )
-                found++;
+      if (status === "lost") {
+        lost++;
+      }
 
+      if (status === "found") {
+        found++;
+      }
 
-            if(
-                item.status ===
-                "Claimed"
-            )
-                claimed++;
+      if (status === "claimed") {
+        claimed++;
+      }
 
+      if (status === "returned") {
+        returned++;
+      }
 
-            if(
-                item.status ===
-                "Returned"
-            )
-                returned++;
-
-        }
-    );
+    });
 
 
     document.getElementById(
-        "lostCount"
-    ).textContent =
-        lost;
+      "lostCount"
+    ).textContent = lost;
 
 
     document.getElementById(
-        "foundCount"
-    ).textContent =
-        found;
+      "foundCount"
+    ).textContent = found;
 
 
     document.getElementById(
-        "claimedCount"
-    ).textContent =
-        claimed;
+      "claimedCount"
+    ).textContent = claimed;
 
 
     document.getElementById(
-        "returnedCount"
-    ).textContent =
-        returned;
+      "returnedCount"
+    ).textContent = returned;
 
-}
-
+  }
 
 
-/* =========================================================
-   SUBMIT REPORT
-========================================================= */
+  /* =====================================================
+     RENDER ITEMS
+  ===================================================== */
 
-window.submitReport =
-async function(
-    event,
-    type
-){
+  function renderItems() {
 
-    event.preventDefault();
+    const search =
+      searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const category =
+      categoryFilter.value
+        .toLowerCase();
+
+    const status =
+      statusFilter.value
+        .toLowerCase();
 
 
-    if(!currentUser){
+    const filtered =
+      allItems.filter(item => {
 
-        showModal(
-            "⚠️",
-            "Login required",
-            "Please sign in before submitting a report."
+        const name =
+          getItemField(item, [
+            "itemName",
+            "name",
+            "title",
+            "item"
+          ]);
+
+        const description =
+          getItemField(item, [
+            "description",
+            "details"
+          ]);
+
+        const location =
+          getItemField(item, [
+            "location",
+            "place",
+            "lostLocation",
+            "foundLocation"
+          ]);
+
+
+        const searchable = `
+          ${name}
+          ${description}
+          ${location}
+        `
+          .toLowerCase();
+
+
+        const itemCategory =
+          normalizeCategory(item);
+
+        const itemStatus =
+          normalizeStatus(item);
+
+
+        const matchesSearch =
+          !search ||
+          searchable.includes(search);
+
+
+        const matchesCategory =
+          !category ||
+          itemCategory === category;
+
+
+        const matchesStatus =
+          !status ||
+          itemStatus === status;
+
+
+        return (
+          matchesSearch &&
+          matchesCategory &&
+          matchesStatus
         );
 
-        return;
+      });
+
+
+    if (!filtered.length) {
+
+      itemsGrid.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">🔎</div>
+          <h3>No items found</h3>
+          <p>
+            No items match your current filters.
+          </p>
+        </div>
+      `;
+
+      return;
+    }
+
+
+    itemsGrid.innerHTML =
+      filtered
+        .map(renderItem)
+        .join("");
+
+  }
+
+
+  /* =====================================================
+     ITEM CARD
+  ===================================================== */
+
+  function renderItem(item) {
+
+    const name =
+      getItemField(item, [
+        "itemName",
+        "name",
+        "title",
+        "item"
+      ]) || "Unnamed item";
+
+
+    const description =
+      getItemField(item, [
+        "description",
+        "details"
+      ]) || "No description provided.";
+
+
+    const category =
+      getItemField(item, [
+        "category",
+        "itemCategory"
+      ]) || "Other";
+
+
+    const location =
+      getItemField(item, [
+        "location",
+        "place",
+        "lostLocation",
+        "foundLocation"
+      ]) || "Not specified";
+
+
+    const status =
+      normalizeStatus(item) || "unknown";
+
+
+    const image =
+      getItemField(item, [
+        "imageUrl",
+        "image",
+        "photoURL",
+        "photo"
+      ]);
+
+
+    const date =
+      getItemField(item, [
+        "createdAt",
+        "date",
+        "timestamp"
+      ]);
+
+
+    const reporter =
+      getItemField(item, [
+        "reportedByName",
+        "reporterName",
+        "nameOfReporter"
+      ]) || "School user";
+
+
+    let statusClass =
+      "badge-status";
+
+    if (status === "lost") {
+      statusClass = "badge-lost";
+    }
+
+    if (status === "found") {
+      statusClass = "badge-found";
+    }
+
+
+    return `
+      <article class="item-card">
+
+        <div class="item-image">
+
+          ${
+            image
+            ?
+            `<img
+              src="${escapeHTML(image)}"
+              alt="${escapeHTML(name)}"
+              loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+            >
+            <div
+              class="image-placeholder"
+              style="display:none"
+            >
+              📦
+            </div>`
+            :
+            `<div class="image-placeholder">
+              📦
+            </div>`
+          }
+
+        </div>
+
+
+        <div class="item-content">
+
+          <div class="item-badges">
+
+            <span class="badge ${statusClass}">
+              ${escapeHTML(
+                status.charAt(0).toUpperCase() +
+                status.slice(1)
+              )}
+            </span>
+
+            <span class="badge badge-status">
+              ${escapeHTML(category)}
+            </span>
+
+          </div>
+
+
+          <h3>
+            ${escapeHTML(name)}
+          </h3>
+
+
+          <p class="item-description">
+            ${escapeHTML(description)}
+          </p>
+
+
+          <div class="item-info">
+
+            <div>
+              📍
+              <span>
+                ${escapeHTML(location)}
+              </span>
+            </div>
+
+            <div>
+              📅
+              <span>
+                ${formatDate(date)}
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="reporter">
+            Reported by:
+            <strong>
+              ${escapeHTML(reporter)}
+            </strong>
+          </div>
+
+        </div>
+
+      </article>
+    `;
+
+  }
+
+
+  /* =====================================================
+     SEARCH / FILTERS
+  ===================================================== */
+
+  searchInput.addEventListener(
+    "input",
+    renderItems
+  );
+
+  categoryFilter.addEventListener(
+    "change",
+    renderItems
+  );
+
+  statusFilter.addEventListener(
+    "change",
+    renderItems
+  );
+
+
+  /* =====================================================
+     TAB SWITCHING
+  ===================================================== */
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        async () => {
+
+          document
+            .querySelectorAll(".tab")
+            .forEach(tab =>
+              tab.classList.remove("active")
+            );
+
+
+          button.classList.add("active");
+
+
+          document.getElementById(
+            "browseTab"
+          ).style.display = "none";
+
+
+          document.getElementById(
+            "lostTab"
+          ).style.display = "none";
+
+
+          document.getElementById(
+            "foundTab"
+          ).style.display = "none";
+
+
+          document.getElementById(
+            "reportsTab"
+          ).style.display = "none";
+
+
+          const selected =
+            button.dataset.tab;
+
+
+          if (selected === "browse") {
+
+            document.getElementById(
+              "browseTab"
+            ).style.display = "block";
+
+          }
+
+
+          if (selected === "lost") {
+
+            document.getElementById(
+              "lostTab"
+            ).style.display = "block";
+
+            lostReporterName.value =
+              getUserDisplayName(currentUser);
+
+          }
+
+
+          if (selected === "found") {
+
+            document.getElementById(
+              "foundTab"
+            ).style.display = "block";
+
+            foundReporterName.value =
+              getUserDisplayName(currentUser);
+
+          }
+
+
+          if (selected === "reports") {
+
+            document.getElementById(
+              "reportsTab"
+            ).style.display = "block";
+
+            await loadMyReports();
+
+          }
+
+        }
+
+      );
+
+    });
+
+
+  /* =====================================================
+     CREATE REPORT
+  ===================================================== */
+
+  async function createReport(
+    type,
+    itemName,
+    category,
+    location,
+    description,
+    imageUrl
+  ) {
+
+    if (!currentUser) {
+
+      throw new Error(
+        "You must be logged in."
+      );
 
     }
 
 
     const email =
-        currentUser.email
+      (currentUser.email || "")
         .toLowerCase();
 
 
-    if(
-        !email.endsWith(
-            "@khaitanpublicschool.com"
-        )
-    ){
+    if (
+      !email.endsWith(
+        SCHOOL_DOMAIN
+      )
+    ) {
 
-        showModal(
-            "🚫",
-            "Not authorised",
-            "Only Khaitan Public School accounts can submit reports."
-        );
-
-        return;
+      throw new Error(
+        "Only school accounts can submit reports."
+      );
 
     }
 
 
-    const isLost =
-        type === "Lost";
+    const reporterName =
+      getUserDisplayName(
+        currentUser
+      );
 
 
-    const prefix =
-        isLost
-        ? "lost"
-        : "found";
+    await addDoc(
+      collection(db, "items"),
+      {
+
+        itemName:
+          itemName.trim(),
+
+        name:
+          itemName.trim(),
+
+        category:
+          category,
+
+        location:
+          location.trim(),
+
+        description:
+          description.trim(),
+
+        imageUrl:
+          imageUrl.trim(),
+
+        status:
+          type,
+
+        type:
+          type,
+
+        reportedByName:
+          reporterName,
+
+        reportedByEmail:
+          email,
+
+        reportedByUid:
+          currentUser.uid,
+
+        createdAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+  }
 
 
-    const submitButton =
-        document.getElementById(
-            prefix +
-            "Submit"
-        );
+  /* =====================================================
+     LOST FORM
+  ===================================================== */
+
+  document
+    .getElementById("lostForm")
+    .addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
 
 
-    submitButton.disabled =
-        true;
+        const button =
+          event.target.querySelector(
+            "button"
+          );
 
 
-    submitButton.textContent =
-        "Submitting...";
+        button.disabled = true;
+
+        button.textContent =
+          "Submitting...";
 
 
-    try{
+        try {
 
-        const name =
-            currentUser.displayName ||
-            currentUser.email
-                .split("@")[0];
+          await createReport(
 
+            "lost",
 
-        const itemName =
-            document.getElementById(
-                prefix +
-                "ItemName"
-            ).value
-            .trim();
+            document
+              .getElementById(
+                "lostItemName"
+              ).value,
 
+            document
+              .getElementById(
+                "lostCategory"
+              ).value,
 
-        const category =
-            document.getElementById(
-                prefix +
-                "Category"
-            ).value;
+            document
+              .getElementById(
+                "lostLocation"
+              ).value,
 
+            document
+              .getElementById(
+                "lostDescription"
+              ).value,
 
-        const location =
-            document.getElementById(
-                prefix +
-                "Location"
-            ).value
-            .trim();
+            document
+              .getElementById(
+                "lostImage"
+              ).value
 
-
-        const date =
-            document.getElementById(
-                prefix +
-                "Date"
-            ).value;
+          );
 
 
-        const description =
-            document.getElementById(
-                prefix +
-                "Description"
-            ).value
-            .trim();
+          event.target.reset();
+
+          lostReporterName.value =
+            getUserDisplayName(
+              currentUser
+            );
 
 
-        const imageUrl =
-            document.getElementById(
-                prefix +
-                "Image"
-            ).value
-            .trim();
+          showToast(
+            "Lost item reported successfully!",
+            "success"
+          );
 
 
-        /*
-           30-DAY EXPIRY
-        */
-
-        const expiryDate =
-            new Date();
+          await loadItems();
 
 
-        expiryDate.setDate(
-            expiryDate.getDate() +
-            30
-        );
+          document
+            .querySelector(
+              '[data-tab="browse"]'
+            )
+            .click();
 
 
-        await addDoc(
-            collection(
-                db,
-                "items"
-            ),
-            {
+        } catch (error) {
 
-                itemName:
-                    itemName,
+          console.error(error);
 
-                category:
-                    category,
-
-                location:
-                    location,
-
-                date:
-                    date,
-
-                description:
-                    description,
-
-                imageUrl:
-                    imageUrl,
-
-                status:
-                    type,
-
-                reporterName:
-                    name,
-
-                reporterEmail:
-                    email,
-
-                reporterUid:
-                    currentUser.uid,
-
-                createdAt:
-                    serverTimestamp(),
-
-                expiresAt:
-                    expiryDate
-
-            }
-        );
-
-
-        document.getElementById(
-            prefix +
-            "Form"
-        ).reset();
-
-
-        setupUserInformation();
-
-
-        await loadItems();
-
-
-        showModal(
-            "✅",
-            "Report submitted!",
-            "Your " +
-            type.toLowerCase() +
-            " report has been added successfully."
-        );
-
-
-        /*
-           Go back to Browse
-        */
-
-        setTimeout(
-            ()=>{
-
-                const browseButton =
-                    document.querySelector(
-                        ".tab"
-                    );
-
-
-                showTab(
-                    "browse",
-                    browseButton
-                );
-
-            },
-            700
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
-
-        showModal(
-            "❌",
-            "Submission failed",
+          showToast(
             error.message ||
-            "Something went wrong while submitting your report."
-        );
+            "Could not submit report.",
+            "error"
+          );
 
+        } finally {
 
-    }finally{
+          button.disabled = false;
 
-        submitButton.disabled =
-            false;
-
-
-        submitButton.textContent =
-            isLost
-            ? "🚩 Submit Lost Report"
-            : "📍 Submit Found Report";
-
-    }
-
-};
-
-
-
-/* =========================================================
-   TAB SWITCHING
-========================================================= */
-
-window.showTab =
-function(
-    tab,
-    button
-){
-
-    const sections = [
-
-        "browseTab",
-
-        "lostTab",
-
-        "foundTab",
-
-        "myReportsTab"
-
-    ];
-
-
-    sections.forEach(
-        id=>{
-
-            document.getElementById(
-                id
-            ).style.display =
-                "none";
+          button.textContent =
+            "Submit Lost Report";
 
         }
+
+      }
     );
 
 
-    document
-        .querySelectorAll(".tab")
-        .forEach(
-            btn=>{
+  /* =====================================================
+     FOUND FORM
+  ===================================================== */
 
-                btn.classList.remove(
-                    "active"
-                );
+  document
+    .getElementById("foundForm")
+    .addEventListener(
+      "submit",
+      async (event) => {
 
-            }
-        );
+        event.preventDefault();
 
 
-    if(tab === "browse"){
+        const button =
+          event.target.querySelector(
+            "button"
+          );
 
-        document.getElementById(
-            "browseTab"
-        ).style.display =
-            "block";
 
-    }
+        button.disabled = true;
 
+        button.textContent =
+          "Submitting...";
 
-    if(tab === "lost"){
 
-        document.getElementById(
-            "lostTab"
-        ).style.display =
-            "block";
+        try {
 
-    }
+          await createReport(
 
+            "found",
 
-    if(tab === "found"){
+            document
+              .getElementById(
+                "foundItemName"
+              ).value,
 
-        document.getElementById(
-            "foundTab"
-        ).style.display =
-            "block";
+            document
+              .getElementById(
+                "foundCategory"
+              ).value,
 
-    }
+            document
+              .getElementById(
+                "foundLocation"
+              ).value,
 
+            document
+              .getElementById(
+                "foundDescription"
+              ).value,
 
-    if(tab === "myReports"){
+            document
+              .getElementById(
+                "foundImage"
+              ).value
 
-        document.getElementById(
-            "myReportsTab"
-        ).style.display =
-            "block";
+          );
 
 
-        renderMyReports();
+          event.target.reset();
 
-    }
-
-
-    if(button){
-
-        button.classList.add(
-            "active"
-        );
-
-    }
-
-};
-
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function showModal(
-    icon,
-    title,
-    message
-){
-
-    document.getElementById(
-        "modalIcon"
-    ).textContent =
-        icon;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        title;
-
-
-    document.getElementById(
-        "modalMessage"
-    ).textContent =
-        message;
-
-
-    document.getElementById(
-        "modal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-window.closeModal =
-function(){
-
-    document.getElementById(
-        "modal"
-    ).classList.remove(
-        "show"
-    );
-
-};
-
-
-
-/* =========================================================
-   LOGIN ERROR
-========================================================= */
-
-function showLoginError(
-    message
-){
-
-    const error =
-        document.getElementById(
-            "loginError"
-        );
-
-
-    error.textContent =
-        "Firebase: " +
-        message;
-
-
-    error.style.display =
-        "block";
-
-}
-
-
-
-/* =========================================================
-   DATE FORMAT
-========================================================= */
-
-function formatDate(
-    value
-){
-
-    if(!value)
-        return "Date not specified";
-
-
-    try{
-
-        const date =
-            new Date(value);
-
-
-        return date.toLocaleDateString(
-            "en-IN",
-            {
-                day:"numeric",
-                month:"short",
-                year:"numeric"
-            }
-        );
-
-    }catch{
-
-        return value;
-
-    }
-
-}
-
-
-
-/* =========================================================
-   SECURITY
-========================================================= */
-
-function escapeHTML(
-    value
-){
-
-    if(
-        value === undefined ||
-        value === null
-    ){
-
-        return "";
-
-    }
-
-
-    return String(value)
-
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
-
-}
-
-
-
-/* =========================================================
-   DEFAULT DATE SETTINGS
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    ()=>{
-
-        const today =
-            new Date()
-            .toISOString()
-            .split("T")[0];
-
-
-        const lostDate =
-            document.getElementById(
-                "lostDate"
+          foundReporterName.value =
+            getUserDisplayName(
+              currentUser
             );
 
 
-        const foundDate =
-            document.getElementById(
-                "foundDate"
-            );
+          showToast(
+            "Found item reported successfully!",
+            "success"
+          );
 
 
-        if(lostDate)
-            lostDate.max =
-                today;
+          await loadItems();
 
 
-        if(foundDate)
-            foundDate.max =
-                today;
+          document
+            .querySelector(
+              '[data-tab="browse"]'
+            )
+            .click();
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showToast(
+            error.message ||
+            "Could not submit report.",
+            "error"
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+          button.textContent =
+            "Submit Found Report";
+
+        }
+
+      }
+    );
+
+
+  /* =====================================================
+     MY REPORTS
+  ===================================================== */
+
+  async function loadMyReports() {
+
+    if (!currentUser) {
+      return;
+    }
+
+
+    myReportsGrid.innerHTML = `
+      <div class="loading">
+        <div class="spinner"></div>
+        Loading your reports...
+      </div>
+    `;
+
+
+    try {
+
+      const reportsQuery =
+        query(
+          collection(db, "items"),
+          where(
+            "reportedByUid",
+            "==",
+            currentUser.uid
+          )
+        );
+
+
+      const snapshot =
+        await getDocs(
+          reportsQuery
+        );
+
+
+      const reports = [];
+
+
+      snapshot.forEach(
+        doc => {
+
+          reports.push({
+            id: doc.id,
+            ...doc.data()
+          });
+
+        }
+      );
+
+
+      if (!reports.length) {
+
+        myReportsGrid.innerHTML = `
+          <div class="empty">
+            <div class="empty-icon">📋</div>
+            <h3>You haven't reported anything yet</h3>
+            <p>
+              Your lost and found reports will appear here.
+            </p>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      reports.sort(
+        (a, b) => {
+
+          const aTime =
+            a.createdAt?.toMillis?.() || 0;
+
+          const bTime =
+            b.createdAt?.toMillis?.() || 0;
+
+          return bTime - aTime;
+
+        }
+      );
+
+
+      myReportsGrid.innerHTML =
+        reports
+          .map(renderItem)
+          .join("");
+
+
+    } catch (error) {
+
+      console.error(
+        "My reports error:",
+        error
+      );
+
+
+      myReportsGrid.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">⚠️</div>
+          <h3>Unable to load your reports</h3>
+          <p>
+            Check your Firestore rules.
+          </p>
+        </div>
+      `;
 
     }
-);
+
+  }
+
 
 </script>
 
