@@ -21,11 +21,12 @@
 }
 
 :root {
-    --brand-teal-light: #52C3D3;
-    --brand-teal: #179DAE;
-    /* Updated lighter green color to match the exact right peak of the school logo */
-    --brand-emerald: #2ECC71; 
-    --brand-dark: #0f383e;
+    /* Exact color palette extracted from the official website header */
+    --brand-top-bar: #0e8388;       /* Deep teal top bar */
+    --brand-emerald: #1eb899;       /* Bright mint green (Logo right peak & Enquiry button) */
+    --brand-teal-light: #36b3b0;    /* Light cyan-teal (Logo left peak) */
+    --brand-teal-dark: #0f7187;     /* Ocean blue-teal (Logo middle peak) */
+    --brand-dark: #1a1a1a;          /* Clean black text */
     
     --cream: #f4f8f8;
     --white: #ffffff;
@@ -33,7 +34,7 @@
     --text-2: #4a5c5f;
     --text-3: #7a8e91;
     --border: #d4e0e2;
-    --border-strong: #2ECC71;
+    --border-strong: #1eb899;
 
     --success-bg: #e6f8f2;
     --success-text: #00875a;
@@ -61,14 +62,21 @@ body {
     min-height: 100vh;
 }
 
+/* TOP BAR ACCENT */
+.top-accent-bar {
+    height: 6px;
+    background: var(--brand-top-bar);
+    width: 100%;
+}
+
 /* HEADER */
 
 header {
-    background: var(--brand-dark);
+    background: var(--white);
     position: sticky;
     top: 0;
     z-index: 50;
-    box-shadow: 0 2px 16px rgba(15,56,62,0.25);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 .header-inner {
@@ -105,14 +113,14 @@ header {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: 800;
-    color: white;
+    color: var(--brand-dark);
     letter-spacing: 0.08em;
     line-height: 1.1;
 }
 
 .school-tagline {
     font-size: 9px;
-    color: var(--brand-teal-light);
+    color: var(--brand-teal-dark);
     letter-spacing: 0.18em;
     font-weight: 600;
     text-transform: uppercase;
@@ -121,10 +129,10 @@ header {
 
 .portal-label {
     font-size: 11px;
-    color: rgba(255,255,255,0.7);
+    color: var(--text-2);
     letter-spacing: .08em;
     text-transform: uppercase;
-    border-left: 2px solid var(--brand-teal);
+    border-left: 2px solid var(--brand-emerald);
     padding-left: 10px;
     margin-left: 8px;
 }
@@ -134,8 +142,8 @@ header {
 .hero {
     background: linear-gradient(
         135deg,
-        var(--brand-dark),
-        #154b53
+        #0e757a,
+        var(--brand-teal-dark)
     );
     padding: 48px 24px 36px;
     text-align: center;
@@ -150,12 +158,12 @@ header {
 }
 
 .hero h1 span {
-    color: var(--brand-teal-light);
+    color: #a8ebd9;
 }
 
 .hero-sub {
     font-size: 15px;
-    color: rgba(255,255,255,.75);
+    color: rgba(255,255,255,.85);
     max-width: 480px;
     margin: auto auto 28px;
     line-height: 1.6;
@@ -170,8 +178,8 @@ header {
 }
 
 .stat-pill {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
     padding: 12px 28px;
     text-align: center;
     min-width: 110px;
@@ -188,13 +196,13 @@ header {
 .stat-num {
     font-size: 26px;
     font-weight: 700;
-    color: var(--brand-teal-light);
+    color: #ffffff;
     font-family: 'Montserrat', sans-serif;
 }
 
 .stat-label {
     font-size: 11px;
-    color: rgba(255,255,255,.65);
+    color: rgba(255,255,255,.8);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -279,7 +287,7 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: var(--brand-teal);
+    border-color: var(--brand-emerald);
 }
 
 textarea {
@@ -409,9 +417,9 @@ textarea {
 }
 
 .claim-btn {
-    color: var(--brand-dark);
+    color: var(--brand-teal-dark);
     background: var(--found-bg);
-    border: 1px solid var(--brand-teal);
+    border: 1px solid var(--brand-emerald);
 }
 
 .return-btn {
@@ -597,7 +605,7 @@ textarea {
 /* FOOTER */
 
 footer {
-    background: var(--brand-dark);
+    background: #0d2a2e;
     color: rgba(255,255,255,.6);
     text-align: center;
     padding: 24px 20px;
@@ -653,18 +661,20 @@ footer strong {
 
 <body>
 
+<div class="top-accent-bar"></div>
+
 <header>
 
 <div class="header-inner">
 
 <div class="logo-group">
 
-<!-- Authentic Khaitan Public School Mountain Logo SVG with lighter green color -->
+<!-- Authentic Khaitan Public School Mountain Logo SVG -->
 <div class="logo-mountains">
 <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M50 8L76 52H24L50 8Z" fill="#2ECC71" opacity="0.95"/>
-  <path d="M28 22L48 52H8L28 22Z" fill="#52C3D3" opacity="0.85"/>
-  <path d="M68 14L92 52H44L68 14Z" fill="#179DAE" opacity="0.9"/>
+  <path d="M50 8L76 52H24L50 8Z" fill="#1eb899" opacity="0.95"/>
+  <path d="M28 22L48 52H8L28 22Z" fill="#36b3b0" opacity="0.85"/>
+  <path d="M68 14L92 52H44L68 14Z" fill="#0f7187" opacity="0.9"/>
 </svg>
 </div>
 
@@ -686,7 +696,7 @@ Lost & Found Portal
 
 </div>
 
-<div style="font-size:13px;color:rgba(255,255,255,.6)">
+<div style="font-size:13px;color:var(--text-2);">
 Made by Trishar Saxena & Krishna Sharma
 </div>
 
